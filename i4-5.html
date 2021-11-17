@@ -1,0 +1,656 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=0.8"><title>Intermezzo 4: The Nature of Numbers</title><link rel="stylesheet" type="text/css" href="i4-5_files/scribble.css" title="default"><link rel="stylesheet" type="text/css" href="i4-5_files/shared.css" title="default"><link rel="stylesheet" type="text/css" href="i4-5_files/figure.css" title="default"><link rel="stylesheet" type="text/css" href="i4-5_files/racket.css" title="default"><link rel="stylesheet" type="text/css" href="i4-5_files/manual-style.css" title="default"><link rel="stylesheet" type="text/css" href="i4-5_files/manual-racket.css" title="default"><script type="text/javascript" src="i4-5_files/scribble-common.js"></script><script type="text/javascript" src="i4-5_files/figure.js"></script><script type="text/javascript" src="i4-5_files/manual-racket.js"></script><!--[if IE 6]><style type="text/css">.SIEHidden { overflow: hidden; }</style><![endif]--></head><body id="scribble-racket-lang-org"><div class="tocset"><div class="tocview"><div class="tocviewlist tocviewlisttopspace"><div class="tocviewtitle"><table cellspacing="0" cellpadding="0"><tbody><tr><td style="width: 1em;"><a href="javascript:void(0);" title="Expand/Collapse" class="tocviewtoggle" onclick='TocviewToggle(this,"tocview_0");'>▼</a></td><td></td><td><a href="index.html" class="tocviewlink" data-pltdoc="x">How to Design Programs, Second Edition</a></td></tr></tbody></table></div><div class="tocviewsublisttop" style="display: block;" id="tocview_0"><table cellspacing="0" cellpadding="0"><tbody><tr><td align="right"></td><td><a href="part_preface.html" class="tocviewlink" data-pltdoc="x">Preface</a></td></tr><tr><td align="right"></td><td><a href="part_prologue.html" class="tocviewlink" data-pltdoc="x">Prologue:<span class="mywbr"> &nbsp;</span> How to Program</a></td></tr><tr><td align="right">I&nbsp;</td><td><a href="part_one.html" class="tocviewlink" data-pltdoc="x">Fixed Size Data</a></td></tr><tr><td align="right"></td><td><a href="i1-2.html" class="tocviewlink" data-pltdoc="x">Intermezzo 1: Beginning Student Language</a></td></tr><tr><td align="right">II&nbsp;</td><td><a href="part_two.html" class="tocviewlink" data-pltdoc="x">Arbitrarily Large Data</a></td></tr><tr><td align="right"></td><td><a href="i2-3.html" class="tocviewlink" data-pltdoc="x">Intermezzo 2: Quote, Unquote</a></td></tr><tr><td align="right">III&nbsp;</td><td><a href="part_three.html" class="tocviewlink" data-pltdoc="x">Abstraction</a></td></tr><tr><td align="right"></td><td><a href="i3-4.html" class="tocviewlink" data-pltdoc="x">Intermezzo 3: Scope and Abstraction</a></td></tr><tr><td align="right">IV&nbsp;</td><td><a href="part_four.html" class="tocviewlink" data-pltdoc="x">Intertwined Data</a></td></tr><tr><td align="right"></td><td><a href="" class="tocviewselflink" data-pltdoc="x">Intermezzo 4: The Nature of Numbers</a></td></tr><tr><td align="right">V&nbsp;</td><td><a href="part_five.html" class="tocviewlink" data-pltdoc="x">Generative Recursion</a></td></tr><tr><td align="right"></td><td><a href="i5-6.html" class="tocviewlink" data-pltdoc="x">Intermezzo 5: The Cost of Computation</a></td></tr><tr><td align="right">VI&nbsp;</td><td><a href="part_six.html" class="tocviewlink" data-pltdoc="x">Accumulators</a></td></tr><tr><td align="right"></td><td><a href="part_epilogue.html" class="tocviewlink" data-pltdoc="x">Epilogue:<span class="mywbr"> &nbsp;</span> Moving On</a></td></tr></tbody></table></div></div><div class="tocviewlist"><table cellspacing="0" cellpadding="0"><tbody><tr><td style="width: 1em;"><a href="javascript:void(0);" title="Expand/Collapse" class="tocviewtoggle" onclick='TocviewToggle(this,"tocview_1");'>►</a></td><td></td><td><a href="" class="tocviewselflink" data-pltdoc="x">Intermezzo 4: The Nature of Numbers</a></td></tr></tbody></table><div class="tocviewsublistbottom" style="display: none;" id="tocview_1"><table cellspacing="0" cellpadding="0"><tbody><tr><td align="right"></td><td><a href="#%28part._.Fixed-.Size_.Number_.Arithmetic%29" class="tocviewlink" data-pltdoc="x">Fixed Size Number Arithmetic</a></td></tr><tr><td align="right"></td><td><a href="#%28part._.Overflow%29" class="tocviewlink" data-pltdoc="x">Overflow</a></td></tr><tr><td align="right"></td><td><a href="#%28part._.Underflow%29" class="tocviewlink" data-pltdoc="x">Underflow</a></td></tr><tr><td align="right"></td><td><a href="#%28part.__.S.L_.Numbers%29" class="tocviewlink" data-pltdoc="x">*SL Numbers</a></td></tr></tbody></table></div></div></div></div><div class="maincolumn"><div class="main"><div class="versionbox"><span class="version">8.0.0.10</span></div><div class="navsettop"><span class="navleft"><div class="nosearchform"></div>&nbsp;&nbsp;</span><span class="navright">&nbsp;&nbsp;<a href="part_four.html" title="backward to &quot;IV Intertwined Data&quot;" data-pltdoc="x">← prev</a>&nbsp;&nbsp;<a href="index.html" title="up to &quot;How to Design Programs, Second Edition&quot;" data-pltdoc="x">up</a>&nbsp;&nbsp;<a href="part_five.html" title="forward to &quot;V Generative Recursion&quot;" data-pltdoc="x">next →</a></span>&nbsp;</div><h3><a name="(part._i4-5)"></a>Интермеццо 4: Природа чисел</h3><table cellspacing="0" cellpadding="0"><tbody><tr><td>
+
+<p><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#%28part._.Fixed-.Size_.Number_.Arithmetic%29" class="toclink" data-pltdoc="x">Арифметика Чисел фиксированного размера</a></p>
+
+</td></tr><tr><td>
+
+<p><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#%28part._.Overflow%29" class="toclink" data-pltdoc="x">Overflow(Переполнение)</a></p>
+
+</td></tr><tr><td>
+
+<p><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#%28part._.Underflow%29" class="toclink" data-pltdoc="x">Underflow(потеря значимости)</a></p>
+
+</td></tr><tr><td>
+
+<p><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#%28part.__.S.L_.Numbers%29" class="toclink" data-pltdoc="x">*SL Числа</a></p>
+
+</td></tr></tbody></table>
+
+<p>Когда дело доходит до чисел, языки программирования сокращают разрыв между 
+аппаратным обеспечением и истинной математикой. Типичное компьютерное оборудование 
+представляет числа с фрагментами данных фиксированного размера; 
+<span class="refelem"><span class="refcolumn"><span class="refcontent">эти фрагменты 
+называются <span style="font-style: italic">bits(битами)</span> , 
+<span style="font-style: italic">bytes(байтами)</span> и 
+<span style="font-style: italic">words(словами)</span>.</span></span></span> 
+они также поставляются с процессорами, которые работают именно с такими фрагментами. 
+В вычислениях на бумаге и карандаше мы не беспокоимся о том, сколько цифр мы обрабатываем; 
+в принципе, мы можем иметь дело с числами, которые состоят из одной цифры, 10 цифр или 
+10 000 цифр. Таким образом, если язык программирования использует числа из базового 
+оборудования, его вычисления будут максимально эффективными. Если он придерживается 
+чисел, которые мы знаем из математики, он должен преобразовать их в блоки данных 
+оборудования и обратно, а эти переводы требуют времени. Из-за этой стоимости 
+большинство создателей языков программирования выбирают аппаратное обеспечение. </p>
+
+<p>Это интермеццо объясняет аппаратное представление чисел как упражнение 
+в представлении данных. Конкретно, в первом подразделе вводится конкретное 
+представление данных фиксированного размера для чисел, обсуждается, как отображать 
+числа в это представление, и намекается, как вычисления работают с такими числами. 
+Второй и третий разделы иллюстрируют две наиболее фундаментальные проблемы этого выбора:
+арифметическое переполнение и потеря значимости соответственно. В последнем показано, 
+как работает арифметика на языках обучения; их система счисления 
+<span style="font-weight: bold">обобщает</span> то, что вы найдете в большинстве современных
+языков программирования. Последние упражнения показывают, насколько плохи могут быть вещи, 
+когда программы вычисляют с помощью чисел. </p>
+
+<h3><a name="(part._.Fixed-.Size_.Number_.Arithmetic)"></a>Арифметика с числами фиксированного размера
+</h3>
+
+<p>Предположим, мы можем использовать четыре цифры для представления чисел. 
+Если мы представляем натуральные числа, один представимый диапазон равен 
+<span style="font-style: italic"></span>[<span style="font-style: italic"></span>0<span style="font-style: italic">,</span>1<span style="font-style: italic"></span>0<span style="font-style: italic"></span>0<span style="font-style: italic"></span>0<span style="font-style: italic"></span>0<span style="font-style: italic"></span>)<span style="font-style: italic"></span>. Для действительных чисел мы могли бы выбрать 10 000 дробей между <span style="font-style: italic"></span>0<span style="font-style: italic"></span> и <span style="font-style: italic"></span>1<span style="font-style: italic"></span> или 5000 от <span style="font-style: italic"></span>0<span style="font-style: italic"></span> до <span style="font-style: italic"></span>1<span style="font-style: italic"></span> и еще 5000 от <span style="font-style: italic"></span>1<span style="font-style: italic"></span> до
+<span style="font-style: italic"></span>2<span style="font-style: italic"></span> и так далее. 
+В любом случае четыре цифры могут представлять не более 10 000 чисел для некоторого выбранного
+интервала, в то время как числовая строка для этого интервала содержит бесконечное количество чисел. </p>
+
+<p></p>
+
+<div class="SIntrapara">Обычный выбор для чисел для оборудования - использовать так 
+называемую научную нотацию, то есть числа представлены двумя частями:
+<span class="refelem"><span class="refcolumn"><span class="refcontent">
+Для чисто научных обозначений основание составляет от 0 до 9; мы игнорируем это ограничение.
+</span></span></span>
+</div><div class="SIntrapara"><ol><li>
+
+<p><span style="font-style: italic">mantissa(мантисса)</span>, которая является основным числом, и</p>
+
+</li><li>
+
+<p><span style="font-style: italic">exponent(показатель степени)</span>, который используется 
+для определения коэффициента на основе 10.</p>
+
+</li></ol></div><div class="SIntrapara">Выражаясь формулой, мы записываем числа как 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_154.png" alt="image" width="37" height="8"></p>
+
+</blockquote></div><div class="SIntrapara">где <span style="font-style: italic">m</span>
+ - мантисса, а <span style="font-style: italic">e</span> - показатель степени. Например, одно представление <span style="font-style: italic"></span>1<span style="font-style: italic"></span>2<span style="font-style: italic"></span>0<span style="font-style: italic"></span>0<span style="font-style: italic"></span> в этой схеме это: 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_155.png" alt="image" width="48" height="13"></p>
+
+</blockquote></div><div class="SIntrapara">еще одно</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_156.png" alt="image" width="41" height="10"></p>
+
+</blockquote></div><div class="SIntrapara">Как правило, число имеет несколько эквивалентов в 
+этом представлении.</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Мы также можем использовать отрицательные показатели степени, 
+которые добавляют дроби за счет одной дополнительной части данных: знака экспоненты
+(показателя степени). Например, 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_157.png" alt="image" width="39" height="10"></p>
+
+</blockquote></div><div class="SIntrapara">означает 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_158.png" alt="image" width="22" height="15"></p>
+
+</blockquote></div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Чтобы использовать форму обозначения мантисса-экспонента для 
+нашей задачи, мы должны решить, сколько из четырех цифр мы хотим использовать для 
+представления мантиссы, а сколько - для экспоненты. Здесь мы используем два для каждого 
+плюс знак для экспоненты; возможны другие варианты. Учитывая это решение, мы все еще можем
+представить 0 как 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_159.png" alt="image" width="38" height="10"></p>
+
+</blockquote></div><div class="SIntrapara">Максимальное число, которое мы можем представить, это 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_160.png" alt="image" width="50" height="13"></p>
+
+</blockquote></div><div class="SIntrapara">это 99, за которым следуют 99 0. Используя 
+отрицательные показатели степени, мы можем складывать дроби вплоть до 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_161.png" alt="image" width="57" height="13"></p>
+
+</blockquote></div><div class="SIntrapara">которая является наименьшим представимым числом. 
+В общем, используя научную систему обозначений с четырьмя цифрами (и знаком), мы можем 
+представить широкий диапазон чисел и дробей, но это улучшение имеет свои проблемы.</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara"><a name="(idx._(gentag._587))"></a>
+<a name="(idx._(gentag._588))"></a>
+</div><div class="SIntrapara"><blockquote class="Figure"><a name="(counter._(figure._fig~3ainexact-construct))" x-target-lift="Figure"></a><blockquote class="Centerfigure"><blockquote class="FigureInside"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><a href="part_two.html#%28tech._n%29" class="techoutside" data-pltdoc="x"><span class="techinside">N</span></a><span class="RktCmt"> </span><a href="part_one.html#%28tech._number%29" class="techoutside" data-pltdoc="x"><span class="techinside">Number</span></a><span class="RktCmt"> </span><a href="part_two.html#%28tech._n%29" class="techoutside" data-pltdoc="x"><span class="techinside">N</span></a><span class="RktCmt"> -&gt; </span><a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">makes an instance of </span><a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a><span class="RktCmt"> after checking the arguments</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktSym">m</span><span class="hspace">&nbsp;</span><span class="RktSym">s</span><span class="hspace">&nbsp;</span><span class="RktSym">e</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._cond%29%29" class="RktStxLink" data-pltdoc="x">cond</a></span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._and%29%29" class="RktStxLink" data-pltdoc="x">and</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._~3c~3d%29%29" class="RktValLink" data-pltdoc="x">&lt;=</a></span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="hspace">&nbsp;</span><span class="RktSym">m</span><span class="hspace">&nbsp;</span><span class="RktVal">99</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._~3c~3d%29%29" class="RktValLink" data-pltdoc="x">&lt;=</a></span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="hspace">&nbsp;</span><span class="RktSym">e</span><span class="hspace">&nbsp;</span><span class="RktVal">99</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._or%29%29" class="RktStxLink" data-pltdoc="x">or</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._~3d%29%29" class="RktValLink" data-pltdoc="x">=</a></span><span class="hspace">&nbsp;</span><span class="RktSym">s</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._~3d%29%29" class="RktValLink" data-pltdoc="x">=</a></span><span class="hspace">&nbsp;</span><span class="RktSym">s</span><span class="hspace">&nbsp;</span><span class="RktVal"><span class="nobreak">-1</span></span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym">make-inex</span><span class="hspace">&nbsp;</span><span class="RktSym">m</span><span class="hspace">&nbsp;</span><span class="RktSym">s</span><span class="hspace">&nbsp;</span><span class="RktSym">e</span><span class="RktPn">)</span><span class="RktPn">]</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._else%29%29" class="RktStxLink" data-pltdoc="x">else</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._error%29%29" class="RktValLink" data-pltdoc="x">error</a></span><span class="hspace">&nbsp;</span><span class="RktVal">"bad values given"</span><span class="RktPn">)</span><span class="RktPn">]</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;</span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a><span class="RktCmt"> -&gt; </span><a href="part_one.html#%28tech._number%29" class="techoutside" data-pltdoc="x"><span class="techinside">Number</span></a></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">converts an </span><a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">inex</span></a><span class="RktCmt"> into its numeric equivalent </span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">inex-&gt;number</span><span class="hspace">&nbsp;</span><span class="RktSym">an-inex</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._%2A%29%29" class="RktValLink" data-pltdoc="x">*</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">inex-mantissa</span><span class="hspace">&nbsp;</span><span class="RktSym">an-inex</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._expt%29%29" class="RktValLink" data-pltdoc="x">expt</a></span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">10</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._%2A%29%29" class="RktValLink" data-pltdoc="x">*</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">inex-sign</span><span class="hspace">&nbsp;</span><span class="RktSym">an-inex</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">inex-exponent</span><span class="hspace">&nbsp;</span><span class="RktSym">an-inex</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></blockquote><p class="Centertext"><span class="Legend"><span class="FigureTarget">Рисунок&nbsp;143: </span>Функции для неточных представлений</span></p>
+
+</blockquote></div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Чтобы понять проблемы, лучше всего сделать этот выбор конкретным 
+с помощью представления данных в ISL+ и проведения некоторых экспериментов. Давайте представим
+число фиксированного размера в виде структуры с тремя полями: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._define-struct%29%29" class="RktStxLink" data-pltdoc="x">define-struct</a></span><span class="hspace">&nbsp;</span><span class="RktSym">inex</span><span class="hspace">&nbsp;</span><span class="RktPn">[</span><span class="RktSym">mantissa</span><span class="hspace">&nbsp;</span><span class="RktSym">sign</span><span class="hspace">&nbsp;</span><span class="RktSym">exponent</span><span class="RktPn">]</span><span class="RktPn">)</span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">An </span><a name="(tech._inex)"></a><span style="font-style: italic">Inex</span><span class="RktCmt"> is a structure: </span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym">make-inex</span><span class="stt"> </span><a href="#%28tech._n99%29" class="techoutside" data-pltdoc="x"><span class="techinside">N99</span></a><span class="stt"> </span><a href="#%28tech._%29" class="techoutside" data-pltdoc="x"><span class="techinside">S</span></a><span class="stt"> </span><a href="#%28tech._n99%29" class="techoutside" data-pltdoc="x"><span class="techinside">N99</span></a><span class="RktPn">)</span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">An </span><a name="(tech._)"></a><span style="font-style: italic">S</span><span class="RktCmt"> is one of:</span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">–</span><span class="RktCmt"> </span><span class="RktVal">1</span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">–</span><span class="RktCmt"> </span><span class="RktVal"><span class="nobreak">-1</span></span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">An </span><a name="(tech._n99)"></a><span style="font-style: italic">N99</span><span class="RktCmt"> is an </span><a href="part_two.html#%28tech._n%29" class="techoutside" data-pltdoc="x"><span class="techinside">N</span></a><span class="RktCmt"> between </span><span class="RktVal">0</span><span class="RktCmt"> and </span><span class="RktVal">99</span><span class="RktCmt"> (inclusive).</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Поскольку условия для полей <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a> очень строгие, мы определяем функцию 
+<span class="RktSym">create-inex</span> для создания экземпляра этого определения структурного
+типа; см. <a href="#%28counter._%28figure._fig~3ainexact-construct%29%29" data-pltdoc="x">рисунок&nbsp;<span class="FigureRef">143</span></a>. На рисунке также определяется
+<span class="RktSym">inex-&gt;number</span>(числовое значение), которое превращает 
+<a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>es(индексы) в числа, используя приведенную выше формулу.
+</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Давайте переведем приведенный выше пример, 1200, в наше представление
+данных: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">12</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="RktPn">)</span></p>
+
+</blockquote></div><div class="SIntrapara">Однако представление <span class="RktVal">1200</span>
+как <img src="i4-5_files/pict_162.png" alt="image" width="44" height="10"> является незаконным,
+согласно нашему определению данных <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">120</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span></td></tr><tr><td>
+
+<p><span class="RktErr">bad values given</span></p>
+
+</td></tr></tbody></table></blockquote></div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Однако для других чисел мы можем найти два эквивалента 
+<a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>. Один из примеров это  <span class="RktVal">5e-19</span>:
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">50</span><span class="hspace">&nbsp;</span><span class="RktVal"><span class="nobreak">-1</span></span><span class="hspace">&nbsp;</span><span class="RktVal">20</span><span class="RktPn">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(make-inex 50 -1 20)</span></p>
+
+</td></tr><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">5</span><span class="hspace">&nbsp;</span><span class="RktVal"><span class="nobreak">-1</span></span><span class="hspace">&nbsp;</span><span class="RktVal">19</span><span class="RktPn">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(make-inex 5 -1 19)</span></p>
+
+</td></tr></tbody></table></blockquote></div><div class="SIntrapara">Используйте 
+<span class="RktSym">inex-&gt;number</span>, чтобы подтвердить эквивалентность этих 
+двух чисел.
+</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">С помощью <span class="RktSym">create-inex</span> также легко 
+ограничить диапазон представимых чисел, который на самом деле довольно мал для многих 
+приложений: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktSym">MAX-POSITIVE</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">99</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">99</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktSym">MIN-POSITIVE</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal"><span class="nobreak">-1</span></span><span class="hspace">&nbsp;</span><span class="RktVal">99</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Вопрос в том, какое из действительных чисел в диапазоне от 0 до 
+<span class="RktSym">MAX-POSITIVE</span> можно перевести в <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>. В частности, 
+любое положительное число меньше 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_163.png" alt="image" width="29" height="10"></p>
+
+</blockquote></div><div class="SIntrapara">не имеет эквивалента <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>. Точно так же и в
+представлении есть пробелы посередине. Например, непосредственный преемник 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">12</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="RktPn">)</span></p>
+
+</blockquote></div><div class="SIntrapara">это
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">13</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="RktPn">)</span></p>
+
+</blockquote></div><div class="SIntrapara">Первый <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a> представляет <span style="font-style: italic"></span>1<span style="font-style: italic"></span>2<span style="font-style: italic"></span>0<span style="font-style: italic"></span>0<span style="font-style: italic"></span>, 
+второй - <span style="font-style: italic"></span>1<span style="font-style: italic"></span>3<span style="font-style: italic"></span>0<span style="font-style: italic"></span>0<span style="font-style: italic"></span>. Числа в середине, скажем, <span style="font-style: italic"></span>1<span style="font-style: italic"></span>2<span style="font-style: italic"></span>4<span style="font-style: italic"></span>0<span style="font-style: italic"></span>, могут быть представлены как 
+одно или другое - никакой другой <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a> не имеет смысла. Стандартный выбор
+ - округлить число до ближайшего представимого эквивалента, и это то, что компьютерные ученые
+имеют в виду под <span style="font-style: italic">inexact numbers</span>(неточными числами). 
+То есть, выбранное представление данных заставляет нас сопоставить математические числа с приближениями.</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Наконец, мы должны также рассмотреть арифметические операции над структурами <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>. Добавление двух представлений <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a> с одинаковым
+показателем степени означает добавление двух мантисс: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym">inex+</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="RktSym">==</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">В математических обозначениях
+имеем
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_164.png" alt="image" width="68" height="42"></p>
+
+</blockquote></div><div class="SIntrapara">Когда сложение двух мантисс дает слишком много цифр, 
+мы должны использовать ближайшего соседа в <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>. Подумайте о добавлении 
+<img src="i4-5_files/pict_165.png" alt="image" width="39" height="10"> к самому себе. 
+Математически мы получаем 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_166.png" alt="image" width="50" height="13"></p>
+
+</blockquote></div><div class="SIntrapara">но мы не можем просто наивно перевести это число 
+в наше выбранное представление, потому что <img src="i4-5_files/pict_167.png" alt="image" width="47" height="9">. Правильное корректирующее действие - представить результат в виде 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_168.png" alt="image" width="44" height="10"></p>
+
+</blockquote></div><div class="SIntrapara">Или, переведя на ISL+, мы должны убедиться, 
+что <span class="RktSym">inex+</span> выполняет следующие вычисления: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym">inex+</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">55</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">55</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="RktSym">==</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">11</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+В более общем случае, если мантисса результата слишком велика, мы должны разделить ее на 
+<span class="RktVal">10</span> и увеличить показатель степени на единицу. </div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Иногда результат содержит больше цифр мантиссы, чем мы можем 
+представить. В этих случаях <span class="RktSym">inex+</span> необходимо округлить до 
+ближайшего эквивалента в мире <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>. Например: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym">inex+</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">56</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">56</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="RktSym">==</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">11</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Сравните это с точным расчетом: 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_169.png" alt="image" width="249" height="13"></p>
+
+</blockquote></div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Поскольку результат содержит слишком много цифр мантиссы, 
+целочисленное деление мантиссы результата на <span class="RktVal">10</span> дает 
+приблизительный результат: 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_170.png" alt="image" width="44" height="10"></p>
+
+</blockquote></div><div class="SIntrapara">Это пример многих приближений в арифметике 
+<a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>.
+<span class="refelem"><span class="refcolumn"><span class="refcontent">
+И неточность(<span style="font-weight: bold">inexact</span>) уместна.</span></span></span></div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Мы также можем умножать числа <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>. 
+Напомним, что 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_171.png" alt="image" width="121" height="44"></p>
+
+</blockquote></div><div class="SIntrapara">Таким образом получаем:
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_172.png" alt="image" width="164" height="10"></p>
+
+</blockquote></div><div class="SIntrapara">или в нотации ISL+: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym">inex*</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">4</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">8</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">10</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="RktSym">==</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">16</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">14</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Как и с добавлением, все не так просто. Когда результат содержит слишком много значащих цифр 
+в мантиссе, <span class="RktSym">inex*</span> должен увеличить показатель степени: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym">inex*</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">20</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">5</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">4</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="RktSym">==</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">10</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">6</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+и, как и в случае с<span class="RktSym">inex+</span>, <span class="RktSym">inex*</span> вводится
+ аппроксимация, если истинная мантисса не имеет точного эквивалента в <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>:  
+<a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>:
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym">inex*</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">27</span><span class="hspace">&nbsp;</span><span class="RktVal"><span class="nobreak">-1</span></span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">7</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">4</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="RktSym">==</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">19</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">4</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div>
+
+<p></p>
+
+<p><a name="(counter._(exercise._ex~3ainex-arith-plus))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;412. Разработайте <span class="RktSym">inex+</span>. Функция
+складывает два представления <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>чисел с одинаковым показателем степени. Функция должна иметь
+возможность обрабатывать входные данные, увеличивающие показатель степени. Кроме того, она должна
+сигнализировать о своей ошибке, если результат выходит за пределы допустимого диапазона, 
+а не полагаться на <span class="RktSym">create-inex</span> для проверки ошибок.</p>
+
+<p></p>
+
+<div class="SIntrapara"><span style="font-weight: bold">Задача</span>  Расширить
+<span class="RktSym">inex+</span>, чтобы она могла обрабатывать входные данные, экспоненты
+которых отличаются на <span class="RktVal">1</span>: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._check-expect%29%29" class="RktStxLink" data-pltdoc="x">check-expect</a></span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym">inex+</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal"><span class="nobreak">-1</span></span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">11</span><span class="hspace">&nbsp;</span><span class="RktVal"><span class="nobreak">-1</span></span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Не пытайтесь иметь дело с более крупными классами входных данных, не прочитав следующий 
+подраздел.
+<a href="#%28counter._%28exercise._ex~3ainex-arith-plus%29%29" class="ex-end" data-pltdoc="x"></a></div>
+
+<p></p>
+
+<p><a name="(counter._(exercise._ex~3ainex-arith-times))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;413. Разработайте <span class="RktSym">inex*</span>. Функция 
+умножает два представления чисел <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>, включая входные данные, которые 
+вызывают дополнительное увеличение экспоненты выходных данных. Как 
+<span class="RktSym">inex+</span>, она должна сигнализировать о своей ошибке, если 
+результат выходит за пределы допустимого диапазона, а не полагаться на 
+<span class="RktSym">create-inex</span> для выполнения проверки ошибок. 
+<a href="#%28counter._%28exercise._ex~3ainex-arith-times%29%29" class="ex-end" data-pltdoc="x"></a></p>
+
+<p><a name="(counter._(exercise._ex~3ainex-arith-round))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;414. Как показано в этом разделе, пробелы в представлении 
+данных приводят к ошибкам округления, когда числа отображаются в <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>es. Проблема в том, 
+что такие ошибки округления накапливаются в вычислениях..</p>
+
+<p>Разработайте <span class="RktSym">add</span>, функцию, которая складывает 
+<span class="RktSym">n</span> копий <span class="RktVal">#i1/185</span><span class="RktMeta"></span>. Для ваших примеров используйте <span class="RktVal">0</span> и 
+<span class="RktVal">1</span>; для последнего используйте допуск 
+<span class="RktVal">0.0001</span>. Каков результат для <span class="RktPn">(</span><span class="RktSym">add</span><span class="stt"> </span><span class="RktVal">185</span><span class="RktPn">)</span>? Чего бы вы ожидали? Что будет, если умножить результат на 
+большое число? </p>
+
+<p>Разработайте <span class="RktSym">sub</span>. Функция подсчитывает, сколько раз из 
+аргумента можно вычесть <span class="RktVal">1/185</span>, пока он не станет равным 
+<span class="RktVal">0</span>. Используйте <span class="RktVal">0</span> и 
+<span class="RktVal">1/185</span> для своих примеров. Каковы ожидаемые результаты? 
+Каковы результаты для <span class="RktPn">(</span><span class="RktSym">sub</span><span class="stt"> </span><span class="RktVal">1</span><span class="RktPn">)</span> и
+<span class="RktPn">(</span><span class="RktSym">sub</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">#i1.0</span><span class="RktPn">)</span><span class="RktMeta"></span>? Что происходит во втором случае? 
+Почему?  <a href="#%28counter._%28exercise._ex~3ainex-arith-round%29%29" class="ex-end" data-pltdoc="x"></a></p>
+
+<h3><a name="(part._.Overflow)"></a>Overflow(Переполнение )</h3>
+
+<p></p>
+
+<div class="SIntrapara">Хотя научная нотация расширяет диапазон чисел, которые мы 
+можем представить с помощью блоков данных фиксированного размера, он по-прежнему 
+ограничен. Некоторые числа слишком велики, чтобы уместиться в числовом представлении 
+фиксированного размера. Например,
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_173.png" alt="image" width="49" height="10"></p>
+
+</blockquote></div><div class="SIntrapara">не могут быть представлены, потому что показатель 
+степени 500 не умещается в двух цифрах, а мантисса настолько велика, насколько это возможно.
+</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Во время вычислений могут возникнуть числа, которые слишком велики 
+для <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>. Например, два числа, которые мы можем представить, 
+могут составлять в сумме число, которое мы не можем представить: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym">inex+</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">50</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">99</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">50</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">99</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="RktSym">==</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">100</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">99</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+что нарушает определение данных. Когда арифметика <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a> производит числа, которые слишком 
+велики для представления, мы говорим о (арифметическом) 
+переполнении(<span style="font-style: italic">overflow</span>).</div>
+
+<p></p>
+
+<p>Когда происходит переполнение, некоторые языковые реализации сигнализируют об ошибке 
+и останавливают вычисления. Другие обозначают некоторое символическое значение, называемое
+<span style="font-style: italic">infinity</span>(бесконечностью), для представления таких 
+чисел и передают его с помощью арифметических операций. </p>
+
+<p><span style="font-weight: bold"> Примечание</span>. Если в <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>es есть 
+знаковое поле для мантиссы, то два отрицательных числа могут составлять в сумме одно, 
+настолько отрицательное, что оно также не может быть представлено. Это называется 
+<span style="font-style: italic">переполнением в отрицательном направлении</span>. 
+ <span style="font-weight: bold">Конец</span></p>
+
+<p></p>
+
+<div class="SIntrapara"><a name="(counter._(exercise._ex~3aflow-large))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;415. ISL+ использует <span class="RktVal">+inf.0</span>
+для борьбы с переполнением. Определите целое число <span class="RktSym">n</span> такое, что
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._expt%29%29" class="RktValLink" data-pltdoc="x">expt</a></span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">#i10.0</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktSym">n</span><span class="RktPn">)</span><span class="RktMeta"></span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+- неточное число, а <span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._expt%29%29" class="RktValLink" data-pltdoc="x">expt</a></span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">#i10.</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktSym">n</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">1</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktMeta"></span> приближается с помощью <span class="RktVal">+inf.0</span>. 
+<span style="font-weight: bold">Подсказка</span>Разработайте функцию для вычисления
+<span class="RktSym">n</span>. <a href="#%28counter._%28exercise._ex~3aflow-large%29%29" class="ex-end" data-pltdoc="x"></a></div>
+
+<p></p>
+
+<h3><a name="(part._.Underflow)"></a>Underflow(потеря значений)</h3>
+
+<p></p>
+
+<div class="SIntrapara">На противоположном конце спектра есть небольшие числа, которые не
+представлены в <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>. Например, <img src="i4-5_files/pict_174.png" alt="image" width="34" height="10"> не 0, но меньше наименьшего ненулевого числа, которое мы можем
+представить. (Арифметическая) <span style="font-style: italic">underflow</span>(потеря 
+значения) возникает, когда мы умножаем два маленьких числа и результат слишком мал для 
+<a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>:
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym">inex*</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal"><span class="nobreak">-1</span></span><span class="hspace">&nbsp;</span><span class="RktVal">10</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal"><span class="nobreak">-1</span></span><span class="hspace">&nbsp;</span><span class="RktVal">99</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="RktSym">==</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal"><span class="nobreak">-1</span></span><span class="hspace">&nbsp;</span><span class="RktVal">109</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+что сигнализирует об ошибке.</div>
+
+<p></p>
+
+<p>Когда происходит потеря значений, некоторые языковые реализации сигнализируют об ошибке; 
+другие используют 0, чтобы приблизить результат. Использование 0 для аппроксимации 
+потери значений качественно отличается от выбора приблизительного представления числа в 
+<a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>. Конкретно, приближение <span style="font-style: italic"></span>1<span style="font-style: italic"></span>2<span style="font-style: italic"></span>5<span style="font-style: italic"></span>0<span style="font-style: italic"></span> с помощью 
+<span class="RktPn">(</span><span class="RktSym">create-inex</span><span class="stt"> </span><span class="RktVal">12</span><span class="stt"> </span><span class="RktVal">1</span><span class="stt"> </span><span class="RktVal">2</span><span class="RktPn">)</span> 
+отбрасывает значащие цифры из мантиссы, но результат всегда находится в пределах 10% от числа,
+которое должно быть представлено. Однако приближение underflow(теряемых значений) означает
+отбрасывание всей мантиссы, что означает, что результат выходит за пределы предсказуемого
+процентного диапазона истинного результата. </p>
+
+<p><a name="(counter._(exercise._ex~3aflow-small))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;416. ISL+ использует <span class="RktVal">#i0.0</span><span class="RktMeta"></span> для приблизительного определения потери значимости. Определите наименьшее целое число 
+<span class="RktSym">n</span>, такое, что <span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._expt%29%29" class="RktValLink" data-pltdoc="x">expt</a></span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">#i10.0</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktSym">n</span><span class="RktPn">)</span><span class="RktMeta"></span> все еще является неточным числом ISL+, а 
+<span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._expt%29%29" class="RktValLink" data-pltdoc="x">expt</a></span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">#i10.</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._-%29%29" class="RktValLink" data-pltdoc="x"><span class="nobreak">-</span></a></span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktSym">n</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">1</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktMeta"></span> аппроксимируется <span class="RktVal">0</span>. 
+<span style="font-weight: bold">Совет</span> Используйте функцию для вычисления 
+<span class="RktSym">n</span>. Попробуйте абстрагироваться от этой функции и решения  
+<a href="#%28counter._%28exercise._ex~3aflow-large%29%29" data-pltdoc="x">упражнения&nbsp;415</a>. <a href="#%28counter._%28exercise._ex~3aflow-small%29%29" class="ex-end" data-pltdoc="x"></a></p>
+
+<h3><a name="(part.__.S.L_.Numbers)"></a>*SL Числа</h3>
+
+<p>Большинство языков программирования поддерживают только приблизительное представление
+<span class="refelem"><span class="refcolumn"><span class="refcontent">
+Неточные реальные представления бывают разных видов: <span style="font-style: italic">float</span>, <span style="font-style: italic">double</span>, <span style="font-style: italic">extflonum</span>  и т. Д.</span></span></span>  
+чисел и арифметику чисел. Типичный язык ограничивает свои целые числа интервалом, который 
+связан с размером блоков оборудования, на котором он работает. Его представление действительных
+чисел в общих чертах основано на эскизе из предыдущих разделах, хотя и с более крупными
+фрагментами, чем четыре цифры, которые использует <a href="#%28tech._inex%29" class="techoutside" data-pltdoc="x"><span class="techinside">Inex</span></a>, и с цифрами из двухзначной системы
+счисления.</p>
+
+<p>Языки обучения поддерживают как точные, так и неточные числа. Их целые и рациональные 
+числа произвольно велики и точны, ограничены только абсолютным размером всей памяти 
+компьютера. Для вычислений этих чисел наши языки обучения используют базовое оборудование 
+до тех пор, пока задействованные рациональные числа вписываются в поддерживаемые блоки данных; 
+они автоматически переключается на другое представление и на другую версию арифметических
+операций для чисел вне этого интервала. Их настоящие числа бывают двух видов: 
+точные(exact) и неточные(inexact). Точное число действительно представляет собой действительное
+число; неточное число приближается к действительному числу в духе предыдущих разделов. 
+По возможности арифметические операции сохраняют точность; при необходимости они дают 
+неточный результат. Таким образом, <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._sqrt%29%29" class="RktValLink" data-pltdoc="x">sqrt</a></span> 
+возвращает неточное число как для точного, так и для неточного представления 
+<span class="RktVal">2</span>. Напротив, <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._sqrt%29%29" class="RktValLink" data-pltdoc="x">sqrt</a></span> 
+возвращает точное число <span class="RktVal">2</span>, когда задано точное 
+<span class="RktVal">4</span>, и <span class="RktVal">#i2.0</span><span class="RktMeta"></span>
+для ввода <span class="RktVal">#i4.0</span><span class="RktMeta"></span>. Наконец, числовая
+константа в обучающей программе понимается как точное рациональное число, если перед ней не 
+стоит префикс <span class="stt">#i</span>.</p>
+
+<p>Простой Racket интерпретирует все десятичные числа как неточные; он также 
+отображает все действительные числа как десятичные, независимо от того, точны они 
+или нет. Подразумевается, что все такие числа опасны, потому что они могут быть 
+неточными приближениями к истинному числу. Программист может заставить Racket 
+интерпретировать числа с точкой как точные, добавив к числовым константам префикса 
+<span class="stt">#e</span>.</p>
+
+<p>На этом этапе вы можете задаться вопросом, насколько результаты программы могут 
+отличаться от истинных результатов, если в ней используются эти неточные числа. 
+Это один из тех вопросов, над которым первые компьютерные ученые много боролись, 
+и за последние несколько
+<span class="refelem"><span class="refcolumn"><span class="refcontent">Для доступного введения - использования Racket - прочтите <a href="https://jeapostrophe.github.io/home/static/tm-cise2014.pdf"><span style="font-style: italic">Practically Accurate Floating-Point
+Math</span></a>(Практически точная математика с плавающей запятой), статья Нила Торонто и 
+Джея Маккарти об анализе ошибок. Также интересно посмотреть лекцию Нила Торонто RacketCon 
+2011 года <a href="https://www.youtube.com/watch?v=HmtgHVwja4k"><span style="font-style: italic">Debugging Floating-Point Math in
+Racket</span></a>(Отладка математики с плавающей запятой в Racket), доступную на YouTube. 
+</span></span></span>
+десятилетий эти исследования создали отдельную область, называемую 
+<span style="font-style: italic">numerical analysis</span>(численным анализом). 
+Каждый ученый-компьютерщик, да и вообще каждый человек, использующий компьютеры и 
+программное обеспечение, должен знать о его существовании и некоторых основных представлениях 
+о работе числовых программ. Следующие упражнения на первый взгляд показывают, насколько 
+все может быть плохо. Проработайте их, чтобы никогда не упускать из виду проблемы с 
+неточными числами.</p>
+
+<p><a name="(counter._(exercise._ex~3adr-number))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;417. Вычислите <span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._expt%29%29" class="RktValLink" data-pltdoc="x">expt</a></span><span class="stt"> </span><span class="RktVal">1.001</span><span class="stt"> </span><span class="RktVal">1e-12</span><span class="RktPn">)</span>
+в Racket и ISL+. Объясните, что вы видите. 
+<a href="#%28counter._%28exercise._ex~3adr-number%29%29" class="ex-end" data-pltdoc="x"></a></p>
+
+<p></p>
+
+<div class="SIntrapara"><a name="(counter._(exercise._ex~3ainex-time))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;418. Создайте <span class="RktSym">my-expt</span> 
+без использования <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._expt%29%29" class="RktValLink" data-pltdoc="x">expt</a></span>. 
+Функция возводит первое заданное число в степень второго натурального числа. 
+Используя эту функцию, проведите следующий эксперимент. Сложите 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktSym">inex</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">#i1e-12</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktSym">exac</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1e-12</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+в области определений. Что такое <span class="RktPn">(</span><span class="RktSym">my-expt</span><span class="stt"> </span><span class="RktSym">inex</span><span class="stt"> </span><span class="RktVal">30</span><span class="RktPn">)</span>? А как насчет <span class="RktPn">(</span><span class="RktSym">my-expt</span><span class="stt"> </span><span class="RktSym">exac</span><span class="stt"> </span><span class="RktVal">30</span><span class="RktPn">)</span>? Какой ответ более полезен?  
+<a href="#%28counter._%28exercise._ex~3ainex-time%29%29" class="ex-end" data-pltdoc="x"></a></div>
+
+<p></p>
+
+<blockquote class="Figure"><a name="(counter._(figure._fig~3ajanus))" x-target-lift="Figure"></a><blockquote class="Centerfigure"><blockquote class="FigureInside"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktSym">JANUS</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">31.0</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">#i2e+34</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">#i-1.2345678901235e+80</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">2749.0</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal"><span class="nobreak">-2</span>939234.0</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">#i-2e+33</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">#i3.2e+270</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">17.0</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">#i-2.4e+270</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">#i4.2344294738446e+170</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">1.0</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">#i-8e+269</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">0.0</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">99.0</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></blockquote><p class="Centertext"><span class="Legend"><span class="FigureTarget">Рисунок&nbsp;144: </span>Серия неточных чисел с лицом Януса</span></p>
+
+</blockquote>
+
+<p></p>
+
+<div class="SIntrapara"><a name="(counter._(exercise._ex~3ajanus))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;419. Когда вы складываете два неточных числа совершенно 
+разных порядков, в результате вы можете получить обратно большее число. Например, если 
+в системе счисления используется только 15 значащих цифр, мы сталкиваемся с проблемами 
+при сложении чисел, которые различаются более чем в 
+<img src="i4-5_files/pict_175.png" alt="image" width="21" height="10"> раз:
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i4-5_files/pict_176.png" alt="image" width="238" height="13"></p>
+
+</blockquote></div><div class="SIntrapara">но наиболее близкий ответ - <img src="i4-5_files/pict_177.png" alt="image" width="21" height="10">.</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">На первый взгляд, это приближение не так уж и плохо. Ошибка 
+в одной части <img src="i4-5_files/pict_178.png" alt="image" width="21" height="10"> 
+(десять миллионов миллиардов) достаточно близко к истине. К сожалению, такого рода проблемы 
+могут привести к огромным проблемам. Рассмотрим список чисел на 
+<a href="#%28counter._%28figure._fig~3ajanus%29%29" data-pltdoc="x">рисунке&nbsp;<span class="FigureRef">144</span></a> и определим значения этих выражений: 
+</div><div class="SIntrapara"><ul><li>
+
+<p><span class="RktPn">(</span><span class="RktSym">sum</span><span class="stt"> </span><span class="RktSym">JANUS</span><span class="RktPn">)</span></p>
+
+</li><li>
+
+<p><span class="RktPn">(</span><span class="RktSym">sum</span><span class="stt"> </span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._reverse%29%29" class="RktValLink" data-pltdoc="x">reverse</a></span><span class="stt"> </span><span class="RktSym">JANUS</span><span class="RktPn">)</span><span class="RktPn">)</span></p>
+
+</li><li>
+
+<p><span class="RktPn">(</span><span class="RktSym">sum</span><span class="stt"> </span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._sort%29%29" class="RktValLink" data-pltdoc="x">sort</a></span><span class="stt"> </span><span class="RktSym">JANUS</span><span class="stt"> </span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._~3c%29%29" class="RktValLink" data-pltdoc="x">&lt;</a></span><span class="RktPn">)</span><span class="RktPn">)</span></p>
+
+</li></ul></div><div class="SIntrapara">Предполагая, что <span class="RktSym">sum</span> 
+складывает числа в списке слева направо, объясните, что вычисляют эти выражения. 
+Что вы думаете о результатах?
+</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Общий совет по неточным вычислениям говорит программистам 
+начинать сложение с наименьших чисел. В то время как добавление большого числа к 
+двум маленьким числам может дать большее, добавление маленьких чисел сначала создает 
+большое число, которое может изменить результат: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._expt%29%29" class="RktValLink" data-pltdoc="x">expt</a></span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="hspace">&nbsp;</span><span class="RktVal">#i53.0</span><span class="RktPn">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">#i9007199254740992.0</span></p>
+
+</td></tr><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym">sum</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">#i1.0</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._expt%29%29" class="RktValLink" data-pltdoc="x">expt</a></span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="hspace">&nbsp;</span><span class="RktVal">#i53.0</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">#i9007199254740992.0</span></p>
+
+</td></tr><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym">sum</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">#i1.0</span><span class="hspace">&nbsp;</span><span class="RktVal">#i1.0</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._expt%29%29" class="RktValLink" data-pltdoc="x">expt</a></span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="hspace">&nbsp;</span><span class="RktVal">#i53.0</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">#i9007199254740994.0</span></p>
+
+</td></tr></tbody></table></blockquote></div><div class="SIntrapara">Этот трюк может 
+<span style="font-weight: bold">не</span> сработать; см. взаимодействия с 
+<span class="RktSym">JANUS</span> выше.</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">На таком языке, как ISL+, вы можете преобразовать числа в точные
+рациональные числа, использовать для них точную арифметику и преобразовать результат обратно: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._exact-~3einexact%29%29" class="RktValLink" data-pltdoc="x">exact-&gt;inexact</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">sum</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._map%29%29" class="RktValLink" data-pltdoc="x">map</a></span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._inexact-~3eexact%29%29" class="RktValLink" data-pltdoc="x">inexact-&gt;exact</a></span><span class="hspace">&nbsp;</span><span class="RktSym">JANUS</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></p>
+
+</blockquote></div><div class="SIntrapara">Вычислите это выражение и сравните результат 
+с тремя суммами, указанными выше. Что вы думаете сейчас о советах из Интернета? 
+<a href="#%28counter._%28exercise._ex~3ajanus%29%29" class="ex-end" data-pltdoc="x"></a></div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara"><a name="(counter._(exercise._ex~3ajanus2))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;420. <span class="RktSym">JANUS</span> это просто фиксированный список, но взгляните на эту функцию: 
+ <a name="(idx._(gentag._589))"></a>
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">oscillate</span><span class="hspace">&nbsp;</span><span class="RktSym">n</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._local%29%29" class="RktStxLink" data-pltdoc="x">local</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">O</span><span class="hspace">&nbsp;</span><span class="RktSym">i</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._cond%29%29" class="RktStxLink" data-pltdoc="x">cond</a></span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._~3e%29%29" class="RktValLink" data-pltdoc="x">&gt;</a></span><span class="hspace">&nbsp;</span><span class="RktSym">i</span><span class="hspace">&nbsp;</span><span class="RktSym">n</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">)</span><span class="RktPn">]</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28form._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._else%29%29" class="RktStxLink" data-pltdoc="x">else</a></span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._expt%29%29" class="RktValLink" data-pltdoc="x">expt</a></span><span class="hspace">&nbsp;</span><span class="RktVal">#i-0.99</span><span class="hspace">&nbsp;</span><span class="RktSym">i</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">O</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span><span class="hspace">&nbsp;</span><span class="RktSym">i</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">]</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym">O</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Применение <span class="RktSym">oscillate</span> к натуральному числу 
+<span class="RktSym">n</span> дает первые <span class="RktSym">n</span> элементов 
+математического ряда. Лучше всего это представить в виде графика, такого как на  
+<a href="#%28counter._%28figure._fig~3aoscillate%29%29" data-pltdoc="x">рисунке&nbsp;<span class="FigureRef">145</span></a>. Запустите <span class="RktPn">(</span><span class="RktSym">oscillate</span><span class="stt"> </span><span class="RktVal">15</span><span class="RktPn">)</span> в DrRacket и проверьте результат. </div>
+
+<p></p>
+
+<blockquote class="Figure"><a name="(counter._(figure._fig~3aoscillate))" x-target-lift="Figure"></a><blockquote class="Centerfigure"><blockquote class="FigureInside"><blockquote class="SCentered">
+
+<p><span class="Smaller"><img src="i4-5_files/pict_179.png" alt="image" width="400" height="400"></span></p>
+
+</blockquote></blockquote></blockquote><p class="Centertext"><span class="Legend"><span class="FigureTarget">Рисунок&nbsp;145: </span>График  <span class="RktSym">oscillate</span></span></p>
+
+</blockquote>
+
+<p></p>
+
+<div class="SIntrapara">Суммирование результатов слева направо дает другой результат, 
+чем справа налево: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym">sum</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">oscillate</span><span class="hspace">&nbsp;</span><span class="RktVal">#i1000.0</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">#i-0.49746596003269394</span></p>
+
+</td></tr><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym">sum</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._reverse%29%29" class="RktValLink" data-pltdoc="x">reverse</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">oscillate</span><span class="hspace">&nbsp;</span><span class="RktVal">#i1000.0</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">#i-0.49746596003269533</span></p>
+
+</td></tr></tbody></table></blockquote></div><div class="SIntrapara">Опять же, разница может
+показаться небольшой, пока мы не увидим контекст: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._-%29%29" class="RktValLink" data-pltdoc="x"><span class="nobreak">-</span></a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._%2A%29%29" class="RktValLink" data-pltdoc="x">*</a></span><span class="hspace">&nbsp;</span><span class="RktVal">1e+16</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">sum</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">oscillate</span><span class="hspace">&nbsp;</span><span class="RktVal">#i1000.0</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="hspace">&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._%2A%29%29" class="RktValLink" data-pltdoc="x">*</a></span><span class="hspace">&nbsp;</span><span class="RktVal">1e+16</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">sum</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._reverse%29%29" class="RktValLink" data-pltdoc="x">reverse</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">oscillate</span><span class="hspace">&nbsp;</span><span class="RktVal">#i1000.0</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr></tbody></table></td></tr><tr><td>
+
+<p><span class="RktRes">#i14.0</span></p>
+
+</td></tr></tbody></table></blockquote></div><div class="SIntrapara">Может ли эта разница иметь
+значение? Можно ли доверять компьютерам? <a href="#%28counter._%28exercise._ex~3ajanus2%29%29" class="ex-end" data-pltdoc="x"></a></div>
+
+<p></p>
+
+<p>Вопрос в том, какие числа программисты должны использовать в своих программах, 
+если у них есть выбор. Конечно, ответ зависит от контекста. В мире финансовой отчетности 
+числовые константы следует интерпретировать как точные числа, и вычислительные операции 
+с финансовой отчетностью должны опираться на сохраняющий точность характер математических
+операций. В конце концов, закон не может учесть серьезных ошибок, связанных с неточными 
+числами и их действиями. Однако в научных вычислениях дополнительное время, необходимое 
+для получения точных результатов, может оказаться слишком большим бременем. Поэтому 
+ученые склонны использовать неточные числа, но тщательно анализируют свои программы, 
+чтобы убедиться, что числовые ошибки допустимы для использования ими результатов программ. </p>
+
+<div class="navsetbottom"><span class="navleft"><div class="nosearchform"></div>&nbsp;&nbsp;</span><span class="navright">&nbsp;&nbsp;<a href="part_four.html" title="backward to &quot;IV Intertwined Data&quot;" data-pltdoc="x">← prev</a>&nbsp;&nbsp;<a href="index.html" title="up to &quot;How to Design Programs, Second Edition&quot;" data-pltdoc="x">up</a>&nbsp;&nbsp;<a href="part_five.html" title="forward to &quot;V Generative Recursion&quot;" data-pltdoc="x">next →</a></span>&nbsp;</div></div></div><div id="contextindicator">&nbsp;</div></body></html>

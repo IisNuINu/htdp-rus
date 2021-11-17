@@ -1,0 +1,751 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=0.8"><title>Intermezzo 2: Quote, Unquote</title><link rel="stylesheet" type="text/css" href="i2-3_files/scribble.css" title="default"><link rel="stylesheet" type="text/css" href="i2-3_files/shared.css" title="default"><link rel="stylesheet" type="text/css" href="i2-3_files/racket.css" title="default"><link rel="stylesheet" type="text/css" href="i2-3_files/figure.css" title="default"><link rel="stylesheet" type="text/css" href="i2-3_files/manual-style.css" title="default"><link rel="stylesheet" type="text/css" href="i2-3_files/manual-racket.css" title="default"><script type="text/javascript" src="i2-3_files/scribble-common.js"></script><script type="text/javascript" src="i2-3_files/figure.js"></script><script type="text/javascript" src="i2-3_files/manual-racket.js"></script><!--[if IE 6]><style type="text/css">.SIEHidden { overflow: hidden; }</style><![endif]--></head><body id="scribble-racket-lang-org"><div class="tocset"><div class="tocview"><div class="tocviewlist tocviewlisttopspace"><div class="tocviewtitle"><table cellspacing="0" cellpadding="0"><tbody><tr><td style="width: 1em;"><a href="javascript:void(0);" title="Expand/Collapse" class="tocviewtoggle" onclick='TocviewToggle(this,"tocview_0");'>▼</a></td><td></td><td><a href="index.html" class="tocviewlink" data-pltdoc="x">How to Design Programs, Second Edition</a></td></tr></tbody></table></div><div class="tocviewsublisttop" style="display: block;" id="tocview_0"><table cellspacing="0" cellpadding="0"><tbody><tr><td align="right"></td><td><a href="part_preface.html" class="tocviewlink" data-pltdoc="x">Preface</a></td></tr><tr><td align="right"></td><td><a href="part_prologue.html" class="tocviewlink" data-pltdoc="x">Prologue:<span class="mywbr"> &nbsp;</span> How to Program</a></td></tr><tr><td align="right">I&nbsp;</td><td><a href="part_one.html" class="tocviewlink" data-pltdoc="x">Fixed Size Data</a></td></tr><tr><td align="right"></td><td><a href="i1-2.html" class="tocviewlink" data-pltdoc="x">Intermezzo 1: Beginning Student Language</a></td></tr><tr><td align="right">II&nbsp;</td><td><a href="part_two.html" class="tocviewlink" data-pltdoc="x">Arbitrarily Large Data</a></td></tr><tr><td align="right"></td><td><a href="" class="tocviewselflink" data-pltdoc="x">Intermezzo 2: Quote, Unquote</a></td></tr><tr><td align="right">III&nbsp;</td><td><a href="part_three.html" class="tocviewlink" data-pltdoc="x">Abstraction</a></td></tr><tr><td align="right"></td><td><a href="i3-4.html" class="tocviewlink" data-pltdoc="x">Intermezzo 3: Scope and Abstraction</a></td></tr><tr><td align="right">IV&nbsp;</td><td><a href="part_four.html" class="tocviewlink" data-pltdoc="x">Intertwined Data</a></td></tr><tr><td align="right"></td><td><a href="i4-5.html" class="tocviewlink" data-pltdoc="x">Intermezzo 4: The Nature of Numbers</a></td></tr><tr><td align="right">V&nbsp;</td><td><a href="part_five.html" class="tocviewlink" data-pltdoc="x">Generative Recursion</a></td></tr><tr><td align="right"></td><td><a href="i5-6.html" class="tocviewlink" data-pltdoc="x">Intermezzo 5: The Cost of Computation</a></td></tr><tr><td align="right">VI&nbsp;</td><td><a href="part_six.html" class="tocviewlink" data-pltdoc="x">Accumulators</a></td></tr><tr><td align="right"></td><td><a href="part_epilogue.html" class="tocviewlink" data-pltdoc="x">Epilogue:<span class="mywbr"> &nbsp;</span> Moving On</a></td></tr></tbody></table></div></div><div class="tocviewlist"><table cellspacing="0" cellpadding="0"><tbody><tr><td style="width: 1em;"><a href="javascript:void(0);" title="Expand/Collapse" class="tocviewtoggle" onclick='TocviewToggle(this,"tocview_1");'>►</a></td><td></td><td><a href="" class="tocviewselflink" data-pltdoc="x">Intermezzo 2: Quote, Unquote</a></td></tr></tbody></table><div class="tocviewsublistbottom" style="display: none;" id="tocview_1"><table cellspacing="0" cellpadding="0"><tbody><tr><td align="right"></td><td><a href="#%28part._.Quote%29" class="tocviewlink" data-pltdoc="x">Quote</a></td></tr><tr><td align="right"></td><td><a href="#%28part._.Quasiquote_and_.Unquote%29" class="tocviewlink" data-pltdoc="x">Quasiquote and Unquote</a></td></tr><tr><td align="right"></td><td><a href="#%28part._.Unquote_.Splice%29" class="tocviewlink" data-pltdoc="x">Unquote Splice</a></td></tr></tbody></table></div></div></div></div><div class="maincolumn"><div class="main"><div class="versionbox"><span class="version">8.0.0.10</span></div><div class="navsettop"><span class="navleft"><div class="nosearchform"></div>&nbsp;&nbsp;</span><span class="navright">&nbsp;&nbsp;<a href="part_two.html" title="backward to &quot;II Arbitrarily Large Data&quot;" data-pltdoc="x">← prev</a>&nbsp;&nbsp;<a href="index.html" title="up to &quot;How to Design Programs, Second Edition&quot;" data-pltdoc="x">up</a>&nbsp;&nbsp;<a href="part_three.html" title="forward to &quot;III Abstraction&quot;" data-pltdoc="x">next →</a></span>&nbsp;</div><h3><a name="(part._i2-3)"></a>Интермеццо 2: Цитата(Quote), Отмена цитаты(Unquote)</h3><table cellspacing="0" cellpadding="0"><tbody><tr><td>
+
+<p><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#%28part._.Quote%29" class="toclink" data-pltdoc="x">Цитата(Quote)</a></p>
+
+</td></tr><tr><td>
+
+<p><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#%28part._.Quasiquote_and_.Unquote%29" class="toclink" data-pltdoc="x">Квазицитата(Quasiquote) и Отмена Цитирования(Unquote)</a></p>
+
+</td></tr><tr><td>
+
+<p><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#%28part._.Unquote_.Splice%29" class="toclink" data-pltdoc="x"> Встраиваемая/сращиваемая Отмена цитаты(Unquote Splice)</a></p>
+
+</td></tr></tbody></table>
+
+<p>Списки играют важную роль в нашей книге, а также в Racket, в основы 
+наших языков обучения.
+<span class="refelem"><span class="refcolumn"><span class="refcontent">
+Обязательно установите уровень вашего языка на BSL+ или выше.
+</span></span></span>  
+При разработке программ очень важно понимать, как строятся списки, исходя из 
+первых принципов; он информирует о создании наших программ. Однако рутинная(повседневная) 
+работа со списками требует компактной записи, для функции <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span>, представленной в <a href="part_two.html#%28part._sec~3aabbrev%29" data-pltdoc="x">Функция <span class="RktSym"><span class="RktValLink">list</span></span></a>.
+</p>
+
+<p>С конца 1950-х годов языки в стиле Lisp поставляются с еще более мощной парой 
+инструментов для создания списков: цитированием и антицитированием. Многие языки 
+программирования теперь поддерживают их, и язык разработки веб-страниц PHP внедрил 
+эту идею в коммерческий мир.</p>
+
+<p>Это интермеццо дает вам представление о механизме цитирования. Он также вводит 
+<span class="emph">symbols</span>(символы), форму данных, которая тесно связана с цитатой. 
+Хотя это введение носит неформальный характер и использует упрощенные примеры, остальная 
+часть книги иллюстрирует силу идеи с помощью почти реалистичных вариантов. Вернитесь к 
+этому интермеццо, если какой-либо из этих примеров доставит вам проблемы. </p>
+
+<h3><a name="(part._.Quote)"></a>Цитата(Quote)</h3>
+
+<p><span style="font-style: italic">Quotation</span>(Цитирование) - это механизм сокращенной
+записи, позволяющий легко создать большой список. Грубо говоря, список, построенный с 
+помощью функции <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span>, можно построить еще более кратко, 
+заключив списки в кавычки. И наоборот, цитируемый список сокращает конструкцию с
+ <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span>.</p>
+
+<p></p>
+
+<div class="SIntrapara"><a name="(idx._(gentag._350))"></a>
+Технически <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>(цитата) - это ключевое слово для составного предложения 
+в духе <a href="i1-2.html" data-pltdoc="x">Интермеццо 1: Язык для начинающих студентов</a>, 
+и она используется следующим образом: <span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktPn">(</span><span class="RktVal">1</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">2</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">3</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktMeta"></span>. DrRacket переводит это выражение в 
+<span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="stt"> </span><span class="RktVal">1</span><span class="stt"> </span><span class="RktVal">2</span><span class="stt"> </span><span class="RktVal">3</span><span class="RktPn">)</span>. 
+Здесь вы можете задаться вопросом, почему мы называем <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>(цитату)
+аббревиатурой, поскольку цитируемое выражение выглядит более сложным, чем его перевод/преобразование.  Ключ в том, что <span class="RktInBG"><span class="hspace"></span><span class="RktIn">'</span><span class="hspace"></span></span>, это короткое обозначение для
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>. Вот несколько коротких примеров:
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="RktVal">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(list 1 2 3)</span></p>
+
+</td></tr><tr><td><span class="stt">&gt; </span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">"a"</span><span class="hspace">&nbsp;</span><span class="RktVal">"b"</span><span class="hspace">&nbsp;</span><span class="RktVal">"c"</span><span class="RktVal">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(list "a" "b" "c")</span></p>
+
+</td></tr><tr><td><span class="stt">&gt; </span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">#true</span><span class="hspace">&nbsp;</span><span class="RktVal">"hello world"</span><span class="hspace">&nbsp;</span><span class="RktVal">42</span><span class="RktVal">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(list #true "hello world" 42)</span></p>
+
+</td></tr></tbody></table></blockquote></div><div class="SIntrapara">Как видите, использование
+<span class="RktInBG"><span class="hspace"></span><span class="RktIn">'</span><span class="hspace"></span></span> создает обещанные списки. Если вы забыли, что означает 
+<span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="stt"> </span><span class="RktVal">1</span><span class="stt"> </span><span class="RktVal">2</span><span class="stt"> </span><span class="RktVal">3</span><span class="RktPn">)</span>, 
+перечитайте <a href="part_two.html#%28part._sec~3aabbrev%29" data-pltdoc="x">Функция <span class="RktSym"><span class="RktValLink">list</span></span> </a>; она объясняет, что 
+этот list(список) является сокращением для 
+ <span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span><span class="stt"> </span><span class="RktVal">1</span><span class="stt"> </span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span><span class="stt"> </span><span class="RktVal">2</span><span class="stt"> </span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span><span class="stt"> </span><span class="RktVal">3</span><span class="stt"> </span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">)</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span>.</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Пока что <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span> выглядит как небольшое улучшение 
+по сравнению с <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span>, но посмотрите: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">(</span><span class="RktVal">"a"</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">"b"</span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">"d"</span><span class="hspace">&nbsp;</span><span class="RktVal">4</span><span class="RktVal">)</span><span class="RktVal">)</span></td></tr></tbody></table></td></tr><tr><td>
+
+<p><span class="RktRes">(list (list "a" 1) (list "b" 2) (list "d" 4))</span></p>
+
+</td></tr></tbody></table></blockquote></div><div class="SIntrapara">С помощью <span class="RktInBG"><span class="hspace"></span><span class="RktIn">'</span><span class="hspace"></span></span> мы можем создавать списки, а также вложенные списки.
+</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Чтобы понять, как работает <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>(цитата),
+представьте ее как функцию, которая пересекает(обходит все подформы) заданную форму. 
+Когда <span class="RktInBG"><span class="hspace"></span><span class="RktIn">'</span><span class="hspace"></span></span> встречает простой фрагмент данных - число, строку, логическое
+значение или изображение - он исчезает(т.е ни на что не влияет). Но когда она находится перед
+открытой круглой скобкой -  <span class="RktInBG"><span class="hspace"></span><span class="RktIn">(</span><span class="hspace"></span></span>, она вставляет 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span> справа от круглой скобки и ставит 
+<span class="RktInBG"><span class="hspace"></span><span class="RktIn">'</span><span class="hspace"></span></span> на все элементы между <span class="RktInBG"><span class="hspace"></span><span class="RktIn">(</span><span class="hspace"></span></span> и закрывающей скобкой -
+<span class="RktInBG"><span class="hspace"></span><span class="RktIn">)</span><span class="hspace"></span></span>. Например, 
+</div><div class="SIntrapara"><blockquote><table cellspacing="0" cellpadding="0"><tbody><tr><td valign="top"><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="RktVal">)</span></td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top">
+
+<p>это сокращение от </p>
+
+</td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top"><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">2</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">3</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Как вы уже знаете, <span class="RktInBG"><span class="hspace"></span><span class="RktIn">'</span><span class="hspace"></span></span> исчезает из чисел, так что остальное легко. 
+Вот пример создания вложенных списков: 
+</div><div class="SIntrapara"><blockquote><table cellspacing="0" cellpadding="0"><tbody><tr><td valign="top"><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">(</span><span class="RktVal">"a"</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktVal">)</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="RktVal">)</span></td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top">
+
+<p>это сокращение для </p>
+
+</td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top"><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">"a"</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktVal">)</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">3</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Чтобы продолжить этот пример, мы расширим аббревиатуру в первой позиции: 
+</div><div class="SIntrapara"><blockquote><table cellspacing="0" cellpadding="0"><tbody><tr><td valign="top"><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">"a"</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktVal">)</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">3</span><span class="RktPn">)</span></td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top">
+
+<p>это сокращение от</p>
+
+</td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top"><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">"a"</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Мы предоставляем вам завершить этот пример.</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara"><a name="(counter._(exercise._ex~3aquote-list))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;231. Исключите <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>(цитату) в пользу
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span> из следующих выражений: 
+</div><div class="SIntrapara"><ul><li>
+
+<p><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">1</span><span class="stt"> </span><span class="RktVal">"a"</span><span class="stt"> </span><span class="RktVal">2</span><span class="stt"> </span><span class="RktVal">#false</span><span class="stt"> </span><span class="RktVal">3</span><span class="stt"> </span><span class="RktVal">"c"</span><span class="RktVal">)</span></p>
+
+</li><li>
+
+<p><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">)</span></p>
+
+</li><li>
+
+<p></p>
+
+<div class="SIntrapara">и этой формы в виде таблицы: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">(</span><span class="RktVal">"alan"</span><span class="hspace">&nbsp;</span><span class="RktVal">1000</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">"barb"</span><span class="hspace">&nbsp;</span><span class="RktVal">2000</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">"carl"</span><span class="hspace">&nbsp;</span><span class="RktVal">1500</span><span class="RktVal">)</span><span class="RktVal">)</span></td></tr></tbody></table></blockquote></div>
+
+<p></p>
+
+</li></ul></div><div class="SIntrapara">Теперь исключите <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span> в пользу <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span> там, где 
+это необходимо. 
+<a href="#%28counter._%28exercise._ex~3aquote-list%29%29" class="ex-end" data-pltdoc="x"></a></div>
+
+<p></p>
+
+<h3><a name="(part._.Quasiquote_and_.Unquote)"></a>Квазицитата(Quasiquote) и Отмена Цитирования(Unquote)</h3>
+
+<p>Предыдущий раздел должен убедить вас в преимуществах <span class="RktInBG"><span class="hspace"></span><span class="RktIn">'</span><span class="hspace"></span></span> и
+ <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>. Вы даже можете задаться вопросом, почему в книге 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>(цитата) представлена только сейчас, а не с самого начала.
+Кажется, она значительно облегчает формулировку тестовых примеров, которые включают списки, 
+а также для отслеживания больших наборов данных. Но все хорошее сопровождается сюрпризами, 
+включая и  <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>.</p>
+
+<p>Когда дело доходит до разработки программ, новичков вводят в заблуждение, когда они думают, 
+что списки - это <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>(цитируемые) или даже построенные с помощью 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span> значения. Построение списков с помощью
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span> гораздо более наглядно для пошагового 
+создания программ, чем сокращения, такие как <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>, которые 
+скрывают основную конструкцию. Так что не забывайте думать о <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span> всякий раз, когда вы застряли при разработке функции обработки
+списков.</p>
+
+<p></p>
+
+<div class="SIntrapara">Итак, перейдем к фактическим сюрпризам, скрытым за 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>. Предположим, ваша область определений содержит одно 
+определение константы: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktSym">x</span><span class="hspace">&nbsp;</span><span class="RktVal">42</span><span class="RktPn">)</span></p>
+
+</blockquote></div><div class="SIntrapara">Представьте, что вы запускаете эту программу
+и экспериментируете с 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">40</span><span class="hspace">&nbsp;</span><span class="RktVal">41</span><span class="hspace">&nbsp;</span><span class="RktVal">x</span><span class="hspace">&nbsp;</span><span class="RktVal">43</span><span class="hspace">&nbsp;</span><span class="RktVal">44</span><span class="RktVal">)</span></p>
+
+</blockquote></div><div class="SIntrapara">в области взаимодействия. Какого результата вы 
+ожидаете? Стоп! Попробуйте применить приведенные выше правила для
+<span class="RktInBG"><span class="hspace"></span><span class="RktIn">'</span><span class="hspace"></span></span> для данного примера.</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Вот эксперимент
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">40</span><span class="hspace">&nbsp;</span><span class="RktVal">41</span><span class="hspace">&nbsp;</span><span class="RktVal">x</span><span class="hspace">&nbsp;</span><span class="RktVal">43</span><span class="hspace">&nbsp;</span><span class="RktVal">44</span><span class="RktVal">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(list 40 41 'x 43 44)</span></p>
+
+</td></tr></tbody></table></blockquote></div><div class="SIntrapara">На этом этапе важно 
+помнить, что DrRacket отображает значения. Всё в списке - это значения, включая 
+<span class="RktVal">'</span><span class="RktVal">x</span>. Это значение, которое вы никогда
+раньше не видели, а именно <a name="(tech._symbol)"></a><span style="font-style: italic">Symbol</span>(Символ). Для наших целей символ выглядит как имя переменной, за исключением того, что 
+он начинается с <span class="RktInBG"><span class="hspace"></span><span class="RktIn">'</span><span class="hspace"></span></span> и что <span style="font-weight: bold">сам символ
+является значением</span>. Переменные обозначают только значения; они не являются значениями
+сами по себе. Symbols(Символы) играют роль, аналогичную strings(строкам); они являются 
+отличным способом представления символической информации в виде данных. 
+<a href="part_four.html" data-pltdoc="x">Взаимосвязанные данные</a> показывает, как; 
+пока мы просто принимаем символы как еще одну форму данных.
+</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Чтобы понять идею символов, рассмотрим второй пример: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">(</span><span class="RktVal">+</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktVal">)</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="RktVal">)</span></p>
+
+</blockquote></div><div class="SIntrapara">Вы можете ожидать, что это выражение построит
+<span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="stt"> </span><span class="RktVal">1</span><span class="stt"> </span><span class="RktVal">2</span><span class="stt"> </span><span class="RktVal">3</span><span class="RktPn">)</span>. Однако если 
+вы воспользуетесь правилами расширения для <span class="RktInBG"><span class="hspace"></span><span class="RktIn">'</span><span class="hspace"></span></span>, вы обнаружите, что 
+</div><div class="SIntrapara"><blockquote><table cellspacing="0" cellpadding="0"><tbody><tr><td valign="top"><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">(</span><span class="RktVal">+</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktVal">)</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="RktVal">)</span></td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top">
+
+<p>это сокращение от</p>
+
+</td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top"><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">+</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktVal">)</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">3</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">И <span class="RktInBG"><span class="hspace"></span><span class="RktIn">'</span><span class="hspace"></span></span> во втором пункте в этом списке 
+не исчезает. Вместо этого он является сокращением для создания другого списка, так что 
+весь пример выглядит как 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">+</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="RktPn">)</span></p>
+
+</blockquote></div><div class="SIntrapara">Это означает, что <span class="RktVal">'</span><span class="RktVal">+</span> - это такой же символ, как <span class="RktVal">'</span><span class="RktVal">x</span>. Так же, как последний не связан с переменной 
+<span class="RktSym">x</span>, первый не имеет непосредственного отношения к функции 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span>, которая идет с BSL+. Опять же, вы должны
+представить, что <span class="RktVal">'</span><span class="RktVal">+</span> может служить
+элегантным <a name="(idx._(gentag._351))"></a>представлением данных функции <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span> так же, как <span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">+</span><span class="stt"> </span><span class="RktVal">1</span><span class="stt"> </span><span class="RktVal">1</span><span class="RktVal">)</span> может служить
+представлением данных <span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span><span class="stt"> </span><span class="RktVal">1</span><span class="stt"> </span><span class="RktVal">1</span><span class="RktPn">)</span>. <a href="part_four.html" data-pltdoc="x">Взаимосвязанные Данные</a> подхватывает эту идею.</div>
+
+<p></p>
+
+<p>В некоторых случаях вы не хотите создавать вложенный список. На самом деле вам нужно 
+настоящее выражение в цитируемом(<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>d) списке, и вы хотите вычислить выражение 
+во время построения списка. В таких случаях вам надо использовать 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quasiquote%29%29" class="RktStxLink" data-pltdoc="x">quasiquote</a></span>(квазицитирование), которое, как и
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>(цитата), является просто ключевым словом для составного
+предложения: <span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quasiquote%29%29" class="RktStxLink" data-pltdoc="x">quasiquote</a></span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktPn">(</span><span class="RktVal">1</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">2</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">3</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktMeta"></span>. И, как и в случае с <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>, <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quasiquote%29%29" class="RktStxLink" data-pltdoc="x">quasiquote</a></span> имеет сокращение, а именно символьный
+знак  <span class="RktInBG"><span class="hspace"></span><span class="RktIn">`</span><span class="hspace"></span></span>, который является “другим” клавиатурным значением для 
+одинарной кавычки на вашей клавиатуре.</p>
+
+<p></p>
+
+<div class="SIntrapara">На первый взгляд, <span class="RktInBG"><span class="hspace"></span><span class="RktIn">`</span><span class="hspace"></span></span> действует точно так же, как 
+<span class="RktInBG"><span class="hspace"></span><span class="RktIn">'</span><span class="hspace"></span></span> в том, что он создает списки: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="RktVal">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(list 1 2 3)</span></p>
+
+</td></tr><tr><td><span class="stt">&gt; </span><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">"a"</span><span class="hspace">&nbsp;</span><span class="RktVal">"b"</span><span class="hspace">&nbsp;</span><span class="RktVal">"c"</span><span class="RktVal">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(list "a" "b" "c")</span></p>
+
+</td></tr><tr><td><span class="stt">&gt; </span><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">#true</span><span class="hspace">&nbsp;</span><span class="RktVal">"hello world"</span><span class="hspace">&nbsp;</span><span class="RktVal">42</span><span class="RktVal">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(list #true "hello world" 42)</span></p>
+
+</td></tr></tbody></table></blockquote></div><div class="SIntrapara">Самое приятное в 
+<span class="RktInBG"><span class="hspace"></span><span class="RktIn">`</span><span class="hspace"></span></span> то, что он также позволяет использовать  
+<span style="font-style: italic">unquote</span> для отмены цитирования, то есть вы можете
+потребовать возврата к собственно языку программирования внутри 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quasiquote%29%29" class="RktStxLink" data-pltdoc="x">quasiquote</a></span>(квазицитируемого) списка.
+Проиллюстрируем эту идею на приведенных выше примерах: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">40</span><span class="hspace">&nbsp;</span><span class="RktVal">41</span><span class="hspace">&nbsp;</span><span class="RktRdr">,</span><span class="RktSym">x</span><span class="hspace">&nbsp;</span><span class="RktVal">43</span><span class="hspace">&nbsp;</span><span class="RktVal">44</span><span class="RktVal">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(list 40 41 42 43 44)</span></p>
+
+</td></tr><tr><td><span class="stt">&gt; </span><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktRdr">,</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="RktVal">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(list 1 2 3)</span></p>
+
+</td></tr></tbody></table></blockquote></div><div class="SIntrapara">Как и выше, первое
+взаимодействие предполагает область определений, которая содержит <span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="stt"> </span><span class="RktSym">x</span><span class="stt"> </span><span class="RktVal">42</span><span class="RktPn">)</span>. Лучший способ
+понять этот синтаксис - увидеть его с реальными ключевыми словами вместо их сокращений
+<span class="RktInBG"><span class="hspace"></span><span class="RktIn">`</span><span class="hspace"></span></span> и <span class="RktInBG"><span class="hspace"></span><span class="RktIn">,</span><span class="hspace"></span></span>:
+<a name="(idx._(gentag._352))"></a>
+<a name="(idx._(gentag._353))"></a>
+<a name="(idx._(gentag._354))"></a>
+<a name="(idx._(gentag._355))"></a>
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quasiquote%29%29" class="RktStxLink" data-pltdoc="x">quasiquote</a></span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktPn">(</span><span class="RktVal">40</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">41</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._unquote%29%29" class="RktStxLink" data-pltdoc="x">unquote</a></span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktSym">x</span><span class="RktPn">)</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">43</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">44</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktMeta"></span></td></tr><tr><td><span class="RktMeta"></span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quasiquote%29%29" class="RktStxLink" data-pltdoc="x">quasiquote</a></span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktPn">(</span><span class="RktVal">1</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._unquote%29%29" class="RktStxLink" data-pltdoc="x">unquote</a></span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">1</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">1</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktMeta"></span><span class="hspace">&nbsp;</span><span class="RktMeta"></span><span class="RktVal">3</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktMeta"></span></td></tr></tbody></table></blockquote></div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Правила раскрытия квазиквотированных(<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quasiquote%29%29" class="RktStxLink" data-pltdoc="x">quasiquote</a></span>d) и <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._unquote%29%29" class="RktStxLink" data-pltdoc="x">unquote</a></span>d фигур - это правила <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>, дополненные 
+одним правилом. Когда перед круглой скобкой стоит знак <span class="RktInBG"><span class="hspace"></span><span class="RktIn">`</span><span class="hspace"></span></span>, 
+он распределяется по  всем частям между ним и соответствующей закрывающей круглой скобкой. 
+Когда он появляется рядом с базовыми частями данных, он исчезает. Когда он стоит перед именем
+переменной, вы получаете символ. И новое правило заключается в том, что если сразу за 
+<span class="RktInBG"><span class="hspace"></span><span class="RktIn">`</span><span class="hspace"></span></span> следует <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._unquote%29%29" class="RktStxLink" data-pltdoc="x">unquote</a></span>(отмена
+кавычки), оба символьных знака(character) исчезают: 
+</div><div class="SIntrapara"><blockquote><table cellspacing="0" cellpadding="0"><tbody><tr><td valign="top"><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktRdr">,</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="RktVal">)</span></td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top">
+
+<p>это сокращение от</p>
+
+</td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top"><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">`</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">`</span><span class="RktRdr">,</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">`</span><span class="RktVal">3</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+и
+</div><div class="SIntrapara"><blockquote><table cellspacing="0" cellpadding="0"><tbody><tr><td valign="top"><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">`</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">`</span><span class="RktRdr">,</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">`</span><span class="RktVal">3</span><span class="RktPn">)</span></td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top">
+
+<p>это сокращение от</p>
+
+</td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top"><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+И вот как вы получаете <span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="stt"> </span><span class="RktVal">1</span><span class="stt"> </span><span class="RktVal">2</span><span class="stt"> </span><span class="RktVal">3</span><span class="RktPn">)</span> как показано выше.</div>
+
+<p></p>
+
+<p>Отсюда небольшой шаг до создания веб-страниц. Да, вы правильно читаете - 
+веб-страницы! В принципе, веб-страницы написаны на языках программирования 
+HTML и CSS. Но никто не записывает программы HTML напрямую; вместо этого люди 
+создают программы, которые создают веб-страницы. Неудивительно, что вы также 
+можете писать такие функции на BSL+, и на <a href="#%28counter._%28figure._fig~3asimplistic-html%29%29" data-pltdoc="x">рисунке&nbsp;<span class="FigureRef">83</span></a> 
+представлен упрощенный пример. Как вы сразу видите, эта функция использует две 
+строки и создает глубоко вложенный список - представление данных веб-страницы. 
+<a name="(idx._(gentag._356))"></a></p>
+
+<blockquote class="Figure"><a name="(counter._(figure._fig~3asimplistic-html))" x-target-lift="Figure"></a><blockquote class="Centerfigure"><blockquote class="FigureInside"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><a href="part_one.html#%28tech._string%29" class="techoutside" data-pltdoc="x"><span class="techinside">String</span></a><span class="RktCmt"> </span><a href="part_one.html#%28tech._string%29" class="techoutside" data-pltdoc="x"><span class="techinside">String</span></a><span class="RktCmt"> -&gt; </span>...<span class="RktCmt"> deeply nested list </span>...</td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">produces a web page with given </span><span class="RktSym">author</span><span class="RktCmt"> and </span><span class="RktSym">title</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">my-first-web-page</span><span class="hspace">&nbsp;</span><span class="RktSym">author</span><span class="hspace">&nbsp;</span><span class="RktSym">title</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">html</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">head</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">title</span><span class="hspace">&nbsp;</span><span class="RktRdr">,</span><span class="RktSym">title</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">meta</span><span class="hspace">&nbsp;</span><span class="RktVal">(</span><span class="RktVal">(</span><span class="RktVal">http-equiv</span><span class="hspace">&nbsp;</span><span class="RktVal">"content-type"</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">content</span><span class="hspace">&nbsp;</span><span class="RktVal">"text-html"</span><span class="RktVal">)</span><span class="RktVal">)</span><span class="RktVal">)</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">body</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">h1</span><span class="hspace">&nbsp;</span><span class="RktRdr">,</span><span class="RktSym">title</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">p</span><span class="hspace">&nbsp;</span><span class="RktVal">"I, "</span><span class="hspace">&nbsp;</span><span class="RktRdr">,</span><span class="RktSym">author</span><span class="hspace">&nbsp;</span><span class="RktVal">", made this page."</span><span class="RktVal">)</span><span class="RktVal">)</span><span class="RktVal">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></blockquote><p class="Centertext"><span class="Legend"><span class="FigureTarget">Рисунок&nbsp;83: </span>Упрощенный генератор HTML</span></p>
+
+</blockquote>
+
+<p>Повторный взгляд также показывает, что параметр <span class="RktSym">title</span>(заголовка)
+дважды появляется в теле функции: один раз вложен во вложенный список с меткой 
+<span class="RktVal">'</span><span class="RktVal">head</span> и один раз во вложенном списке 
+с меткой <span class="RktVal">'</span><span class="RktVal">body</span>. Другой параметр 
+появляется только один раз. Мы считаем вложенный список шаблоном страницы, а параметры - 
+это дыры в шаблоне, которые нужно заполнить полезными значениями. Как вы понимаете, 
+этот шаблонный стиль создания веб-страниц наиболее полезен, когда вы хотите создать 
+много похожих страниц для сайта. </p>
+
+<blockquote class="Figure"><a name="(counter._(figure._fig~3anested-list-rep))" x-target-lift="Figure"></a><blockquote class="Centerfigure"><blockquote class="FigureInside"><table cellspacing="0" cellpadding="0"><tbody><tr><td valign="top">
+
+<p>Представление вложенного списка</p>
+
+</td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top">
+
+<p>Код веб-страницы (HTML) </p>
+
+</td></tr><tr><td valign="top"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktRes">'</span><span class="RktRes">(</span><span class="RktRes">html</span></td></tr><tr><td><span class="RktRes"><span class="hspace">&nbsp;&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">head</span></td></tr><tr><td><span class="RktRes"><span class="hspace">&nbsp;&nbsp;&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">title</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"Hello World"</span><span class="RktRes">)</span></td></tr><tr><td><span class="hspace">&nbsp;</span></td></tr><tr><td><span class="hspace">&nbsp;</span></td></tr><tr><td><span class="RktRes"><span class="hspace">&nbsp;&nbsp;&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">meta</span></td></tr><tr><td><span class="RktRes"><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">(</span><span class="RktRes">http-equiv</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"content-type"</span><span class="RktRes">)</span></td></tr><tr><td><span class="RktRes"><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">content</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"text-html"</span><span class="RktRes">)</span><span class="RktRes">)</span><span class="RktRes">)</span><span class="RktRes">)</span></td></tr><tr><td><span class="hspace">&nbsp;</span></td></tr><tr><td><span class="RktRes"><span class="hspace">&nbsp;&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">body</span></td></tr><tr><td><span class="RktRes"><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">h1</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"Hello World"</span><span class="RktRes">)</span></td></tr><tr><td><span class="hspace">&nbsp;</span></td></tr><tr><td><span class="hspace">&nbsp;</span></td></tr><tr><td><span class="RktRes"><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">p</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"I, "</span></td></tr><tr><td><span class="RktRes"><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="RktRes">"Matthias"</span></td></tr><tr><td><span class="RktRes"><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="RktRes">", made this page."</span><span class="RktRes">)</span><span class="RktRes">)</span><span class="RktRes">)</span></td></tr></tbody></table></td><td valign="top">
+
+<p><span class="hspace">&nbsp;</span></p>
+
+</td><td valign="top"><table class="SVerbatim" cellspacing="0" cellpadding="0"><tbody><tr><td>
+
+<p><span class="stt">&lt;html&gt;</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;</span><span class="stt">&lt;head&gt;</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">&lt;title&gt;</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">Hello World</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">&lt;/title&gt;</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">&lt;meta</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">http-equiv="content-type"</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">content="text-html" /&gt;</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;</span><span class="stt">&lt;/head&gt;</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;</span><span class="stt">&lt;body&gt;</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">&lt;h1&gt;</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">Hello World</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">&lt;/h1&gt;</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">&lt;p&gt;</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">I,</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">Matthias,</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">made this page.</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="stt">&lt;/p&gt;</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt"></span><span class="hspace">&nbsp;&nbsp;</span><span class="stt">&lt;/body&gt;</span></p>
+
+</td></tr><tr><td>
+
+<p><span class="stt">&lt;/html&gt;</span></p>
+
+</td></tr></tbody></table></td></tr></tbody></table></blockquote></blockquote><p class="Centertext"><span class="Legend"><span class="FigureTarget">Рисунок&nbsp;84: </span>Представление данных на основе вложенных списков</span></p>
+
+</blockquote>
+
+<p></p>
+
+<div class="SIntrapara">Чтобы понять, как работает эта функция, мы поэкспериментируем 
+в области взаимодействия DrRacket. Передавая свои знания в область 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quasiquote%29%29" class="RktStxLink" data-pltdoc="x">quasiquote</a></span>(квазицитатирования) и 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._unquote%29%29" class="RktStxLink" data-pltdoc="x">unquote</a></span>(отмены цитирования), вы должны уметь предсказать, 
+каким будет результат
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktPn">(</span><span class="RktSym">my-first-web-page</span><span class="hspace">&nbsp;</span><span class="RktVal">"Matthias"</span><span class="hspace">&nbsp;</span><span class="RktVal">"Hello World"</span><span class="RktPn">)</span></p>
+
+</blockquote></div><div class="SIntrapara"> Опять же, DrRacket настолько быстр, что лучше
+показать вам результат: см. Левый столбец на 
+ <a href="#%28counter._%28figure._fig~3anested-list-rep%29%29" data-pltdoc="x">рисунке&nbsp;<span class="FigureRef">84</span></a>.<span class="refelem"><span class="refcolumn"><span class="refcontent">
+Вы можете использовать команду <span class="RktSym">show-in-browser</span> из библиотеки 
+<span class="sroman"> <span class="Smaller"><span style="font-style: italic">web-io.rkt</span></span> </span>, чтобы отобразить результат в веб-браузере.
+</span></span></span> 
+Правый столбец таблицы содержит эквивалентный код в HTML. Если бы вы открыли эту веб-страницу 
+в браузере, вы бы увидели что-то вроде этого: 
+</div><div class="SIntrapara"><blockquote class="SCentered">
+
+<p><img src="i2-3_files/web-page1.png" alt="" width="237" height="149"></p>
+
+</blockquote></div><div class="SIntrapara">Обратите внимание, что 
+<span class="RktVal">"Hello World"</span> снова появляется дважды: один раз в строке заголовка 
+веб-браузера - что обусловлено спецификацией <span class="stt">&lt;title&gt;</span> - 
+и один раз в тексте веб-страницы.</div>
+
+<p></p>
+
+<p>Если бы это был 1993 год, теперь вы могли бы продавать вышеуказанную функцию 
+как компанию Dot Com, которая генерирует первую веб-страницу людей с помощью простого 
+вызова функции. Увы, в наши дни это всего лишь упражнение.
+</p>
+
+<p></p>
+
+<div class="SIntrapara"><a name="(counter._(exercise._ex~3aquasi-un))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;232. Удалите <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quasiquote%29%29" class="RktStxLink" data-pltdoc="x">quasiquote</a></span>
+и <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._unquote%29%29" class="RktStxLink" data-pltdoc="x">unquote</a></span> из следующих выражений, чтобы вместо них они записывались 
+с помощью <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span>: 
+</div><div class="SIntrapara"><ul><li>
+
+<p><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">1</span><span class="stt"> </span><span class="RktVal">"a"</span><span class="stt"> </span><span class="RktVal">2</span><span class="stt"> </span><span class="RktVal">#false</span><span class="stt"> </span><span class="RktVal">3</span><span class="stt"> </span><span class="RktVal">"c"</span><span class="RktVal">)</span></p>
+
+</li><li>
+
+<p></p>
+
+<div class="SIntrapara">эта табличная форма: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">(</span><span class="RktVal">"alan"</span><span class="hspace">&nbsp;</span><span class="RktRdr">,</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._%2A%29%29" class="RktValLink" data-pltdoc="x">*</a></span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="hspace">&nbsp;</span><span class="RktVal">500</span><span class="RktPn">)</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">"barb"</span><span class="hspace">&nbsp;</span><span class="RktVal">2000</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktRdr">,</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._string-append%29%29" class="RktValLink" data-pltdoc="x">string-append</a></span><span class="hspace">&nbsp;</span><span class="RktVal">"carl"</span><span class="hspace">&nbsp;</span><span class="RktVal">" , the great"</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">1500</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">"dawn"</span><span class="hspace">&nbsp;</span><span class="RktVal">2300</span><span class="RktVal">)</span><span class="RktVal">)</span></td></tr></tbody></table></blockquote></div>
+
+<p></p>
+
+</li><li>
+
+<p></p>
+
+<div class="SIntrapara">и эта вторая веб-страница: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">html</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">head</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">title</span><span class="hspace">&nbsp;</span><span class="RktRdr">,</span><span class="RktSym">title</span><span class="RktVal">)</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">body</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">h1</span><span class="hspace">&nbsp;</span><span class="RktRdr">,</span><span class="RktSym">title</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">p</span><span class="hspace">&nbsp;</span><span class="RktVal">"A second web page"</span><span class="RktVal">)</span><span class="RktVal">)</span><span class="RktVal">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+где  <span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="stt"> </span><span class="RktSym">title</span><span class="stt"> </span><span class="RktVal">"ratings"</span><span class="RktPn">)</span>.</div>
+
+<p></p>
+
+</li></ul></div><div class="SIntrapara">Также запишите вложенные списки, которые производят
+выражения.  <a href="#%28counter._%28exercise._ex~3aquasi-un%29%29" class="ex-end" data-pltdoc="x"></a></div>
+
+<p></p>
+
+<h3><a name="(part._.Unquote_.Splice)"></a>Встраиваемая/сращиваемая Отмена цитаты(Unquote Splice)</h3>
+
+<p></p>
+
+<div class="SIntrapara">Когда <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quasiquote%29%29" class="RktStxLink" data-pltdoc="x">quasiquote</a></span> встречается с 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._unquote%29%29" class="RktStxLink" data-pltdoc="x">unquote</a></span> во время расширения сокращений, эти двое аннигилируют 
+друг друга: 
+</div><div class="SIntrapara"><blockquote><table cellspacing="0" cellpadding="0"><tbody><tr><td valign="top"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">tr</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktRdr">,</span><span class="RktPn">(</span><span class="RktSym">make-row</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">3</span><span class="hspace">&nbsp;</span><span class="RktVal">4</span><span class="hspace">&nbsp;</span><span class="RktVal">5</span><span class="RktVal">)</span><span class="RktPn">)</span><span class="RktVal">)</span></td></tr></tbody></table></td><td valign="top">
+
+<p><span class="hspace">&nbsp;&nbsp;</span></p>
+
+</td><td valign="top">
+
+<p>это сокращение от</p>
+
+</td><td valign="top">
+
+<p><span class="hspace">&nbsp;&nbsp;</span></p>
+
+</td><td valign="top"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">tr</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym">make-row</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="hspace">&nbsp;</span><span class="RktVal">4</span><span class="hspace">&nbsp;</span><span class="RktVal">5</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr></tbody></table></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Таким образом, все, что производит<span class="RktSym">make-row</span>, становится вторым
+элементом списка. В частности, если <span class="RktSym">make-row</span> создает список, 
+этот список становится вторым элементом списка. Если <span class="RktSym">make-row</span>
+переводит заданный список чисел в список строк, то результатом будет 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">tr</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">"3"</span><span class="hspace">&nbsp;</span><span class="RktVal">"4"</span><span class="hspace">&nbsp;</span><span class="RktVal">"5"</span><span class="RktPn">)</span><span class="RktPn">)</span></p>
+
+</blockquote></div><div class="SIntrapara">Однако в некоторых случаях нам может потребоваться
+вшить/встроить такой вложенный список во внешний, чтобы в нашем текущем примере мы получили 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">tr</span><span class="hspace">&nbsp;</span><span class="RktVal">"3"</span><span class="hspace">&nbsp;</span><span class="RktVal">"4"</span><span class="hspace">&nbsp;</span><span class="RktVal">"5"</span><span class="RktPn">)</span></p>
+
+</blockquote></div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Один из способов решить эту небольшую проблему - вернуться к 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span>. То есть смешивать 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span> с <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quote%29%29" class="RktStxLink" data-pltdoc="x">quote</a></span>, 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._quasiquote%29%29" class="RktStxLink" data-pltdoc="x">quasiquote</a></span> и <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._unquote%29%29" class="RktStxLink" data-pltdoc="x">unquote</a></span>. 
+В конце концов, все эти символьные знаки - всего лишь сокращения для  <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span>ed(конструируемых) списков. Вот что нужно для получения 
+желаемого результата в нашем примере: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">tr</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">make-row</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">3</span><span class="hspace">&nbsp;</span><span class="RktVal">4</span><span class="hspace">&nbsp;</span><span class="RktVal">5</span><span class="RktVal">)</span><span class="RktPn">)</span><span class="RktPn">)</span></p>
+
+</blockquote></div><div class="SIntrapara">Убедитесь, что результат <span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="stt"> </span><span class="RktVal">'</span><span class="RktVal">tr</span><span class="stt"> </span><span class="RktVal">"3"</span><span class="stt"> </span><span class="RktVal">"4"</span><span class="stt"> </span><span class="RktVal">"5"</span><span class="RktPn">)</span>.</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Поскольку на практике такая ситуация встречается довольно часто, 
+BSL+ поддерживает еще один сокращенный механизм для создания списка: 
+<span class="RktVal">,@</span>, также известный в виде ключевого слова <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._unquote-splicing%29%29" class="RktStxLink" data-pltdoc="x">unquote-splicing</a></span>(отмена цитирования с встраиванием результата). С помощью этой формы легко объединить
+вложенный список в окружающий список. Например, 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">tr</span><span class="hspace">&nbsp;</span><span class="RktRdr">,@</span><span class="RktPn">(</span><span class="RktSym">make-row</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">3</span><span class="hspace">&nbsp;</span><span class="RktVal">4</span><span class="hspace">&nbsp;</span><span class="RktVal">5</span><span class="RktVal">)</span><span class="RktPn">)</span><span class="RktVal">)</span></p>
+
+</blockquote></div><div class="SIntrapara">преобразуется в
+</div><div class="SIntrapara"><blockquote class="SCodeFlow">
+
+<p><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">tr</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">make-row</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">3</span><span class="hspace">&nbsp;</span><span class="RktVal">4</span><span class="hspace">&nbsp;</span><span class="RktVal">5</span><span class="RktVal">)</span><span class="RktPn">)</span><span class="RktPn">)</span></p>
+
+</blockquote></div><div class="SIntrapara">что как раз то, что нам нужно для нашего примера.</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Теперь рассмотрим проблему создания таблицы HTML в нашем 
+представлении вложенного списка. Вот таблица из двух строк по четыре ячейки в каждой: 
+</div><div class="SIntrapara"><blockquote class="SVInsetFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktRes"><span class="hspace">&nbsp;&nbsp;</span></span><span class="RktRes">'</span><span class="RktRes">(</span><span class="RktRes">table</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">(</span><span class="RktRes">border</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"1"</span><span class="RktRes">)</span><span class="RktRes">)</span></td></tr><tr><td><span class="RktRes"><span class="hspace">&nbsp;&nbsp;</span></span><span class="RktRes"><span class="hspace">&nbsp;&nbsp;&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">tr</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">td</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"1"</span><span class="RktRes">)</span><span class="RktRes"><span class="hspace">&nbsp;&nbsp;&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">td</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"2"</span><span class="RktRes">)</span><span class="RktRes"><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">td</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"3"</span><span class="RktRes">)</span><span class="RktRes"><span class="hspace">&nbsp;&nbsp;&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">td</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"4"</span><span class="RktRes">)</span><span class="RktRes">)</span></td></tr><tr><td><span class="RktRes"><span class="hspace">&nbsp;&nbsp;</span></span><span class="RktRes"><span class="hspace">&nbsp;&nbsp;&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">tr</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">td</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"2.8"</span><span class="RktRes">)</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">td</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"-1.1"</span><span class="RktRes">)</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">td</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"3.4"</span><span class="RktRes">)</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">(</span><span class="RktRes">td</span><span class="RktRes"><span class="hspace">&nbsp;</span></span><span class="RktRes">"1.3"</span><span class="RktRes">)</span><span class="RktRes">)</span><span class="RktRes">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">Первые вложенные списки предписывают HTML 
+нарисовать тонкую рамку вокруг каждой ячейки в таблице; два других вложенных списка 
+представляют собой строку, каждый.
+</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">На практике вы хотите создать такие таблицы с произвольно 
+широкими строками и произвольным количеством строк. А пока мы имеем дело с первой проблемой, 
+для которой требуется функция, переводящая списки чисел в строки HTML: 
+<a name="(idx._(gentag._357))"></a> <a name="(idx._(gentag._358))"></a>
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><a href="part_two.html#%28tech._list._of._number%29" class="techoutside" data-pltdoc="x"><span class="techinside">List-of-numbers</span></a><span class="RktCmt"> -&gt; </span>...<span class="RktCmt"> nested list </span>...</td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">creates a row for an HTML table from </span><span class="RktSym">l</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">make-row</span><span class="hspace">&nbsp;</span><span class="RktSym">l</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cond%29%29" class="RktStxLink" data-pltdoc="x">cond</a></span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._empty~3f%29%29" class="RktValLink" data-pltdoc="x">empty?</a></span><span class="hspace">&nbsp;</span><span class="RktSym">l</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">)</span><span class="RktPn">]</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._else%29%29" class="RktStxLink" data-pltdoc="x">else</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">make-cell</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._first%29%29" class="RktValLink" data-pltdoc="x">first</a></span><span class="hspace">&nbsp;</span><span class="RktSym">l</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym">make-row</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._rest%29%29" class="RktValLink" data-pltdoc="x">rest</a></span><span class="hspace">&nbsp;</span><span class="RktSym">l</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">]</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;</span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><a href="part_one.html#%28tech._number%29" class="techoutside" data-pltdoc="x"><span class="techinside">Number</span></a><span class="RktCmt"> -&gt; </span>...<span class="RktCmt"> nested list </span>...</td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">creates a cell for an HTML table from a number </span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">make-cell</span><span class="hspace">&nbsp;</span><span class="RktSym">n</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">td</span><span class="hspace">&nbsp;</span><span class="RktRdr">,</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._number-~3estring%29%29" class="RktValLink" data-pltdoc="x">number-&gt;string</a></span><span class="hspace">&nbsp;</span><span class="RktSym">n</span><span class="RktPn">)</span><span class="RktVal">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Вместо добавления примеров мы исследуем поведение этих функций в области взаимодействия 
+DrRacket: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym">make-cell</span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="RktPn">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(list 'td "2")</span></p>
+
+</td></tr><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym">make-row</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="RktVal">)</span><span class="RktPn">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(list (list 'td "1") (list 'td "2"))</span></p>
+
+</td></tr></tbody></table></blockquote></div><div class="SIntrapara">Эти взаимодействия 
+показывают создание списков, представляющих ячейку и строку.</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara">Чтобы превратить такие списки строк в фактические строки 
+представления таблицы HTML, нам нужно объединить их в список, который начинается с 
+<span class="RktVal">'</span><span class="RktVal">tr</span>:
+<a name="(idx._(gentag._359))"></a>
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><a href="part_two.html#%28tech._list._of._number%29" class="techoutside" data-pltdoc="x"><span class="techinside">List-of-numbers</span></a><span class="RktCmt"> </span><a href="part_two.html#%28tech._list._of._number%29" class="techoutside" data-pltdoc="x"><span class="techinside">List-of-numbers</span></a><span class="RktCmt"> -&gt; </span>...<span class="RktCmt"> nested list </span>...</td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">creates an HTML table from two lists of numbers </span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">make-table</span><span class="hspace">&nbsp;</span><span class="RktSym">row1</span><span class="hspace">&nbsp;</span><span class="RktSym">row2</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">table</span><span class="hspace">&nbsp;</span><span class="RktVal">(</span><span class="RktVal">(</span><span class="RktVal">border</span><span class="hspace">&nbsp;</span><span class="RktVal">"1"</span><span class="RktVal">)</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">tr</span><span class="hspace">&nbsp;</span><span class="RktRdr">,@</span><span class="RktPn">(</span><span class="RktSym">make-row</span><span class="hspace">&nbsp;</span><span class="RktSym">row1</span><span class="RktPn">)</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">tr</span><span class="hspace">&nbsp;</span><span class="RktRdr">,@</span><span class="RktPn">(</span><span class="RktSym">make-row</span><span class="hspace">&nbsp;</span><span class="RktSym">row2</span><span class="RktPn">)</span><span class="RktVal">)</span><span class="RktVal">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Эта функция использует два списка чисел и создает представление таблицы HTML. С помощью 
+<span class="RktSym">make-row</span> она переводит списки в списки представлений ячеек. 
+С <span class="RktVal">,@</span> эти списки объединяются в шаблон таблицы: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym">make-table</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">1</span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="hspace">&nbsp;</span><span class="RktVal">4</span><span class="hspace">&nbsp;</span><span class="RktVal">5</span><span class="RktVal">)</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">3.5</span><span class="hspace">&nbsp;</span><span class="RktVal">2.8</span><span class="hspace">&nbsp;</span><span class="RktVal"><span class="nobreak">-1</span>.1</span><span class="hspace">&nbsp;</span><span class="RktVal">3.4</span><span class="hspace">&nbsp;</span><span class="RktVal">1.3</span><span class="RktVal">)</span><span class="RktPn">)</span></td></tr><tr><td>
+
+<p><span class="RktRes">(list 'table (list (list 'border "1")) '....)</span></p>
+
+</td></tr></tbody></table></blockquote></div><div class="SIntrapara">Это
+<span class="refelem"><span class="refcolumn"><span class="refcontent">
+Точки <span style="font-weight: bold">не</span> являются частью вывода. </span></span></span>
+применение <span class="RktSym">make-table</span> предлагает еще одну причину, по которой 
+люди пишут программы для создания веб-страниц, а не создают их вручную.</div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara"><a name="(counter._(exercise._ex~3aunquote-splicing))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;233. Разработайте альтернативы следующим
+выражениям, которые используют только <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span> и дают 
+те же значения: 
+</div><div class="SIntrapara"><ul><li>
+
+<p><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">0</span><span class="stt"> </span><span class="RktRdr">,@</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">1</span><span class="stt"> </span><span class="RktVal">2</span><span class="stt"> </span><span class="RktVal">3</span><span class="RktVal">)</span><span class="stt"> </span><span class="RktVal">4</span><span class="RktVal">)</span></p>
+
+</li><li>
+
+<p></p>
+
+<div class="SIntrapara">эта табличная форма: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">(</span><span class="RktVal">"alan"</span><span class="hspace">&nbsp;</span><span class="RktRdr">,</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._%2A%29%29" class="RktValLink" data-pltdoc="x">*</a></span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="hspace">&nbsp;</span><span class="RktVal">500</span><span class="RktPn">)</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">"barb"</span><span class="hspace">&nbsp;</span><span class="RktVal">2000</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktRdr">,@</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">"carl"</span><span class="hspace">&nbsp;</span><span class="RktVal">" , the great"</span><span class="RktVal">)</span><span class="hspace">&nbsp;&nbsp;&nbsp;</span><span class="RktVal">1500</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">"dawn"</span><span class="hspace">&nbsp;</span><span class="RktVal">2300</span><span class="RktVal">)</span><span class="RktVal">)</span></td></tr></tbody></table></blockquote></div>
+
+<p></p>
+
+</li><li>
+
+<p></p>
+
+<div class="SIntrapara">и эта третья веб-страница: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktVal">`</span><span class="RktVal">(</span><span class="RktVal">html</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">body</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">table</span><span class="hspace">&nbsp;</span><span class="RktVal">(</span><span class="RktVal">(</span><span class="RktVal">border</span><span class="hspace">&nbsp;</span><span class="RktVal">"1"</span><span class="RktVal">)</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">tr</span><span class="hspace">&nbsp;</span><span class="RktVal">(</span><span class="RktVal">(</span><span class="RktVal">width</span><span class="hspace">&nbsp;</span><span class="RktVal">"200"</span><span class="RktVal">)</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktRdr">,@</span><span class="RktPn">(</span><span class="RktSym">make-row</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">2</span><span class="RktVal">)</span><span class="RktPn">)</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">(</span><span class="RktVal">tr</span><span class="hspace">&nbsp;</span><span class="RktVal">(</span><span class="RktVal">(</span><span class="RktVal">width</span><span class="hspace">&nbsp;</span><span class="RktVal">"200"</span><span class="RktVal">)</span><span class="RktVal">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktRdr">,@</span><span class="RktPn">(</span><span class="RktSym">make-row</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">99</span><span class="hspace">&nbsp;</span><span class="RktVal">65</span><span class="RktVal">)</span><span class="RktPn">)</span><span class="RktVal">)</span><span class="RktVal">)</span><span class="RktVal">)</span><span class="RktVal">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+где <span class="RktSym">make-row</span> - это функция сверху.
+.</div>
+
+<p></p>
+
+</li></ul></div><div class="SIntrapara">Используйте <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._check-expect%29%29" class="RktStxLink" data-pltdoc="x">check-expect</a></span>, 
+чтобы проверить свою работу.
+ <a href="#%28counter._%28exercise._ex~3aunquote-splicing%29%29" class="ex-end" data-pltdoc="x"></a></div>
+
+<p></p>
+
+<p></p>
+
+<div class="SIntrapara"><a name="(counter._(exercise._ex~3arankings-splicing))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;234. Создайте функцию 
+<span class="RktSym">make-ranking</span>, которая использует список ранжированных названий 
+песен и создает представление списка в виде таблицы HTML. 
+Рассмотрим этот пример: 
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktSym">one-list</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">"Asia: Heat of the Moment"</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">"U2: One"</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">"The White Stripes: Seven Nation Army"</span><span class="RktVal">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Если вы примените <span class="RktSym">make-ranking</span> к 
+<span class="RktSym">one-list</span> и отобразите
+полученную веб-страницу в браузере, вы увидите что-то вроде снимка экрана на 
+<a href="#%28counter._%28figure._fig~3amy-second-page%29%29" data-pltdoc="x">рисунке&nbsp;<span class="FigureRef">85</span></a>.</div>
+
+<p></p>
+
+<blockquote class="Herefigure"><blockquote class="Centerfigure"><blockquote class="FigureInside"><blockquote class="SCentered">
+
+<p><img src="i2-3_files/web-page2.png" alt="" width="320" height="168"></p>
+
+</blockquote></blockquote></blockquote><p class="Centertext"><span class="Legend"><span class="FigureTarget"><a name="(counter._(figure._fig~3amy-second-page))" x-target-lift="Figure"></a>Рисунок&nbsp;85: </span>Веб-страница, созданная с помощью BSL+</span></p>
+
+</blockquote>
+
+<p></p>
+
+<div class="SIntrapara"><span style="font-weight: bold">Подсказка</span> Хотя вы могли бы
+разработать функцию, которая определяет ранжирование из списка строк, мы хотим, чтобы вы 
+вместо этого сосредоточились на создании таблиц. Таким образом, мы предоставляем следующие
+функции: 
+<a name="(idx._(gentag._360))"></a> <a name="(idx._(gentag._361))"></a>
+</div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">ranking</span><span class="hspace">&nbsp;</span><span class="RktSym">los</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._reverse%29%29" class="RktValLink" data-pltdoc="x">reverse</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">add-ranks</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._reverse%29%29" class="RktValLink" data-pltdoc="x">reverse</a></span><span class="hspace">&nbsp;</span><span class="RktSym">los</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">add-ranks</span><span class="hspace">&nbsp;</span><span class="RktSym">los</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cond%29%29" class="RktStxLink" data-pltdoc="x">cond</a></span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._empty~3f%29%29" class="RktValLink" data-pltdoc="x">empty?</a></span><span class="hspace">&nbsp;</span><span class="RktSym">los</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">)</span><span class="RktPn">]</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28form._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._else%29%29" class="RktStxLink" data-pltdoc="x">else</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._cons%29%29" class="RktValLink" data-pltdoc="x">cons</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._length%29%29" class="RktValLink" data-pltdoc="x">length</a></span><span class="hspace">&nbsp;</span><span class="RktSym">los</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._first%29%29" class="RktValLink" data-pltdoc="x">first</a></span><span class="hspace">&nbsp;</span><span class="RktSym">los</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym">add-ranks</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner-abbr.html#%28def._htdp-beginner-abbr._%28%28lib._lang%2Fhtdp-beginner-abbr..rkt%29._rest%29%29" class="RktValLink" data-pltdoc="x">rest</a></span><span class="hspace">&nbsp;</span><span class="RktSym">los</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">]</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
+Прежде чем использовать эти функции, снабдите их сигнатурами и предназначениями. 
+Затем изучите их работу с взаимодействиями в DrRacket. <a href="part_six.html" data-pltdoc="x">Аккумуляторы</a> расширяют рецепт разработки за счет создания более простых 
+функций для вычисления рейтингов, чем 
+<span class="RktSym">ranking</span> и   <span class="RktSym">add-ranks</span>. 
+<a href="#%28counter._%28exercise._ex~3arankings-splicing%29%29" class="ex-end" data-pltdoc="x"></a></div>
+
+<p></p>
+
+<div class="navsetbottom"><span class="navleft"><div class="nosearchform"></div>&nbsp;&nbsp;</span><span class="navright">&nbsp;&nbsp;<a href="part_two.html" title="backward to &quot;II Arbitrarily Large Data&quot;" data-pltdoc="x">← prev</a>&nbsp;&nbsp;<a href="index.html" title="up to &quot;How to Design Programs, Second Edition&quot;" data-pltdoc="x">up</a>&nbsp;&nbsp;<a href="part_three.html" title="forward to &quot;III Abstraction&quot;" data-pltdoc="x">next →</a></span>&nbsp;</div></div></div><div id="contextindicator">&nbsp;</div></body></html>
