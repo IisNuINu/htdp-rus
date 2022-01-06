@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=0.8"><title>Пролог: как программировать</title><link rel="stylesheet" type="text/css" href="part_prologue_files/scribble.css" title="default"><link rel="stylesheet" type="text/css" href="part_prologue_files/shared.css" title="default"><link rel="stylesheet" type="text/css" href="part_prologue_files/figure.css" title="default"><link rel="stylesheet" type="text/css" href="part_prologue_files/racket.css" title="default"><link rel="stylesheet" type="text/css" href="part_prologue_files/manual-style.css" title="default"><link rel="stylesheet" type="text/css" href="part_prologue_files/manual-racket.css" title="default"><script type="text/javascript" src="part_prologue_files/scribble-common.js"></script><script type="text/javascript" src="part_prologue_files/figure.js"></script><script type="text/javascript" src="part_prologue_files/manual-racket.js"></script><!--[if IE 6]><style type="text/css">.SIEHidden { overflow: hidden; }</style><![endif]--></head><body id="scribble-racket-lang-org"><div class="tocset"><div class="tocview"><div class="tocviewlist tocviewlisttopspace"><div class="tocviewtitle"><table cellspacing="0" cellpadding="0"><tbody><tr><td style="width: 1em;"><a href="javascript:void(0);" title="Expand/Collapse" class="tocviewtoggle" onclick='TocviewToggle(this,"tocview_0");'>▼</a></td><td></td><td><a href="index.html" class="tocviewlink" data-pltdoc="x">How to Design Programs, Second Edition</a></td></tr></tbody></table></div><div class="tocviewsublisttop" style="display: block;" id="tocview_0"><table cellspacing="0" cellpadding="0"><tbody><tr><td align="right"></td><td><a href="part_preface.html" class="tocviewlink" data-pltdoc="x">Preface</a></td></tr><tr><td align="right"></td><td><a href="" class="tocviewselflink" data-pltdoc="x">Prologue:<span class="mywbr"> &nbsp;</span> How to Program</a></td></tr><tr><td align="right">I&nbsp;</td><td><a href="part_one.html" class="tocviewlink" data-pltdoc="x">Fixed Size Data</a></td></tr><tr><td align="right"></td><td><a href="i1-2.html" class="tocviewlink" data-pltdoc="x">Intermezzo 1: Beginning Student Language</a></td></tr><tr><td align="right">II&nbsp;</td><td><a href="part_two.html" class="tocviewlink" data-pltdoc="x">Arbitrarily Large Data</a></td></tr><tr><td align="right"></td><td><a href="i2-3.html" class="tocviewlink" data-pltdoc="x">Intermezzo 2: Quote, Unquote</a></td></tr><tr><td align="right">III&nbsp;</td><td><a href="part_three.html" class="tocviewlink" data-pltdoc="x">Abstraction</a></td></tr><tr><td align="right"></td><td><a href="i3-4.html" class="tocviewlink" data-pltdoc="x">Intermezzo 3: Scope and Abstraction</a></td></tr><tr><td align="right">IV&nbsp;</td><td><a href="part_four.html" class="tocviewlink" data-pltdoc="x">Intertwined Data</a></td></tr><tr><td align="right"></td><td><a href="i4-5.html" class="tocviewlink" data-pltdoc="x">Intermezzo 4: The Nature of Numbers</a></td></tr><tr><td align="right">V&nbsp;</td><td><a href="part_five.html" class="tocviewlink" data-pltdoc="x">Generative Recursion</a></td></tr><tr><td align="right"></td><td><a href="i5-6.html" class="tocviewlink" data-pltdoc="x">Intermezzo 5: The Cost of Computation</a></td></tr><tr><td align="right">VI&nbsp;</td><td><a href="part_six.html" class="tocviewlink" data-pltdoc="x">Accumulators</a></td></tr><tr><td align="right"></td><td><a href="part_epilogue.html" class="tocviewlink" data-pltdoc="x">Epilogue:<span class="mywbr"> &nbsp;</span> Moving On</a></td></tr></tbody></table></div></div><div class="tocviewlist"><table cellspacing="0" cellpadding="0"><tbody><tr><td style="width: 1em;">•</td><td></td><td><a href="" class="tocviewselflink" data-pltdoc="x">Prologue:<span class="mywbr"> &nbsp;</span> How to Program</a></td></tr></tbody></table></div></div></div><div class="maincolumn"><div class="main"><div class="versionbox"><span class="version">8.0.0.10</span></div><div class="navsettop"><span class="navleft"><div class="nosearchform"></div>&nbsp;&nbsp;</span><span class="navright">&nbsp;&nbsp;<a href="part_preface.html" title="backward to &quot;Preface&quot;" data-pltdoc="x">← prev</a>&nbsp;&nbsp;<a href="index.html" title="up to &quot;How to Design Programs, Second Edition&quot;" data-pltdoc="x">up</a>&nbsp;&nbsp;<a href="part_one.html" title="forward to &quot;I Fixed-Size Data&quot;" data-pltdoc="x">next →</a></span>&nbsp;</div><h3><a name="(part._part~3aprologue)"></a>Prologue: How to Program</h3><a name="(part._chap~3apart~3aprologue)"></a><table cellspacing="0" cellpadding="0"><tbody><tr><td>
+<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=0.8"><title>Пролог: как программировать</title><link rel="stylesheet" type="text/css" href="part_prologue_files/scribble.css" title="default"><link rel="stylesheet" type="text/css" href="part_prologue_files/shared.css" title="default"><link rel="stylesheet" type="text/css" href="part_prologue_files/figure.css" title="default"><link rel="stylesheet" type="text/css" href="part_prologue_files/racket.css" title="default"><link rel="stylesheet" type="text/css" href="part_prologue_files/manual-style.css" title="default"><link rel="stylesheet" type="text/css" href="part_prologue_files/manual-racket.css" title="default"><script type="text/javascript" src="part_prologue_files/scribble-common.js"></script><script type="text/javascript" src="part_prologue_files/figure.js"></script><script type="text/javascript" src="part_prologue_files/manual-racket.js"></script><!--[if IE 6]><style type="text/css">.SIEHidden { overflow: hidden; }</style><![endif]--></head><body id="scribble-racket-lang-org"><div class="tocset"><div class="tocview"><div class="tocviewlist tocviewlisttopspace"><div class="tocviewtitle"><table cellspacing="0" cellpadding="0"><tbody><tr><td style="width: 1em;"><a href="javascript:void(0);" title="Expand/Collapse" class="tocviewtoggle" onclick='TocviewToggle(this,"tocview_0");'>▼</a></td><td></td><td><a href="index.html" class="tocviewlink" data-pltdoc="x">How to Design Programs, Second Edition</a></td></tr></tbody></table></div><div class="tocviewsublisttop" style="display: block;" id="tocview_0"><table cellspacing="0" cellpadding="0"><tbody><tr><td align="right"></td><td><a href="part_preface.html" class="tocviewlink" data-pltdoc="x">Preface</a></td></tr><tr><td align="right"></td><td><a href="" class="tocviewselflink" data-pltdoc="x">Prologue:<span class="mywbr"> &nbsp;</span> How to Program</a></td></tr><tr><td align="right">I&nbsp;</td><td><a href="part_one.html" class="tocviewlink" data-pltdoc="x">Fixed Size Data</a></td></tr><tr><td align="right"></td><td><a href="i1-2.html" class="tocviewlink" data-pltdoc="x">Intermezzo 1: Beginning Student Language</a></td></tr><tr><td align="right">II&nbsp;</td><td><a href="part_two.html" class="tocviewlink" data-pltdoc="x">Arbitrarily Large Data</a></td></tr><tr><td align="right"></td><td><a href="i2-3.html" class="tocviewlink" data-pltdoc="x">Intermezzo 2: Quote, Unquote</a></td></tr><tr><td align="right">III&nbsp;</td><td><a href="part_three.html" class="tocviewlink" data-pltdoc="x">Abstraction</a></td></tr><tr><td align="right"></td><td><a href="i3-4.html" class="tocviewlink" data-pltdoc="x">Intermezzo 3: Scope and Abstraction</a></td></tr><tr><td align="right">IV&nbsp;</td><td><a href="part_four.html" class="tocviewlink" data-pltdoc="x">Intertwined Data</a></td></tr><tr><td align="right"></td><td><a href="i4-5.html" class="tocviewlink" data-pltdoc="x">Intermezzo 4: The Nature of Numbers</a></td></tr><tr><td align="right">V&nbsp;</td><td><a href="part_five.html" class="tocviewlink" data-pltdoc="x">Generative Recursion</a></td></tr><tr><td align="right"></td><td><a href="i5-6.html" class="tocviewlink" data-pltdoc="x">Intermezzo 5: The Cost of Computation</a></td></tr><tr><td align="right">VI&nbsp;</td><td><a href="part_six.html" class="tocviewlink" data-pltdoc="x">Accumulators</a></td></tr><tr><td align="right"></td><td><a href="part_epilogue.html" class="tocviewlink" data-pltdoc="x">Epilogue:<span class="mywbr"> &nbsp;</span> Moving On</a></td></tr></tbody></table></div></div><div class="tocviewlist"><table cellspacing="0" cellpadding="0"><tbody><tr><td style="width: 1em;">•</td><td></td><td><a href="" class="tocviewselflink" data-pltdoc="x">Prologue:<span class="mywbr"> &nbsp;</span> How to Program</a></td></tr></tbody></table></div></div></div><div class="maincolumn"><div class="main"><div class="versionbox"><span class="version">8.0.0.10</span></div><div class="navsettop"><span class="navleft"><div class="nosearchform"></div>&nbsp;&nbsp;</span><span class="navright">&nbsp;&nbsp;<a href="part_preface.html" title="backward to &quot;Preface&quot;" data-pltdoc="x">← prev</a>&nbsp;&nbsp;<a href="index.html" title="up to &quot;How to Design Programs, Second Edition&quot;" data-pltdoc="x">up</a>&nbsp;&nbsp;<a href="part_one.html" title="forward to &quot;I Fixed-Size Data&quot;" data-pltdoc="x">next →</a></span>&nbsp;</div><h3><a name="(part._part~3aprologue)"></a>Пролог: Как Программировать</h3><a name="(part._chap~3apart~3aprologue)"></a><table cellspacing="0" cellpadding="0"><tbody><tr><td>
 
 <p><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#%28part._arithmetic-pro%29" class="toclink" data-pltdoc="x">Арифметика и арифметика</a></p>
 
@@ -25,7 +25,7 @@
 
 </td></tr><tr><td>
 
-<p><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#%28part._sec~3anot%29" class="toclink" data-pltdoc="x">Not!</a></p>
+<p><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#%28part._sec~3anot%29" class="toclink" data-pltdoc="x">Нет!</a></p>
 
 </td></tr></tbody></table>
 
@@ -162,7 +162,7 @@ DrRacket оценивает(вычисляет) выражения из обла
 
 <p></p>
 
-</li></ul></div><div class="SIntrapara">Внимательно посмотрите на последний номер. 
+</li></ul></div><div class="SIntrapara">Внимательно посмотрите на последнее число. 
 Его префикс “#i” является сокращением от “I  don’t really know the precise number 
 so take that for now”(Я действительно не знаю точного числа, поэтому возьмите сейчас это)
 или неточного числа. В отличие от вашего калькулятора или других систем программирования,
@@ -187,7 +187,7 @@ DrRacket складывать более двух чисел одновреме�
 <p><span class="RktRes">9</span></p>
 
 </td></tr></tbody></table></blockquote></div><div class="SIntrapara">Первый - это 
-<span style="font-style: italic">вложенная арифметика</span>, как вы знаете ее из школы. 
+<span style="font-style: italic">вложенная арифметика</span>, какой вы знаете ее из школы. 
 Второй - <span style="font-style: italic">арифметика BSL</span>; и последнее естественно, 
 потому что в этой нотации вы всегда используете круглые скобки для группировки операций и чисел. 
 </div>
@@ -339,7 +339,7 @@ HelpDesk, чтобы прочитать документацию.
 
 <p></p>
 
-<p>Со строками можно больше, чем просто их добавлять. Вы можете извлекать 
+<p>Вы можете выполнить больше операций строками, чем просто их складывать. Вы можете извлекать 
 части из строки, переворачивать их, отображать все буквы в верхнем (или нижнем) регистре, 
 удалять пробелы слева и справа и т. Д. И, что самое главное, вам не нужно ничего запоминать. 
 Если вам нужно узнать, что вы можете делать со строками, поищите термин в HelpDesk. 
@@ -476,7 +476,8 @@ HelpDesk, чтобы прочитать документацию.
 как и программисты других языков программирования, создают 
 <span style="font-style: italic">библиотеки</span>, которые могут 
 оказаться полезными для других. Использование таких библиотек похоже на расширение 
-словаря новыми словами или словаря программирования новыми примитивами. Мы дублируем такие библиотеки <span style="font-style: italic">обучающими пакетами(teachpacks)</span>, 
+словаря новыми словами или словаря программирования новыми примитивами. Мы называем 
+такие библиотеки <span style="font-style: italic">обучающими пакетами(teachpacks)</span>, 
 потому что они помогают в обучении. </div>
 
 <p></p>
@@ -542,7 +543,7 @@ HelpDesk, чтобы прочитать документацию.
 <p></p>
 
 <div class="SIntrapara">Как видите, <span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._overlay%29%29" class="RktValLink" data-pltdoc="x">overlay</a></span>(наложение) больше похоже на 
-span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._string-append%29%29" class="RktValLink" data-pltdoc="x">string-append</a></span>, чем на 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._string-append%29%29" class="RktValLink" data-pltdoc="x">string-append</a></span>, чем на 
 <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span>, но оно “складывает“ изображения так же, как <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._string-append%29%29" class="RktValLink" data-pltdoc="x">string-append</a></span> “складывает” строки, а <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._%2B%29%29" class="RktValLink" data-pltdoc="x">+</a></span> складывает числа.
 Вот еще одна иллюстрация идеи: 
 </div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._image-width%29%29" class="RktValLink" data-pltdoc="x">image-width</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._square%29%29" class="RktValLink" data-pltdoc="x">square</a></span><span class="hspace">&nbsp;</span><span class="RktVal">10</span><span class="hspace">&nbsp;</span><span class="RktVal">"solid"</span><span class="hspace">&nbsp;</span><span class="RktVal">"red"</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td>
@@ -562,7 +563,7 @@ DrRacket вообще ничего не рисуют; они действите�
 
 <div class="SIntrapara">Имеют значение еще две операции:<span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._empty-scene%29%29" class="RktValLink" data-pltdoc="x">empty-scene</a></span> и
  <span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._place-image%29%29" class="RktValLink" data-pltdoc="x">place-image</a></span>. Первая создает сцену, особый вид прямоугольника. 
-Вторая помещает изображение в такую сцену: 
+Вторая помещает изображение на такую сцену: 
 </div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._place-image%29%29" class="RktValLink" data-pltdoc="x">place-image</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._circle%29%29" class="RktValLink" data-pltdoc="x">circle</a></span><span class="hspace">&nbsp;</span><span class="RktVal">5</span><span class="hspace">&nbsp;</span><span class="RktVal">"solid"</span><span class="hspace">&nbsp;</span><span class="RktVal">"green"</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">50</span><span class="hspace">&nbsp;</span><span class="RktVal">80</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._empty-scene%29%29" class="RktValLink" data-pltdoc="x">empty-scene</a></span><span class="hspace">&nbsp;</span><span class="RktVal">100</span><span class="hspace">&nbsp;</span><span class="RktVal">100</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">и вы получите это: 
 <span class="refelem"><span class="refcolumn"><span class="refcontent">Не совсем. 
 Изображение идет без сетки. Мы накладываем сетку на пустую сцену, чтобы вы могли видеть, 
@@ -585,7 +586,7 @@ DrRacket вообще ничего не рисуют; они действите�
 <p></p>
 
 <p>Подведем итоги еще раз. Программировать - значит записывать арифметическое выражение, 
-но вы больше не ограничиваетесь скучными числами. В BSL арифметика - это арифметика чисел, 
+но вы больше не ограничены скучными числами. В BSL арифметика - это арифметика чисел, 
 строк, логических значений и даже изображений. Однако вычисление по-прежнему означает 
 определение значения выражения, за исключением того, что это значение может быть строкой, 
 числом, логическим значением или изображением. </p>
@@ -1009,7 +1010,7 @@ DrRacket может вычислить результат выражений, к
 вы хотите использовать. Вторая часть - это вход, к которому вы хотите применить функцию. 
 Если вы читали руководство для Windows или Mac, оно могло бы сказать вам, что это 
 выражение “launches”(запускает) “application”(приложение) с именем 
-<span class="RktVar">FunctionName</span> и будет обрабатывать<span class="RktVar">ArgumentExpression</span> в качестве входных данных. 
+<span class="RktVar">FunctionName</span> и будет обрабатывать <span class="RktVar">ArgumentExpression</span> в качестве входных данных. 
 Как и все выражения, последнее, возможно, представляет собой простой фрагмент данных или 
 глубоко вложенное выражение.  </div>
 
@@ -1021,11 +1022,11 @@ DrRacket может вычислить результат выражений, к
 
 <p></p>
 
-<div class="SIntrapara">Функции могут принимать на входь не только числа и 
-выводить все виды данных. Наша следующая задача - создать функцию, которая 
+<div class="SIntrapara">Функции могут принимать на вход не только числа и 
+выдавать в виде выхода все виды данных. Наша следующая задача - создать функцию, которая 
 имитирует вторую таблицу - таблицу с изображениями цветной точки - точно так же, 
 как первая функция имитировала числовую таблицу. Поскольку создание изображений 
-из выражений  - это не то, что вы знаете в средней школе, давайте начнем с простого. 
+из выражений  - это не то, что вы узнаете в средней школе, давайте начнем с простого. 
 Вы помните <span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._empty-scene%29%29" class="RktValLink" data-pltdoc="x">empty-scene</a></span>? Мы быстро упомянули о ней в конце предыдущего 
 раздела. Когда вы вводите её в область взаимодействия, вот так: 
 </div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="stt">&gt; </span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._empty-scene%29%29" class="RktValLink" data-pltdoc="x">empty-scene</a></span><span class="hspace">&nbsp;</span><span class="RktVal">100</span><span class="hspace">&nbsp;</span><span class="RktVal">60</span><span class="RktPn">)</span></td></tr><tr><td>
@@ -1045,7 +1046,7 @@ DrRacket может вычислить результат выражений, к
 <p><img style="vertical-align: 0px; margin: -3px -3px -3px -3px;" src="part_prologue_files/pict_14.png" alt="image" width="107" height="67"></p>
 
 </td></tr></tbody></table></blockquote></div><div class="SIntrapara">Думайте о ракете как 
-об объекте, который похож на точку в приведенной выше таблице из вашего класса математики. 
+об объекте, который похож на точку в приведенной выше таблице из вашего урока математики. 
 Разница в том, что ракета выглядит интересней. </div>
 
 <p></p>
@@ -1338,7 +1339,7 @@ DrRacket может вычислить результат выражений, к
 дойдете до программы на  <a href="#%28counter._%28figure._fig~3apicture-of-rocket..v3%29%29" data-pltdoc="x">рисунке&nbsp;<span class="FigureRef">6</span></a>. 
 Если задано какое-то число, которое представляет <span class="RktSym">height</span>(высоту)
  ракеты, она сначала проверяет, находится ли дно ракеты над землей. Если это так, она помещает
-ракету на сцену, как и раньше. Если это не так, он помещает изображение ракеты так, чтобы 
+ракету на сцену, как и раньше. Если это не так, она помещает изображение ракеты так, чтобы 
 ее нижняя часть касалась земли. </p>
 
 <h4><a name="(part._pro-many-def)"></a>Одна программа, много определений </h4>
@@ -1348,8 +1349,8 @@ DrRacket может вычислить результат выражений, к
 <span class="RktVal">200</span>-на-<span class="RktVal">400</span>. Этот простой 
 запрос вынуждает вас заменить <span class="RktVal">100</span> на <span class="RktVal">400</span> 
 в пяти местах программы и <span class="RktVal">60</span> на <span class="RktVal">200</span> 
- в двух других местах, не говоря уже о вхождениях <span class="RktVal">50</span>, 
-что на самом деле означает “середина холста”. </p>
+ в двух других местах, не говоря уже о вхождениях числа <span class="RktVal">50</span>, 
+которое на самом деле означает “середина холста”. </p>
 
 <p>Стоп! Прежде чем читать дальше, попробуйте сделать именно это, чтобы понять, 
 насколько сложно выполнить этот запрос для пятистрочной программы. Читая дальше, 
@@ -1376,8 +1377,9 @@ DrRacket может вычислить результат выражений, к
 </blockquote></div><div class="SIntrapara">в своей программе вы говорите, что 
 <span class="RktSym">HEIGHT</span>(ВЫСОТА) всегда представляет собой число 
 <span class="RktVal">60</span>. Смысл такого определения - то, что вы ожидаете. 
-Каждый раз, когда DrRacket встречает <span class="RktSym">HEIGHT</span> во время своих расчетов, 
-он вместо этого использует <span class="RktVal">60</span>. 
+Каждый раз, когда DrRacket встречает символ <span class="RktSym">HEIGHT</span> во 
+время своих расчетов, 
+он вместо него использует <span class="RktVal">60</span>. 
  <a name="(idx._(gentag._6))"></a></div>
 
 <p></p>
@@ -1390,7 +1392,7 @@ DrRacket может вычислить результат выражений, к
 
 <div class="SIntrapara">Теперь взгляните на код на  <a href="#%28counter._%28figure._fig~3apicture-of-rocket..v4%29%29" data-pltdoc="x">рисунке&nbsp;<span class="FigureRef">7</span></a>, 
 который реализует это простое изменение и именует изображение ракеты. 
-Скопируйте программу в DrRacket; и после нажатия span class="emph">RUN</span> 
+Скопируйте программу в DrRacket; и после нажатия <span class="emph">RUN</span> 
 вычислите следующее взаимодействие: 
 </div><div class="SIntrapara"><blockquote class="SCodeFlow">
 
@@ -1552,8 +1554,8 @@ DrRacket может вычислить результат выражений, к
 Впереди опасность! В этом разделе представлены некоторые знания из физики. Если вас 
 пугает физика, пропустите ее при первом чтении, программирование не требует знания
 физики.</span></span></span>  
-аргумента функции; вместо <span class="RktSym">h</span>— короткое имя для height(высота)— 
-следует использовать <span class="RktSym">t</span> для  time(время): 
+аргумента функции; вместо <span class="RktSym">h</span>— короткого имени для 
+height(высота)— следует использовать <span class="RktSym">t</span> для  времени(time): 
 <a name="(idx._(gentag._8))"></a>
 </div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner.html#%28form._%28%28lib._lang%2Fhtdp-beginner..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">picture-of-rocket</span><span class="hspace">&nbsp;</span><span class="RktSym">t</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner.html#%28form._%28%28lib._lang%2Fhtdp-beginner..rkt%29._cond%29%29" class="RktStxLink" data-pltdoc="x">cond</a></span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._~3c~3d%29%29" class="RktValLink" data-pltdoc="x">&lt;=</a></span><span class="hspace">&nbsp;</span><span class="RktSym">t</span><span class="hspace">&nbsp;</span><span class="RktSym">ROCKET-CENTER-TO-TOP</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._place-image%29%29" class="RktValLink" data-pltdoc="x">place-image</a></span><span class="hspace">&nbsp;</span><span class="RktSym">ROCKET</span><span class="hspace">&nbsp;</span><span class="RktVal">50</span><span class="hspace">&nbsp;</span><span class="RktSym">t</span><span class="hspace">&nbsp;</span><span class="RktSym">MTSCN</span><span class="RktPn">)</span><span class="RktPn">]</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._~3e%29%29" class="RktValLink" data-pltdoc="x">&gt;</a></span><span class="hspace">&nbsp;</span><span class="RktSym">t</span><span class="hspace">&nbsp;</span><span class="RktSym">ROCKET-CENTER-TO-TOP</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._place-image%29%29" class="RktValLink" data-pltdoc="x">place-image</a></span><span class="hspace">&nbsp;</span><span class="RktSym">ROCKET</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">50</span><span class="hspace">&nbsp;</span><span class="RktSym">ROCKET-CENTER-TO-TOP</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktSym">MTSCN</span><span class="RktPn">)</span><span class="RktPn">]</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara"> 
 И это небольшое изменение в определении сразу же проясняет, что эта программа использует
@@ -1597,7 +1599,7 @@ DrRacket может вычислить результат выражений, к
 
 <p><img src="part_prologue_files/pict_25.png" alt="image" width="57" height="12"></p>
 
-</blockquote></div><div class="SIntrapara">потому что это сразу говорит всем,
+</blockquote></div><div class="SIntrapara">потому что оно сразу говорит всем,
 что вычисление <span style="font-style: italic">d</span> зависит от
  <span style="font-style: italic">t</span> и что <span style="font-style: italic">v</span> 
 является константой. Программист идет еще дальше и использует значимые имена для этих
@@ -1653,9 +1655,9 @@ DrRacket может вычислить результат выражений, к
 Вы также увидите, что функции все время ссылаются друг на друга. Что вам
 действительно нужно на практике, так это организовать их так, чтобы вы
 могли легко читать их даже через несколько месяцев после написания. 
-В конце концов, в вашу стару версию —  или кому то другому - захочется внести изменения
-в эти программы;  и если вы не сможете понять организацию программы, 
-вам будет сложно выполнить даже самую назначительную задачу. 
+В конце концов, в вашу старую версию вам —  или кому нибудь другому - захочется внести 
+изменения в эти программы;  и если вы не сможете понять организацию программы, 
+вам будет сложно выполнить даже самую незначительную задачу. 
 В противном случае вы в основном узнаете то, что нужно знать.
 </p>
 
@@ -1667,7 +1669,7 @@ DrRacket может вычислить результат выражений, к
 изображений и любых других данных, поддерживаемых выбранными вами языками
 программирования. Вы знаете, что программы состоят из определений функций и 
 констант. Вы знаете, поскольку мы уже говорили вам, что, в конце концов, все дело
-в правильной организации этих определений. И поледнее, но не менее важное:
+в правильной организации этих определений. И последнее, но не менее важное:
 вы знаете, что DrRacket и обучающие пакеты поддерживают множество других  функций,
 а HelpDesk DrRacket’s  объясняет, что эти функции делают.</p>
 
@@ -1862,10 +1864,10 @@ DrRacket может вычислить результат выражений, к
 
 <h4><a name="(part._sec~3anot)"></a>Нет!</h4>
 
-<p>When you look at the “programming” bookshelves in a random bookstore,
- you will see loads of books that promise to turn you into a programmer on
- the spot. Now that you have worked your way through some first examples,
- however, you probably realize that this cannot possibly happen.</p>
+<p>Когда вы посмотрите на книжные полки «программирование» в случайном книжном магазине, 
+вы увидите множество книг, которые обещают превратить вас в программиста на месте. 
+Однако теперь, когда вы проработали несколько первых примеров, вы, вероятно, понимаете, 
+что этого не может быть. </p>
 
 <p>Приобретение механических навыков программирования — научиться писать выражения,
 понятные компьютеру, знание какие функции и библиотеки доступны, и аналогичные
@@ -1901,6 +1903,6 @@ DrRacket может вычислить результат выражений, к
 полезно во всех этих областях, но оно также отвлекает от основных элементов 
 программирования. Поэтому мы сделали все возможное, чтобы свести к минимуму 
 использование знаний из других областей, чтобы сосредоточиться на том, 
-чему информатика может вас научить, решению вычислительных задач. </p>
+чему информатика может вас научить: решению вычислительных задач. </p>
 
 <div class="navsetbottom"><span class="navleft"><div class="nosearchform"></div>&nbsp;&nbsp;</span><span class="navright">&nbsp;&nbsp;<a href="part_preface.html" title="backward to &quot;Preface&quot;" data-pltdoc="x">← prev</a>&nbsp;&nbsp;<a href="index.html" title="up to &quot;How to Design Programs, Second Edition&quot;" data-pltdoc="x">up</a>&nbsp;&nbsp;<a href="part_one.html" title="forward to &quot;I Fixed-Size Data&quot;" data-pltdoc="x">next →</a></span>&nbsp;</div></div></div><div id="contextindicator">&nbsp;</div></body></html>
