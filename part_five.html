@@ -58,7 +58,7 @@
 
 </td></tr><tr><td>
 
-<p><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#%28part._sec~3aintegrate%29" class="toclink" data-pltdoc="x">28.2<span class="hspace">&nbsp;</span>Числовая интеграция</a></p>
+<p><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#%28part._sec~3aintegrate%29" class="toclink" data-pltdoc="x">28.2<span class="hspace">&nbsp;</span>Численное интегрирование</a></p>
 
 </td></tr><tr><td>
 
@@ -281,7 +281,7 @@
 <a href="part_four.html#%28counter._%28exercise._ex~3adrop-take%29%29" data-pltdoc="x">упражнении&nbsp;395</a>; эти функции также доступны в стандартных библиотеках. 
 Для полноты картины на рисунке приведены их определения: <span class="RktSym">drop</span> 
 удаляет до <span class="RktSym">n</span> элементов из начала списка, 
-<span class="RktSym">take</span> возвращает до этого значения количество элементов. 
+<span class="RktSym">take</span> возвращает элементы в количестве до этого значения.
 Используя эти функции, довольно просто определить  <span class="RktSym">bundle</span>:
 </div><div class="SIntrapara"><ol><li>
 
@@ -324,15 +324,15 @@
 гарантированно создает неотъемлемую часть данного списка, а не произвольно 
 измененную версию. И именно эта идея представлена в следующем разделе. </p>
 
-<p><a name="(counter._(exercise._ex~3abundle-loops))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;421. <span class="RktPn">(</span><span class="RktSym">bundle</span><span class="stt"> </span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">"a"</span><span class="stt"> </span><span class="RktVal">"b"</span><span class="stt"> </span><span class="RktVal">"c"</span><span class="RktVal">)</span><span class="stt"> </span><span class="RktVal">0</span><span class="RktPn">)</span> правильное использование 
-функции <span class="RktSym">bundle</span>? Что это производит? Почему?
+<p><a name="(counter._(exercise._ex~3abundle-loops))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;421. <span class="RktPn">(</span><span class="RktSym">bundle</span><span class="stt"> </span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">"a"</span><span class="stt"> </span><span class="RktVal">"b"</span><span class="stt"> </span><span class="RktVal">"c"</span><span class="RktVal">)</span><span class="stt"> </span><span class="RktVal">0</span><span class="RktPn">)</span> правильное
+ли это использование  функции <span class="RktSym">bundle</span>? Что оно производит? Почему?
  <a href="#%28counter._%28exercise._ex~3abundle-loops%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
 <p><a name="(counter._(exercise._ex~3abundle-from-abstraction))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;422. Определите функцию <span class="RktSym">list-&gt;chunks</span>.
 Она потребляет список произвольных данных <span class="RktSym">l</span> и натуральное число 
-<span class="RktSym">n</span>. Результатом функции является список фрагментов списка размером 
-<span class="RktSym">n</span>. Каждый фрагмент представляет собой подпоследовательность 
-элементов в <span class="RktSym">l</span>.</p>
+<span class="RktSym">n</span>. Результатом функции является список списков фрагментов(chunks)
+размером  <span class="RktSym">n</span>. Каждый фрагмент представляет собой подпоследовательность 
+элементов из <span class="RktSym">l</span>.</p>
 
 <p>Используйте <span class="RktSym">list-&gt;chunks</span> для определения 
 <span class="RktSym">bundle</span> через композицию функций.  
@@ -369,7 +369,7 @@
 
 <h4>25.2<tt>&nbsp;</tt><a name="(part._sec~3aquick-sort)"></a>Рекурсия, игнорирующая структуру </h4>
 
-<p>Напомним, что функция <span class="RktSym">sort&gt;</span> из 
+<p>Напомним, что функция <span class="RktSym">sort&gt;</span> из раздела
 <a href="part_two.html#%28part._ch~3alist-sort%29" data-pltdoc="x">Разработка с помощью Композиции</a> использует список чисел и переупорядочивает его в некотором порядке, обычно по 
 возрастанию или убыванию. Она продолжается путем вставки первого числа в соответствующую 
 позицию отсортированного остатка списка. Иными словами, это 
@@ -517,7 +517,7 @@
 </p>
 
 <p>Сравните организацию <span class="RktSym">quick-sort&lt;</span> с функцией 
-<span class="RktSym">sort&gt;</span> из <a href="part_two.html#%28part._ch~3alist-sort%29" data-pltdoc="x">Разработка с помощью Композиции</a>. Проектирование последней следует 
+<span class="RktSym">sort&gt;</span> из раздела <a href="part_two.html#%28part._ch~3alist-sort%29" data-pltdoc="x">Разработка с помощью Композиции</a>. Проектирование последней следует 
 рецепту структурного проектирования, создавая программу, которая обрабатывает элементы списка
 элемент за элементом. Разбивая список, <span class="RktSym">quick-sort&lt;</span> может 
 ускорить процесс сортировки списка, хотя и за счет отказа от простого использования  
@@ -535,7 +535,7 @@
 из одного элемента - это сам список.</p>
 
 <p>Измените <span class="RktSym">quick-sort&lt;</span>, чтобы воспользоваться этим наблюдением.
-Оцените пример еще раз. Сколько шагов сохраняет обновленный алгоритм? 
+Оцените пример еще раз. Сколько шагов сохраняет(экономит) обновленный алгоритм? 
 <a href="#%28counter._%28exercise._ex~3aquick-sort-terminal%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
 <p><a name="(counter._(exercise._ex~3aquick-sort-switch))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;427. В то время как <span class="RktSym">quick-sort&lt;</span> 
@@ -544,9 +544,9 @@
 размер проблемы и переключаются на другую функцию сортировки, когда список достаточно мал.</p>
 
 <p>Разработайте версию <span class="RktSym">quick-sort&lt;</span>, которая использует 
-<span class="RktSym">sort&lt;</span>(соответствующим образом адаптированный вариант 
-<span class="RktSym">sort&gt;</span> из a href="part_two.html#%28part._sec~3asort.I%29" data-pltdoc="x">Вспомогательных функций, которые повторяются</a>), если длина ввода ниже 
-некоторого порога.  <a href="#%28counter._%28exercise._ex~3aquick-sort-switch%29%29" class="ex-end" data-pltdoc="x"></a></p>
+<span class="RktSym">sort&lt;</span> (соответствующим образом адаптированный вариант 
+<span class="RktSym">sort&gt;</span> из раздела <a href="part_two.html#%28part._sec~3asort.I%29" data-pltdoc="x">Вспомогательные функции, которые рекусривны</a>), 
+если длина ввода ниже некоторого порога.  <a href="#%28counter._%28exercise._ex~3aquick-sort-switch%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
 <p><a name="(counter._(exercise._ex~3aquick-sort-drop))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;428. Если вход в <span class="RktSym">quick-sort&lt;</span> 
 содержит одно и то же число несколько раз, алгоритм возвращает список, который строго 
@@ -604,7 +604,7 @@
 
 </li><li>
 
-<p> Нам также нужна подпись, заголовок функции и <a name="(idx._(gentag._612))"></a>предназначение.
+<p> Нам также нужна сигнатура, заголовок функции и <a name="(idx._(gentag._612))"></a>предназначение.
 Поскольку генеративный шаг не связан со структурой <a name="(idx._(gentag._613))"></a>определения
 данных, предназначение должно выходить за рамки того, <span style="font-weight: bold">что</span>
 функция должна вычислять, а также объяснять, <span style="font-weight: bold">как</span> 
@@ -684,7 +684,8 @@
 
 <p></p>
 
-<p>На этом шаге снова может помочь попытка на основе таблиц из <a href="part_two.html#%28part._ch~3adesign-lists%29" data-pltdoc="x">Проектирования с определениями данных ссылающихся на себя</a>. Еще раз рассмотрите пример <span class="RktSym">quick-sort&lt;</span> из <span class="RktSym">quick-sort&lt;</span> example from
+<p>На этом шаге снова может помочь попытка на основе таблиц из 
+<a href="part_two.html#%28part._ch~3adesign-lists%29" data-pltdoc="x">Проектирования с определениями данных ссылающихся на себя</a>. Еще раз рассмотрите пример <span class="RktSym">quick-sort&lt;</span> из  раздела
 <a href="#%28part._sec~3aquick-sort%29" data-pltdoc="x">Рекурсия, которая игнорирует структуру</a>. Основная идея <span class="RktSym">quick-sort&lt;</span> состоит в том, чтобы разделить
 данный список на список меньших и больших элементов и отсортировать их по отдельности. На 
 <a href="#%28counter._%28figure._fig~3aquick-sort-table%29%29" data-pltdoc="x">рис.&nbsp;<span class="FigureRef">150</span></a> показано, как работают некоторые простые числовые примеры 
@@ -883,7 +884,7 @@ loop</span>.</div>
 <p>Сравните это понимание с разработками, представленными в первых четырех частях. 
 Каждая функция, разработанная в соответствии с рецептом, либо выдает ответ, либо выдает 
 сигнал ошибки для каждого входа. В конце концов, рецепт диктует, что каждая естественная 
-рекурсия потребляет немедленную часть ввода, а не сам ввод. Поскольку данные построены
+рекурсия потребляет непосредственную(ближайшую) часть ввода, а не сам ввод. Поскольку данные построены
 иерархически, ввод сжимается(уменьшается) на каждом этапе. В конце концов функция 
 применяется к элементарному фрагменту данных, и рекурсия останавливается. </p>
 
@@ -972,7 +973,7 @@ loop</span>.</div>
 
 </td><td style="border-bottom: 1px solid black;" align="left">
 
-<p>предназначение, касающееся «как» для функции/p>
+<p>предназначение, касающееся «как» для функции</p>
 
 </td><td style="border-bottom: 1px solid black;" align="left">
 
@@ -1132,7 +1133,7 @@ loop</span>.</div>
 
 <p></p>
 
-<p><a name="(counter._(exercise._ex~3aterminate-bundle))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;433. Разработайте проверенную версию 
+<p><a name="(counter._(exercise._ex~3aterminate-bundle))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;433. Разработайте проверяющую версию 
 <span class="RktSym">bundle</span>, которая гарантированно завершится для всех входных данных. 
 Она может сигнализировать об ошибке в тех случаях, когда исходная версия зацикливается. 
  <a href="#%28counter._%28exercise._ex~3aterminate-bundle%29%29" class="ex-end" data-pltdoc="x"></a></p>
@@ -1156,7 +1157,7 @@ loop</span>.</div>
 Во всех случаях аргумент основан на идее, что <span class="RktSym">smallers</span> и 
 <span class="RktSym">largers</span> производят списки, которые имеют максимальную длину, 
 равную данному списку, и на нашем понимании, что ни один из них не включает данную 
-pivot(опорную точку) в результат. </p>
+pivot(опорную/поворотную) точку в результат. </p>
 
 <p>Основываясь на этом объяснении, измените определение <span class="RktSym">quick-sort&lt;</span>,
 чтобы обе функции получали списки, которые короче заданного. 
@@ -1173,7 +1174,7 @@ pivot(опорную точку) в результат. </p>
 <a href="#%28counter._%28figure._fig~3agenerative-vs-structural%29%29" data-pltdoc="x">рисунка&nbsp;<span class="FigureRef">153</span></a>. Этот шаблон предназначен для 
 работы с одним тривиальным предложением и одним <a name="(idx._(gentag._630))"></a>шагом
 генерации. Если заменить <span class="RktSym">trivial?</span> на <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._empty~3f%29%29" class="RktValLink" data-pltdoc="x">empty?</a></span> и <span class="RktSym">generate</span> на
-<span class="RktSym">generate</span> with
+<span class="RktSym">generate</span> с
 <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._rest%29%29" class="RktValLink" data-pltdoc="x">rest</a></span>, мы получаем
 шаблон для функций обработки списков; см. правую часть  
 <a href="#%28counter._%28figure._fig~3agenerative-vs-structural%29%29" data-pltdoc="x">рисунка&nbsp;<span class="FigureRef">153</span></a>.</p>
@@ -1229,8 +1230,8 @@ pivot(опорную точку) в результат. </p>
 <span class="refelem"><span class="refcolumn"><span class="refcontent"><span style="font-style: italic">Наблюдаемая эквивалентность</span> - центральная концепция изучения 
 языков программирования.
 </span></span></span>  
-Возникает вопрос, какой из двух языков программирования должен обеспечивать. В более общем 
-плане, когда мы можем спроектировать функцию, используя 
+Возникает вопрос, какую из этих двух функций должен предоставлять язык программирования. 
+В более общем плане, когда мы можем спроектировать функцию, используя 
 <a name="(idx._(gentag._634))"></a>структурную рекурсию и 
 <a name="(idx._(gentag._635))"></a>генеративную рекурсию, мы должны выяснить, 
 какую из них выбрать. 
@@ -1293,17 +1294,17 @@ greatest common  divisor - <span style="font-style: italic">gcd</span>) двух
 
 <p></p>
 
-<p><a name="(counter._(exercise._ex~3aexplain-structural-gcd))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;438. По вашим словам: как работает 
+<p><a name="(counter._(exercise._ex~3aexplain-structural-gcd))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;438. Опишите своими словами: как работает 
 <span class="RktSym">greatest-divisor-&lt;=</span>? Используйте рецепт разработки, 
 чтобы подобрать нужные слова. Почему локально определенный 
-<span class="RktSym">greatest-divisor-&lt;=</span> повторяется на  
+<span class="RktSym">greatest-divisor-&lt;=</span> повторяется на(выполняется для аргумента) -  
 <span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._min%29%29" class="RktValLink" data-pltdoc="x">min</a></span><span class="stt"> </span><span class="RktSym">n</span><span class="stt"> </span><span class="RktSym">m</span><span class="RktPn">)</span>? 
 <a href="#%28counter._%28exercise._ex~3aexplain-structural-gcd%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
 <p></p>
 
 <div class="SIntrapara">Хотя разработка  <span class="RktSym">gcd-structural</span> довольно 
-прост, она также наивна. Она просто проверяет каждое число между меньшим из 
+проста, она также наивна. Она просто проверяет каждое число между меньшим из 
 <span class="RktSym">n</span> и <span class="RktSym">m</span> и <span class="RktVal">1</span>,
 делит ли оно  <span class="RktSym">n</span> и <span class="RktSym">m</span> поровну, и 
 возвращает первое такое число. Для малых <span class="RktSym">n</span> и
@@ -1417,7 +1418,7 @@ greatest common  divisor - <span style="font-style: italic">gcd</span>) двух
 
 <p>На <a href="#%28counter._%28figure._fig~3agenerative-gcd%29%29" data-pltdoc="x">Рисунке&nbsp;<span class="FigureRef">155</span></a>  представлено определение 
 алгоритма. Определение <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._local%29%29" class="RktStxLink" data-pltdoc="x">local</a></span> вводящее  рабочую лошадку функции: 
-<span class="RktSym">clever-gcd</span>. Её первая линия <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._cond%29%29" class="RktStxLink" data-pltdoc="x">cond</a></span>
+<span class="RktSym">clever-gcd</span>. Её первая строка <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._cond%29%29" class="RktStxLink" data-pltdoc="x">cond</a></span>
 обнаруживает тривиальный случай, сравнивая <span class="RktSym">smaller</span> с 
 <span class="RktVal">0</span>, и дает соответствующее решение. Генеративный шаг использует 
 <span class="RktSym">smaller</span> в качестве нового первого аргумента и 
@@ -1465,8 +1466,9 @@ greatest common  divisor - <span style="font-style: italic">gcd</span>) двух
 И наоборот, разработка алгоритма требует представления о том, как создавать новые проблемы,
  - шаг, который часто требует глубокого понимания. Наконец, программисты, читающие функции, 
 могут легко понять структурно рекурсивные функции даже без большой документации. 
-Однако генеративный этап алгоритма основан на «эврике!» и без хорошего объяснения его 
-трудно понять будущим читателям, в том числе и в более старых версиях вас самих. </p>
+Однако генеративный этап алгоритма основан на «эврике!»(некоторой идее) и 
+без хорошего объяснения его трудно понять будущим читателям, в том числе 
+и вам самим, по прошествии некоторого периода времени. </p>
 
 <p>Опыт показывает, что большинство функций программы используют структурное проектирование; 
 лишь немногие используют генеративную рекурсию. Когда мы сталкиваемся с ситуацией, 
@@ -1482,7 +1484,7 @@ greatest common  divisor - <span style="font-style: italic">gcd</span>) двух
 
 <p><span class="RktPn">(</span><span class="RktSym">quick-sort&lt;</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">10</span><span class="hspace">&nbsp;</span><span class="RktVal">6</span><span class="hspace">&nbsp;</span><span class="RktVal">8</span><span class="hspace">&nbsp;</span><span class="RktVal">9</span><span class="hspace">&nbsp;</span><span class="RktVal">14</span><span class="hspace">&nbsp;</span><span class="RktVal">12</span><span class="hspace">&nbsp;</span><span class="RktVal">3</span><span class="hspace">&nbsp;</span><span class="RktVal">11</span><span class="hspace">&nbsp;</span><span class="RktVal">14</span><span class="hspace">&nbsp;</span><span class="RktVal">16</span><span class="hspace">&nbsp;</span><span class="RktVal">2</span><span class="RktPn">)</span><span class="RktPn">)</span></p>
 
-</blockquote></div><div class="SIntrapara">в ручную. Показывать только те строки, которые
+</blockquote></div><div class="SIntrapara">в ручную. Показывая только те строки, которые
 представляют новый рекурсивный вызов <span class="RktSym">quick-sort&lt;</span>. Сколько 
 требуется рекурсивных применений <span class="RktSym">quick-sort&lt;</span>? Сколько 
 рекурсивных применений функции <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._append%29%29" class="RktValLink" data-pltdoc="x">append</a></span>? 
@@ -1529,7 +1531,8 @@ greatest common  divisor - <span style="font-style: italic">gcd</span>) двух
 может использовать следующий шаблон или какой-либо его вариант:  
 <a name="(idx._(gentag._639))"></a>
 </div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">gcd-structural</span><span class="hspace">&nbsp;</span><span class="RktSym">n</span><span class="hspace">&nbsp;</span><span class="RktSym">m</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._cond%29%29" class="RktStxLink" data-pltdoc="x">cond</a></span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._and%29%29" class="RktStxLink" data-pltdoc="x">and</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._~3d%29%29" class="RktValLink" data-pltdoc="x">=</a></span><span class="hspace">&nbsp;</span><span class="RktSym">n</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._~3d%29%29" class="RktValLink" data-pltdoc="x">=</a></span><span class="hspace">&nbsp;</span><span class="RktSym">m</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span><span class="RktPn">]</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._and%29%29" class="RktStxLink" data-pltdoc="x">and</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._~3e%29%29" class="RktValLink" data-pltdoc="x">&gt;</a></span><span class="hspace">&nbsp;</span><span class="RktSym">n</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._~3d%29%29" class="RktValLink" data-pltdoc="x">=</a></span><span class="hspace">&nbsp;</span><span class="RktSym">m</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span><span class="RktPn">]</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._and%29%29" class="RktStxLink" data-pltdoc="x">and</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._~3d%29%29" class="RktValLink" data-pltdoc="x">=</a></span><span class="hspace">&nbsp;</span><span class="RktSym">n</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._~3e%29%29" class="RktValLink" data-pltdoc="x">&gt;</a></span><span class="hspace">&nbsp;</span><span class="RktSym">m</span><span class="hspace">&nbsp;</span><span class="RktVal">1</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span><span class="RktPn">]</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._else%29%29" class="RktStxLink" data-pltdoc="x">else</a></span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">gcd-structural</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._sub1%29%29" class="RktValLink" data-pltdoc="x">sub1</a></span><span class="hspace">&nbsp;</span><span class="RktSym">n</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._sub1%29%29" class="RktValLink" data-pltdoc="x">sub1</a></span><span class="hspace">&nbsp;</span><span class="RktSym">m</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">gcd-structural</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._sub1%29%29" class="RktValLink" data-pltdoc="x">sub1</a></span><span class="hspace">&nbsp;</span><span class="RktSym">n</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym">m</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">gcd-structural</span><span class="hspace">&nbsp;</span><span class="RktSym">n</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._sub1%29%29" class="RktValLink" data-pltdoc="x">sub1</a></span><span class="hspace">&nbsp;</span><span class="RktSym">m</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span><span class="RktPn">)</span><span class="RktPn">]</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
-Почему с помощью этой стратегии невозможно найти делитель? href="#%28counter._%28exercise._ex~3agcd-structural1%29%29" class="ex-end" data-pltdoc="x"></a></div>
+Почему с помощью этой стратегии невозможно найти делитель? 
+<a href="#%28counter._%28exercise._ex~3agcd-structural1%29%29" class="ex-end" data-pltdoc="x"></a></div>
 
 <p></p>
 
@@ -1629,8 +1632,8 @@ greatest common  divisor - <span style="font-style: italic">gcd</span>) двух
 <p></p>
 
 <p>В этом разделе используется альтернативное описание для разработки алгоритма 
-Серпинского; <a href="part_six.html#%28part._sec~3afractal-acc%29" data-pltdoc="x">Аккумуляторы как
-результаты</a> имеет дело с первым описанием. Учитывая, что цель состоит в том, чтобы 
+Серпинского; Раздел <a href="part_six.html#%28part._sec~3afractal-acc%29" data-pltdoc="x">Аккумуляторы как результаты</a> имеет дело с первым описанием. 
+Учитывая, что цель состоит в том, чтобы 
 создать изображение равностороннего треугольника, мы кодируем задачу с помощью 
 (положительного) числа - длины стороны треугольника. Это решение дает сигнатуру, 
 предназначение и заголовок: </p>
@@ -1691,8 +1694,8 @@ greatest common  divisor - <span style="font-style: italic">gcd</span>) двух
 константы <span class="RktSym">SMALL</span>(маленький). Для тривиального ответа функция
 возвращает треугольник заданного размера. В рекурсивном случае выражение 
 <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._local%29%29" class="RktStxLink" data-pltdoc="x">local</a></span> вводит 
-имя <span class="RktSym">half-sized</span> для треугольника Серпинского, который вдвое меньше указанного размера. После того, как рекурсивный вызов сгенерировал маленький треугольник Серпинского, он составляет это изображение с помощью сверху -  <span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._above%29%29" class="RktValLink" data-pltdoc="x">above</a></span>
- и сбоку - <span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._beside%29%29" class="RktValLink" data-pltdoc="x">beside</a></span>.</p>
+имя <span class="RktSym">half-sized</span> для треугольника Серпинского, который вдвое меньше указанного размера. После того, как рекурсивный вызов сгенерировал маленький треугольник Серпинского, он составляет это изображение с помощью <span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._above%29%29" class="RktValLink" data-pltdoc="x">above</a></span>(сверху)
+ и  <span class="RktSym"><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._beside%29%29" class="RktValLink" data-pltdoc="x">beside</a></span>(сбоку).</p>
 
 <p></p>
 
@@ -1721,8 +1724,8 @@ greatest common  divisor - <span style="font-style: italic">gcd</span>) двух
 завершиться для всех положительных <span class="RktSym">side</span>, если 
 <span class="RktSym">SMALL</span> также положителен.</p>
 
-<p>Один взгляд на процесс Серпинского состоит в том, что он делит проблему пополам 
-до тех пор, пока она не станет решаемой немедленно. Проявив немного воображения, 
+<p>Один взгляд на процесс Sierpinski(Серпинского) состоит в том, что он делит проблему
+пополам до тех пор, пока она не станет решаемой немедленно. Проявив немного воображения, 
 вы увидите, что этот процесс можно использовать для поиска чисел с определенными 
 свойствами. В следующем разделе эта идея подробно объясняется. </p>
 
@@ -1778,7 +1781,7 @@ greatest common  divisor - <span style="font-style: italic">gcd</span>) двух
 <p><span style="font-style: italic">d</span><span style="vertical-align: sub; font-size: 80%"><span style="font-style: italic"></span>0<span style="font-style: italic"></span></span><span style="font-style: italic"> = </span>(<span style="font-style: italic">v * t</span><span style="vertical-align: sub; font-size: 80%"><span style="font-style: italic"></span>0<span style="font-style: italic"></span></span><span style="font-style: italic"> + </span>1<span style="font-style: italic">/</span>2<span style="font-style: italic"> * a * t</span><span style="vertical-align: sub; font-size: 80%"><span style="font-style: italic"></span>0<span style="font-style: italic"></span></span><span style="font-style: italic"></span><span style="vertical-align: super; font-size: 80%"><span style="font-style: italic"></span>2<span style="font-style: italic"></span></span><span style="font-style: italic"></span>)<span style="font-style: italic"></span></p>
 
 </blockquote></div><div class="SIntrapara">Из алгебры мы знаем, что это квадратное 
-уравнение и что такие уравнения можно решить, если span style="font-style: italic">d</span><span style="vertical-align: sub; font-size: 80%"><span style="font-style: italic"></span>0<span style="font-style: italic"></span></span><span style="font-style: italic"></span>, <span style="font-style: italic">a</span> и <span style="font-style: italic">v</span> 
+уравнение и что такие уравнения можно решить, если <span style="font-style: italic">d</span><span style="vertical-align: sub; font-size: 80%"><span style="font-style: italic"></span>0<span style="font-style: italic"></span></span><span style="font-style: italic"></span>, <span style="font-style: italic">a</span> и <span style="font-style: italic">v</span> 
 удовлетворяют определенным условиям.
 </div>
 
@@ -2109,7 +2112,7 @@ DrRacket позволяет использовать греческие симв
 <p><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._or%29%29" class="RktStxLink" data-pltdoc="x">or</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._~3c~3d%29%29" class="RktValLink" data-pltdoc="x">&lt;=</a></span><span class="hspace">&nbsp;</span><span class="RktSym">f@m</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">f</span><span class="hspace">&nbsp;</span><span class="RktSym">right</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._~3c~3d%29%29" class="RktValLink" data-pltdoc="x">&lt;=</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">f</span><span class="hspace">&nbsp;</span><span class="RktSym">right</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="hspace">&nbsp;</span><span class="RktSym">f@m</span><span class="RktPn">)</span><span class="RktPn">)</span></p>
 
 </blockquote></div><div class="SIntrapara">При преобразовании в код тело 
-<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._local%29%29" class="RktStxLink" data-pltdoc="x">local</a></span> должно быть условным: 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._local%29%29" class="RktStxLink" data-pltdoc="x">local</a></span> должно содержать условие: 
 </div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._cond%29%29" class="RktStxLink" data-pltdoc="x">cond</a></span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._or%29%29" class="RktStxLink" data-pltdoc="x">or</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._~3c~3d%29%29" class="RktValLink" data-pltdoc="x">&lt;=</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">f</span><span class="hspace">&nbsp;</span><span class="RktSym">left</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="hspace">&nbsp;</span><span class="RktSym">f@m</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._~3c~3d%29%29" class="RktValLink" data-pltdoc="x">&lt;=</a></span><span class="hspace">&nbsp;</span><span class="RktSym">f@m</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">f</span><span class="hspace">&nbsp;</span><span class="RktSym">left</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">find-root</span><span class="hspace">&nbsp;</span><span class="RktSym">f</span><span class="hspace">&nbsp;</span><span class="RktSym">left</span><span class="hspace">&nbsp;</span><span class="RktSym">mid</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span><span class="RktPn">)</span><span class="RktPn">]</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktPn">[</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._or%29%29" class="RktStxLink" data-pltdoc="x">or</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._~3c~3d%29%29" class="RktValLink" data-pltdoc="x">&lt;=</a></span><span class="hspace">&nbsp;</span><span class="RktSym">f@m</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">f</span><span class="hspace">&nbsp;</span><span class="RktSym">right</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._~3c~3d%29%29" class="RktValLink" data-pltdoc="x">&lt;=</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">f</span><span class="hspace">&nbsp;</span><span class="RktSym">right</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">0</span><span class="hspace">&nbsp;</span><span class="RktSym">f@m</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">find-root</span><span class="hspace">&nbsp;</span><span class="RktSym">f</span><span class="hspace">&nbsp;</span><span class="RktSym">mid</span><span class="hspace">&nbsp;</span><span class="RktSym">right</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span><span class="RktPn">)</span><span class="RktPn">]</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
 В обоих предложениях мы используем <span class="RktSym">find-root</span> для продолжения поиска.</div>
 
@@ -2136,7 +2139,7 @@ DrRacket позволяет использовать греческие симв
 
 <p></p>
 
-<p><a name="(counter._(exercise._ex~3afind-root-test))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;446. обавьте тест из <a href="#%28counter._%28exercise._ex~3afind-root-example%29%29" data-pltdoc="x">упражнения&nbsp;445</a> в программу на 
+<p><a name="(counter._(exercise._ex~3afind-root-test))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;446. Добавьте тест из <a href="#%28counter._%28exercise._ex~3afind-root-example%29%29" data-pltdoc="x">упражнения&nbsp;445</a> в программу на 
  <a href="#%28counter._%28figure._fig~3aroot-of-f%29%29" data-pltdoc="x">рис.&nbsp;<span class="FigureRef">159</span></a>. Поэкспериментируйте с разными значениями 
 <span class="RktSym">ε</span>. 
 <a href="#%28counter._%28exercise._ex~3afind-root-test%29%29" class="ex-end" data-pltdoc="x"></a></p>
@@ -2166,7 +2169,7 @@ DrRacket позволяет использовать греческие симв
 <p>Кроме того, <span class="RktSym">find-root</span> повторно вычисляет значение границы 
 между рекурсивными вызовами. Например, <span class="RktPn">(</span><span class="RktSym">find-root</span><span class="stt"> </span><span class="RktSym">f</span><span class="stt"> </span><span class="RktSym">left</span><span class="stt"> </span><span class="RktSym">right</span><span class="RktPn">)</span> вычисляет <span class="RktPn">(</span><span class="RktSym">f</span><span class="stt"> </span><span class="RktSym">left</span><span class="RktPn">)</span> и, если 
 <span style="font-style: italic"></span>[<span style="font-style: italic">left,mid</span>]<span style="font-style: italic"></span> выбран в качестве следующего интервала, 
-<span class="RktSym">find-root</span> вычисляет <span class="RktPn">(</span><span class="RktSym">f</span><span class="stt"> </span><span class="RktSym">left</span><span class="RktPn">)</span> снова. Представьте вспомогательную функцию, которая похожа на 
+<span class="RktSym">find-root</span> вычисляет <span class="RktPn">(</span><span class="RktSym">f</span><span class="stt"> </span><span class="RktSym">left</span><span class="RktPn">)</span> снова. Предоставьте вспомогательную функцию, которая похожа на 
 <span class="RktSym">find-root</span>, но использует не только <span class="RktSym">left</span>
 и <span class="RktSym">right</span>, но также <span class="RktPn">(</span><span class="RktSym">f</span><span class="stt"> </span><span class="RktSym">left</span><span class="RktPn">)</span> и
 <span class="RktPn">(</span><span class="RktSym">f</span><span class="stt"> </span><span class="RktSym">right</span><span class="RktPn">)</span> на каждом рекурсивном этапе. </p>
@@ -2176,7 +2179,7 @@ DrRacket позволяет использовать греческие симв
 аргумента этой вспомогательной функции изменяются на каждом рекурсивном этапе, но это 
 изменение связано с изменением числовых аргументов. Эти аргументы представляют собой так 
 называемые <span style="font-style: italic">accumulators</span>(аккумуляторы), о которых и 
-идет речь в <a href="part_six.html" data-pltdoc="x">Аккумуляторах</a>. 
+идет речь в разделе <a href="part_six.html" data-pltdoc="x">Аккумуляторы</a>. 
 <a href="#%28counter._%28exercise._ex~3afind-root-locals%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
 <p><a name="(counter._(exercise._ex~3afind-root-monotonic))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;450. Функция <span class="RktSym">f</span> 
@@ -2297,7 +2300,7 @@ search</span>.</p>
 
 <p></p>
 
-<div class="SIntrapara">Мы начинаем с утверждения очевидного - подписи, предназначения, 
+<div class="SIntrapara">Мы начинаем с утверждения очевидного - сигнатуры, предназначения, 
 одного из приведенных выше примеров и заголовка - для функции, которая превращает файл 
 в список строк - <a href="#%28tech._line%29" class="techoutside" data-pltdoc="x"><span class="techinside">Line</span></a>s: <a name="(idx._(gentag._650))"></a>
 </div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><a href="#%28tech._file%29" class="techoutside" data-pltdoc="x"><span class="techinside">File</span></a><span class="RktCmt"> -&gt; [</span><a href="part_three.html#%28tech._sim-dd._list._of%29" class="techoutside" data-pltdoc="x"><span class="techinside">List-of</span></a><span class="RktCmt"> </span><a href="#%28tech._line%29" class="techoutside" data-pltdoc="x"><span class="techinside">Line</span></a><span class="RktCmt">]</span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">converts a file into a list of lines </span></td></tr><tr><td><span class="hspace">&nbsp;</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._check-expect%29%29" class="RktStxLink" data-pltdoc="x">check-expect</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">file-&gt;list-of-lines</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">"a"</span><span class="hspace">&nbsp;</span><span class="RktVal">"b"</span><span class="hspace">&nbsp;</span><span class="RktVal">"c"</span><span class="hspace">&nbsp;</span><span class="RktVal">"\n"</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">"d"</span><span class="hspace">&nbsp;</span><span class="RktVal">"e"</span><span class="hspace">&nbsp;</span><span class="RktVal">"\n"</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktVal">"f"</span><span class="hspace">&nbsp;</span><span class="RktVal">"g"</span><span class="hspace">&nbsp;</span><span class="RktVal">"h"</span><span class="hspace">&nbsp;</span><span class="RktVal">"\n"</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">"a"</span><span class="hspace">&nbsp;</span><span class="RktVal">"b"</span><span class="hspace">&nbsp;</span><span class="RktVal">"c"</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">"d"</span><span class="hspace">&nbsp;</span><span class="RktVal">"e"</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">"f"</span><span class="hspace">&nbsp;</span><span class="RktVal">"g"</span><span class="hspace">&nbsp;</span><span class="RktVal">"h"</span><span class="RktPn">)</span><span class="RktPn">)</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">file-&gt;list-of-lines</span><span class="hspace">&nbsp;</span><span class="RktSym">afile</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div>
@@ -2307,7 +2310,7 @@ search</span>.</p>
 <p></p>
 
 <div class="SIntrapara">Также легко описать процесс синтаксического анализа, учитывая 
-наш опыт работы с <a href="#%28part._sec~3abundle%29" data-pltdoc="x">Рекурсией без структуры</a>:
+наш опыт работы с разделом <a href="#%28part._sec~3abundle%29" data-pltdoc="x">Рекурсия без структуры</a>:
 </div><div class="SIntrapara"><ol><li>
 
 <p>Проблема тривиально разрешима, если файл это   <span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">)</span>.</p>
@@ -2388,7 +2391,7 @@ search</span>.</p>
 из строчных букв и ничего другого. То есть отбрасываются все 
 <a href="part_one.html#%28tech._1string%29" class="techoutside" data-pltdoc="x"><span class="techinside">1String</span></a> с пробелами; все остальные буквы остаются как есть; 
 и все следующие друг за другом буквы объединяются в “words”(слова).   
-<span style="font-weight: bold">Подсказка</span> Прочитать о функции <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._string-whitespace~3f%29%29" class="RktValLink" data-pltdoc="x">string-whitespace?</a></span>
+<span style="font-weight: bold">Подсказка</span> Прочитайте о функции <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._string-whitespace~3f%29%29" class="RktValLink" data-pltdoc="x">string-whitespace?</a></span>
 function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
 <p></p>
@@ -2426,7 +2429,7 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 к <span style="font-style: italic">f</span> в точке <span style="font-style: italic">r</span><span style="vertical-align: sub; font-size: 80%"><span style="font-style: italic"></span>1<span style="font-style: italic"></span></span><span style="font-style: italic"></span>
 и определении его корня. Хотя касательная аппроксимирует функцию, определить ее корень 
 также несложно. Достаточно часто повторяя этот процесс, 
-<span class="refelem"><span class="refcolumn"><span class="refcontent">N
+<span class="refelem"><span class="refcolumn"><span class="refcontent">
 Ньютон доказал этот факт.</span></span></span> 
 алгоритм может найти корень <span style="font-style: italic">r</span>, для которого 
 <span style="font-style: italic"></span>(<span style="font-style: italic">f r</span>)<span style="font-style: italic"></span> достаточно близко к 
@@ -2435,7 +2438,7 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 <p></p>
 
 <div class="SIntrapara">Понятно, что этот процесс основан на двух частях предметных 
-областях знаний о касательных: их наклонах(slopes) и корнях(roots). Неформально касательная к 
+областей знаний о касательных: их наклонах(slopes) и корнях(roots). Неформально касательная к 
 <span style="font-style: italic">f</span> в некоторой точке <span style="font-style: italic">r</span><span style="vertical-align: sub; font-size: 80%"><span style="font-style: italic"></span>1<span style="font-style: italic"></span></span><span style="font-style: italic"></span>
  - это прямая, проходящая через точку <span style="font-style: italic"></span>(<span style="font-style: italic">r</span><span style="vertical-align: sub; font-size: 80%"><span style="font-style: italic"></span>1<span style="font-style: italic"></span></span><span style="font-style: italic">, f</span>(<span style="font-style: italic">r</span><span style="vertical-align: sub; font-size: 80%"><span style="font-style: italic"></span>1<span style="font-style: italic"></span></span><span style="font-style: italic"></span>)<span style="font-style: italic"></span>)<span style="font-style: italic"></span> и имеющая тот же наклон, что и 
 <span style="font-style: italic">f</span>. Один из математических способов получить наклон
@@ -2665,7 +2668,7 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 <span style="font-style: italic">r</span> «мала». 
 <a href="#%28counter._%28exercise._ex~3adouble-amount%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
-<h4>28.2<tt>&nbsp;</tt><a name="(part._sec~3aintegrate)"></a>Числовая интеграция</h4>
+<h4>28.2<tt>&nbsp;</tt><a name="(part._sec~3aintegrate)"></a>Численное интегрирование</h4>
 
 <p></p>
 
@@ -2773,7 +2776,7 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 </blockquote></div><div class="SIntrapara">Если мы используем <span class="RktSym">linear</span>,
 <span class="RktVal">0</span> и <span class="RktVal">10</span> с 
 <span class="RktSym">integrate</span>, область представляет собой треугольник с шириной основания
-<span class="RktVal">10</span> и высотой span class="RktVal">20</span>. Вот пример в качестве
+<span class="RktVal">10</span> и высотой <span class="RktVal">20</span>. Вот пример в качестве
 теста: 
 </div><div class="SIntrapara"><blockquote class="SCodeFlow">
 
@@ -2910,7 +2913,7 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 
 <p>Разработайте функцию <span class="RktSym">integrate-kepler</span>. То есть превратите
 математические знания в функцию ISL+. Адаптируйте тестовые примеры из  
-<a href="#%28counter._%28figure._fig~3aintegrate-test%29%29" data-pltdoc="x">рисунка&nbsp;<span class="FigureRef">165</span></a> для этого использования. Какой из трех тестов не проходит 
+<a href="#%28counter._%28figure._fig~3aintegrate-test%29%29" data-pltdoc="x">рисунка&nbsp;<span class="FigureRef">165</span></a> для её использования. Какой из трех тестов не проходит 
 и на сколько?  <a href="#%28counter._%28exercise._ex~3aintegral-kepler%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
 <p><a name="(counter._(exercise._ex~3aintegral-rectangle))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;459. Другой простой метод интеграции делит область на 
@@ -3030,15 +3033,15 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 <p><img src="part_five_files/pict_215.png" alt="image" width="51" height="12"></p>
 
 </blockquote></div><div class="SIntrapara">можно с уверенностью предположить, что общая 
-площадь является хорошим приближением. Другими словами, алгоритм определяет, настолько ли
-изменяется <span style="font-style: italic">f</span>, что это влияет на допустимую погрешность.
+площадь является хорошим приближением. Другими словами, алгоритм определяет, настолько 
+изменяется <span style="font-style: italic">f</span> и влияет ли это на допустимую погрешность.
 Если так, то она продолжает придерживаться подхода «разделяй и властвуй»; в противном случае она
 останавливается и использует приближение Кеплера. </div>
 
 <p></p>
 
 <p><a name="(counter._(exercise._ex~3aadaptive-integral))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;461. Разработайте <span class="RktSym">integrate-adaptive</span>. 
-То есть превратить описание рекурсивного процесса в алгоритм ISL+. Обязательно адаптируйте 
+То есть превратите описание рекурсивного процесса в алгоритм ISL+. Обязательно адаптируйте 
 тестовые примеры с <a href="#%28counter._%28figure._fig~3aintegrate-test%29%29" data-pltdoc="x">рисунка&nbsp;<span class="FigureRef">165</span></a> к этому использованию.</p>
 
 <p>Не обсуждайте прекращение  <span class="RktSym">integrate-adaptive</span>.</p>
@@ -3051,7 +3054,7 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 
 <p><span style="font-weight: bold">Терминология</span> Алгоритм называется 
 <span style="font-style: italic">адаптивной интеграцией</span>, потому что он автоматически
-выделяет время тем частям графа, которые в нем нуждаются, и тратит мало времени на другие. 
+выделяет время тем частям графика, которые в нем нуждаются, и тратит мало времени на другие. 
 В частности, для тех частей <span style="font-style: italic">f</span>, которые являются 
 уровнями, он выполняет всего несколько вычислений; для других частей он проверяет небольшие
 интервалы, чтобы уменьшить допустимую погрешность. Информатика знает множество адаптивных
@@ -3085,7 +3088,7 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 В нашем текущем примере решение это
 </div><div class="SIntrapara"><blockquote class="SCentered">
 
-<p><span style="font-style: italic">x = </span>1<span style="font-style: italic"></span>, <span style="font-style: italic">y = </span>1<span style="font-style: italic"></span>, and <span style="font-style: italic">z = </span>2<span style="font-style: italic"></span>.</p>
+<p><span style="font-style: italic">x = </span>1<span style="font-style: italic"></span>, <span style="font-style: italic">y = </span>1<span style="font-style: italic"></span> и <span style="font-style: italic">z = </span>2<span style="font-style: italic"></span>.</p>
 
 </blockquote></div><div class="SIntrapara">Мы можем легко проверить это утверждение: 
 </div><div class="SIntrapara"><blockquote class="SCentered">
@@ -3189,7 +3192,7 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 То есть мы сначала умножаем каждый элемент в первой строке на <span class="RktVal">2</span>, 
 а затем вычитаем результат из последней строки.
 <span class="refelem"><span class="refcolumn"><span class="refcontent">
-Математика учит доказывать такие факты. Мы используем их.</span></span></span> 
+Математика учит доказывать такие факты. Здесь мы просто используем их.</span></span></span> 
 Как уже упоминалось, эти вычитания не меняют решения; то есть решение исходной системы 
 также является решением преобразованной. </div>
 
@@ -3241,7 +3244,7 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 
 <p></p>
 
-<p>Не занимайтесь пока завершающим этапом рецепта дизайна. 
+<p>Не занимайтесь пока завершающим этапом рецепта разработки. 
 <a href="#%28counter._%28exercise._ex~3atriangulate1%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
 <p></p>
@@ -3285,9 +3288,9 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 
 <p><a name="(counter._(exercise._ex~3atriangulate2))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;467. Измените алгоритм <span class="RktSym">triangulate</span>
 из <a href="#%28counter._%28exercise._ex~3atriangulate1%29%29" data-pltdoc="x">упражнения&nbsp;466</a> так, чтобы он сначала вращал уравнения, чтобы найти уравнение с ведущим коэффициентом, 
-отличным от <span class="RktVal">0</span>, прежде чем вычтет первое уравнение из оставшихся.</p>
+отличным от <span class="RktVal">0</span>, прежде чем произвести вычитание первого уравнения из оставшихся.</p>
 
-<p>Завершается ли этот алгоритм для всех возможных систем уравнений?</p>
+<p>Завершится ли этот алгоритм для всех возможных систем уравнений?</p>
 
 <p></p>
 
@@ -3330,7 +3333,7 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 <p></p>
 
 <div class="SIntrapara">После получения треугольной системы уравнений, такой как 
-<span style="font-style: italic"></span>(<span style="font-style: italic">*</span>)<span style="font-style: italic"></span> в <a href="#%28counter._%28exercise._ex~3agauss-equiv2%29%29" data-pltdoc="x">exercise&nbsp;463</a>, мы можем решать уравнения по одному. В нашем конкретном
+<span style="font-style: italic"></span>(<span style="font-style: italic">*</span>)<span style="font-style: italic"></span> в <a href="#%28counter._%28exercise._ex~3agauss-equiv2%29%29" data-pltdoc="x">упражнении&nbsp;463</a>, мы можем решать уравнения по одному. В нашем конкретном
 примере последнее уравнение говорит, что <span style="font-style: italic">z</span> равно 
 <span style="font-style: italic"></span>2<span style="font-style: italic"></span>. 
 Обладая этими знаниями, мы можем исключить <span style="font-style: italic">z</span> из 
@@ -3368,7 +3371,7 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 <p><a name="(counter._(exercise._ex~3agauss-solve))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;469. Разработайте функцию <span class="RktSym">solve</span> . 
 Она потребляет <a href="#%28tech._soe%29" class="techoutside" data-pltdoc="x"><span class="techinside">SOE</span></a>s и дает решение. </p>
 
-<p><span style="font-weight: bold">Hint</span> Используйте структурную рекурсию для 
+<p><span style="font-weight: bold">Подсказка</span> Используйте структурную рекурсию для 
 разработки. Начните с разработки функции, которая решает одно линейное уравнение с 
  <span style="font-style: italic">n+</span>1<span style="font-style: italic"></span> переменными,
 учитывая решение для последних <span style="font-style: italic">n</span> переменных. 
@@ -3378,7 +3381,7 @@ function. <a href="#%28counter._%28exercise._ex~3aparse-words%29%29" class="ex-e
 </p>
 
 <p><span style="font-weight: bold">Задача</span>  Используйте существующую абстракцию и 
-span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._lambda%29%29" class="RktStxLink" data-pltdoc="x">lambda</a></span> для разработки 
+<span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._lambda%29%29" class="RktStxLink" data-pltdoc="x">lambda</a></span> для разработки 
 <span class="RktSym">solve</span>. <a href="#%28counter._%28exercise._ex~3agauss-solve%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
 <p><a name="(counter._(exercise._ex~3agauss-complete))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;470. Разработайте <span class="RktSym">gauss</span>,
@@ -3388,7 +3391,7 @@ span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediat
 <a href="#%28counter._%28exercise._ex~3agauss-solve%29%29" data-pltdoc="x">упражнения&nbsp;469</a>. 
  <a href="#%28counter._%28exercise._ex~3agauss-complete%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
-<h3>29<tt>&nbsp;</tt><a name="(part._ch~3abacktrack)"></a>Алгоритмы, которые Backtrack(возвращаются/отступают назад)</h3>
+<h3>29<tt>&nbsp;</tt><a name="(part._ch~3abacktrack)"></a>Алгоритмы с возвратами (которые возвращаются/отступают назад/Backtrack)</h3>
 
 <p>Решение проблем не всегда идет по прямой. Иногда мы можем следовать одному подходу 
 и обнаруживать, что мы застряли из-за того, что ошиблись. Один из очевидных вариантов - 
@@ -3399,7 +3402,7 @@ span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediat
 
 <h4>29.1<tt>&nbsp;</tt><a name="(part._fsm._sec~3atraverse-graph1)"></a>Проход(путешествие) по Графам</h4>
 
-<p>Графики вездесущи в нашем мире и мире вычислений. Представьте себе группу людей, 
+<p>Графы вездесущи в нашем мире и мире вычислений. Представьте себе группу людей, 
 скажем, учеников вашей школы. Запишите все имена и соедините имена тех людей, которые 
 знают друг друга. Вы только что создали свой первый неориентированный граф.</p>
 
@@ -3434,7 +3437,7 @@ span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediat
 <span class="refelem"><span class="refcolumn"><span class="refcontent">
 Социологи используют такие алгоритмы для определения структуры власти в компании. 
 Точно так же они используют такие графы для прогнозирования возможных действий людей, 
-даже не зная о содержании своих электронных писем.
+даже не зная о содержании их электронных писем.
 </span></span></span>
 </div><div class="SIntrapara"><blockquote>
 
@@ -3702,12 +3705,12 @@ path”(найти путь).</p>
 узла в списке <span class="RktSym">find-path/list</span> использует 
 <span class="RktSym">find-path</span> для проверки пути. Если 
 <span class="RktSym">find-path</span> действительно создает путь, этот путь является 
-его ответом. В противном случае команда <span class="RktSym">find-path/list</span> 
+её ответом. В противном случае команда <span class="RktSym">find-path/list</span> 
 выполняет возврат(backtracks).</p>
 
-<p><span style="font-weight: bold">Примечание</span> 
+<p><span style="font-weight: bold">Примечание</span>  Раздел 
 <a href="part_four.html#%28part._sec~3abtrees%29" data-pltdoc="x">Trees/Деревья</a> обсуждает
-возврат в структурном мире. Особенно хорошим примером является функция, которая ищет 
+возвраты в структурном мире. Особенно хорошим примером является функция, которая ищет 
 голубоглазых предков в генеалогическом древе. Когда функция встречает узел, она сначала 
 проводит поиск по одной ветви семейного дерева, скажем, отцовской, а если этот поиск дает
 <span class="RktVal">#false</span>, она ищет по другой половине. Поскольку графы обобщают 
@@ -3754,7 +3757,7 @@ path”(найти путь).</p>
 от <span style="font-style: italic">B</span> к <span style="font-style: italic">E</span> и к
 <span style="font-style: italic">C</span> и обратно к <span style="font-style: italic">B</span>.
 Действительно, когда <span class="RktSym">find-path</span> применяется к 
-span class="RktVal">'</span><span class="RktVal">B</span>, <span class="RktVal">'</span><span class="RktVal">D</span> и этому графу, она не может остановиться, как подтверждает 
+<span class="RktVal">'</span><span class="RktVal">B</span>, <span class="RktVal">'</span><span class="RktVal">D</span> и этому графу, она не может остановиться, как подтверждает 
 ручное (пошаговое) вычисление: 
 </div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktPn">(</span><span class="RktSym">find-path</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">B</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">D</span><span class="hspace">&nbsp;</span><span class="RktSym">cyclic-graph</span><span class="RktPn">)</span></td></tr><tr><td><span class="RktSym">==</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">find-path</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">B</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">D</span><span class="hspace">&nbsp;</span><span class="RktSym">cyclic-graph</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span></td></tr><tr><td><span class="RktSym">==</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">find-path/list</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">E</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">F</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">D</span><span class="hspace">&nbsp;</span><span class="RktSym">cyclic-graph</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span></td></tr><tr><td><span class="RktSym">==</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">find-path</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">E</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">D</span><span class="hspace">&nbsp;</span><span class="RktSym">cyclic-graph</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span></td></tr><tr><td><span class="RktSym">==</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">find-path/list</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">C</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">F</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">D</span><span class="hspace">&nbsp;</span><span class="RktSym">cyclic-graph</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span></td></tr><tr><td><span class="RktSym">==</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">find-path</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">C</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">D</span><span class="hspace">&nbsp;</span><span class="RktSym">cyclic-graph</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span></td></tr><tr><td><span class="RktSym">==</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">find-path/list</span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28def._htdp-intermediate-lambda._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._list%29%29" class="RktValLink" data-pltdoc="x">list</a></span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">B</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">D</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">D</span><span class="hspace">&nbsp;</span><span class="RktSym">cyclic-graph</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span></td></tr><tr><td><span class="RktSym">==</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">find-path</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">B</span><span class="hspace">&nbsp;</span><span class="RktVal">'</span><span class="RktVal">D</span><span class="hspace">&nbsp;</span><span class="RktSym">cyclic-graph</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._....%29%29" class="RktStxLink" data-pltdoc="x">..</a></span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
 Ручное вычисление показывает, что после семи применений <span class="RktSym">find-path</span> и
@@ -3784,8 +3787,8 @@ span class="RktVal">'</span><span class="RktVal">B</span>, <span class="RktVal">
 <p><a name="(counter._fsm._(exercise._ex~3afind-path4))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;473. Протестируйте <span class="RktSym">find-path</span> на 
 <span class="RktVal">'</span><span class="RktVal">B</span>,
 <span class="RktVal">'</span><span class="RktVal">C</span> и графике на 
-<a href="#%28counter._fsm._%28figure._fig~3acyclic-graph%29%29" data-pltdoc="x">рисунке&nbsp;<span class="FigureRef">170</span></a>. Также используйте тест-на-всех-узлах из  
-<a href="#%28counter._fsm._%28exercise._ex~3afind-path2%29%29" data-pltdoc="x">упражнения&nbsp;472</a> на этом графе. <a href="#%28counter._fsm._%28exercise._ex~3afind-path4%29%29" class="ex-end" data-pltdoc="x"></a></p>
+<a href="#%28counter._fsm._%28figure._fig~3acyclic-graph%29%29" data-pltdoc="x">рисунке&nbsp;<span class="FigureRef">170</span></a>. Также используйте <span class="RktSym">test-on-all-nodes</span>
+из <a href="#%28counter._fsm._%28exercise._ex~3afind-path2%29%29" data-pltdoc="x">упражнения&nbsp;472</a> на этом графе. <a href="#%28counter._fsm._%28exercise._ex~3afind-path4%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
 <p><a name="(counter._fsm._(exercise._ex~3afind-path5))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;474. Переделайте программу <span class="RktSym">find-path</span> 
 как единую функцию.
@@ -3797,7 +3800,7 @@ span class="RktVal">'</span><span class="RktVal">B</span>, <span class="RktVal">
 <a href="part_three.html#%28counter._%28figure._fig~3aisl-ho-list2%29%29" data-pltdoc="x"><span class="FigureRef">96</span></a> вместо явной <a name="(idx._fsm._(gentag._676._fsm))"></a>структурной рекурсии. <span style="font-weight: bold">Подсказка</span> Прочтите 
 документацию по <span class="RktSym"><a href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._ormap%29%29" class="RktValLink" data-pltdoc="x">ormap</a></span> Racket. Чем она отличается от функции 
 <span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._ormap%29%29" class="RktValLink" data-pltdoc="x">ormap</a></span> в ISL+?
-Будет ли здесь полезно первое? 
+Будет ли здесь полезна первая? 
 <a href="#%28counter._fsm._%28exercise._ex~3afind-path6%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
 <p><span style="font-weight: bold">Замечание об абстракции данных</span> Вы могли заметить, 
@@ -3807,8 +3810,8 @@ span class="RktVal">'</span><span class="RktVal">B</span>, <span class="RktVal">
 работает отлично. Короче говоря, программа <span class="RktSym">find-path</span> использует
 <span style="font-weight: bold">data abstraction</span>(абстракцию данных).</p>
 
-<p>Как говорится в <a href="part_three.html" data-pltdoc="x">Абстракции</a>, абстракция данных
- работает так же, как абстракция функций. Здесь вы могли бы создать функцию 
+<p>Как говорится в разделе <a href="part_three.html" data-pltdoc="x">Абстракции</a>, 
+абстракция данных  работает так же, как абстракция функций. Здесь вы могли бы создать функцию 
 <span class="RktSym">abstract-find-path</span>, которая потребляла бы на один параметр больше, 
 чем <span class="RktSym">find-path</span>: <span class="RktSym">neighbors</span>. Если вы 
 всегда передаете <span class="RktSym">abstract-find-path</span> графу 
@@ -3827,12 +3830,12 @@ span class="RktVal">'</span><span class="RktVal">B</span>, <span class="RktVal">
 рассматривается; следующий раздел иллюстрирует эту идею другим примером.  
 <span style="font-weight: bold">Конец</span></p>
 
-<p><a name="(counter._fsm._(exercise._ex~3afsm-match))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;476. <a href="part_two.html#%28part._sec~3asec-fsm-list%29" data-pltdoc="x">Конечные автоматы</a>  ставят проблему, касающуюся конечных автоматов и строк, 
-но сразу переходят к этой главе, потому что решение требует генеративной рекурсии. 
+<p><a name="(counter._fsm._(exercise._ex~3afsm-match))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;476. Раздел <a href="part_two.html#%28part._sec~3asec-fsm-list%29" data-pltdoc="x">Конечные автоматы</a>  ставит проблему, касающуюся конечных автоматов и строк, 
+но сразу отсылает к этой главе, потому что решение требует генеративной рекурсии. 
 Теперь вы приобрели знания о разработке, необходимые для решения этой проблемы. </p>
 
 <p>Создайте функцию <span class="RktSym">fsm-match</span>. Она потребляет 
-представление данных конечного автомата и строки. Он выдает <span class="RktVal">#true</span>, 
+представление данных конечного автомата и строки. Она выдает <span class="RktVal">#true</span>, 
 если последовательность символов в строке вызывает переход конечного автомата из начального состояния в конечное состояние.</p>
 
 <p></p>
@@ -3855,7 +3858,7 @@ span class="RktVal">'</span><span class="RktVal">B</span>, <span class="RktVal">
 <a name="(idx._fsm._(gentag._677._fsm))"></a>
 </div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><a href="#%28tech._fsm._fsm%29" class="techoutside" data-pltdoc="x"><span class="techinside">FSM</span></a><span class="RktCmt"> </span><a href="part_one.html#%28tech._string%29" class="techoutside" data-pltdoc="x"><span class="techinside">String</span></a><span class="RktCmt"> -&gt; </span><a href="part_one.html#%28tech._boolean%29" class="techoutside" data-pltdoc="x"><span class="techinside">Boolean</span></a><span class="RktCmt"> </span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">does </span><span class="RktSym">an-fsm</span><span class="RktCmt"> recognize the given string</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">fsm-match?</span><span class="hspace">&nbsp;</span><span class="RktSym">an-fsm</span><span class="hspace">&nbsp;</span><span class="RktSym">a-string</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">#false</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
 <span style="font-weight: bold">Подсказка</span>  Разработайте необходимую вспомогательную
-функцию локально для <span class="RktSym">fsm-match?</span> функция. В этом контексте 
+функцию локально для функции <span class="RktSym">fsm-match?</span>. В этом контексте 
 представьте проблему как пару параметров: текущее состояние конечного автомата и 
 оставшийся список <a href="part_one.html#%28tech._1string%29" class="techoutside" data-pltdoc="x"><span class="techinside">1String</span></a>s. 
 <a href="#%28counter._fsm._%28exercise._ex~3afsm-match%29%29" class="ex-end" data-pltdoc="x"></a></div>
@@ -3878,14 +3881,14 @@ span class="RktVal">'</span><span class="RktVal">B</span>, <span class="RktVal">
 <div class="SIntrapara"><a name="(counter._fsm._(exercise._ex~3apermutation-gen))"></a><span style="font-weight: bold">Упражнение</span>&nbsp;477. Изучите определение функций 
 <span class="RktSym">arrangements</span> на 
 <a href="#%28counter._fsm._%28figure._fig~3apermutation-gen%29%29" data-pltdoc="x">рисунке&nbsp;<span class="FigureRef">171</span></a>. На рисунке показано 
-генеративно-рекурсивное решение расширенной проблемы проектирования, охватываемой 
-<a href="part_two.html#%28part._sec~3apermute%29" data-pltdoc="x">Word Games, the Heart of the Problem</a>, суть проблемы, а именно:
+генеративно-рекурсивное решение расширенной проблемы проектирования, охватываемой разделом
+<a href="part_two.html#%28part._sec~3apermute%29" data-pltdoc="x">Игра в слова, Суть проблемы</a>, а именно:
 <span class="refelem"><span class="refcolumn"><span class="refcontent">
 мы благодарим Марка Энгельберга за предложение этого упражнения.
 </span></span></span>
 </div><div class="SIntrapara"><blockquote>
 
-<p> учитывая слово, создайте все возможные перестановки букв. </p>
+<p> для данного слова, создайте все возможные перестановки букв. </p>
 
 </blockquote></div><div class="SIntrapara">Расширенное упражнение представляет 
 собой прямое руководство по <a name="(idx._fsm._(gentag._681._fsm))"></a>
@@ -3899,12 +3902,12 @@ span class="RktVal">'</span><span class="RktVal">B</span>, <span class="RktVal">
 <p></p>
 
 <p>Объясните устройство генеративно-рекурсивной версии <span class="RktSym">arrangements</span>.
-Ответьте на все вопросы, которые задает дизайн-рецепт генеративной рекурсии, включая 
+Ответьте на все вопросы, которые задает рецепт разработки генеративной рекурсии, включая 
 вопрос о завершении.
 </p>
 
 <p>Создают ли <span class="RktSym">arrangements</span> на 
-<a href="#%28counter._fsm._%28figure._fig~3apermutation-gen%29%29" data-pltdoc="x">рис.&nbsp;<span class="FigureRef">171</span></a> те же списки, что и решение 
+<a href="#%28counter._fsm._%28figure._fig~3apermutation-gen%29%29" data-pltdoc="x">рис.&nbsp;<span class="FigureRef">171</span></a> те же списки, что и решение раздела
 <a href="part_two.html#%28part._sec~3apermute%29" data-pltdoc="x">Игры в слова, суть проблемы</a>?
 <a href="#%28counter._fsm._%28exercise._ex~3apermutation-gen%29%29" class="ex-end" data-pltdoc="x"></a></p>
 
@@ -3912,7 +3915,7 @@ span class="RktVal">'</span><span class="RktVal">B</span>, <span class="RktVal">
 
 <p><img style="vertical-align: -0.0px; margin: -3px -3px -3px -3px;" src="part_five_files/pict_230.png" alt="image" width="252.0" height="252.0"></p>
 
-</blockquote></blockquote></blockquote><p class="Centertext"><span class="Legend"><span class="FigureTarget">Рисунок&nbsp;172: </span> Шахматная доска с единственным ферзем и позиции, которые она угрожает</span></p>
+</blockquote></blockquote></blockquote><p class="Centertext"><span class="Legend"><span class="FigureTarget">Рисунок&nbsp;172: </span> Шахматная доска с единственным ферзем и позиции, которым он угрожает</span></p>
 
 </blockquote><h4>29.2<tt>&nbsp;</tt><a name="(part._sec~3aproj-backtrack)"></a>Проект: Backtracking(перебор с возвратами)</h4>
 
@@ -3998,7 +4001,7 @@ backtracking(перебора с возвратами). Для наших цел
 
 <div class="SIntrapara"><ol><li>
 
-<p>Проблема заключается в размещении одной ферзя за раз. Когда мы помещаем ферзя на доску, 
+<p>Проблема заключается в размещении одного ферзя за раз. Когда мы помещаем ферзя на доску, 
 мы можем пометить соответствующие строки, столбцы и диагонали как непригодные для 
 использования другими ферзями.</p>
 
@@ -4185,7 +4188,7 @@ backtracking(перебора с возвратами). Для наших цел
 <a href="#%28tech._board%29" class="techoutside" data-pltdoc="x"><span class="techinside">Board</span></a>(досками): <a name="(idx._(gentag._688))"></a> <a name="(idx._(gentag._689))"></a><a name="(idx._(gentag._690))"></a>
 </div><div class="SIntrapara"><blockquote class="SCodeFlow"><table class="RktBlk" cellspacing="0" cellpadding="0"><tbody><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><a href="part_two.html#%28tech._n%29" class="techoutside" data-pltdoc="x"><span class="techinside">N</span></a><span class="RktCmt"> -&gt; </span><a href="#%28tech._board%29" class="techoutside" data-pltdoc="x"><span class="techinside">Board</span></a><span class="RktCmt"> </span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">creates the initial </span><span class="RktSym">n</span><span class="RktCmt"> by </span><span class="RktSym">n</span><span class="RktCmt"> board</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">board0</span><span class="hspace">&nbsp;</span><span class="RktSym">n</span><span class="RktPn">)</span><span class="hspace">&nbsp;</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._......%29%29" class="RktStxLink" data-pltdoc="x">...</a></span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;</span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><a href="#%28tech._board%29" class="techoutside" data-pltdoc="x"><span class="techinside">Board</span></a><span class="RktCmt"> </span><a href="#%28tech._qp%29" class="techoutside" data-pltdoc="x"><span class="techinside">QP</span></a><span class="RktCmt"> -&gt; </span><a href="#%28tech._board%29" class="techoutside" data-pltdoc="x"><span class="techinside">Board</span></a><span class="RktCmt"> </span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">places a queen at </span><span class="RktSym">qp</span><span class="RktCmt"> on </span><span class="RktSym">a-board</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">add-queen</span><span class="hspace">&nbsp;</span><span class="RktSym">a-board</span><span class="hspace">&nbsp;</span><span class="RktSym">qp</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktSym">a-board</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;</span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><a href="#%28tech._board%29" class="techoutside" data-pltdoc="x"><span class="techinside">Board</span></a><span class="RktCmt"> -&gt; [</span><a href="part_three.html#%28tech._sim-dd._list._of%29" class="techoutside" data-pltdoc="x"><span class="techinside">List-of</span></a><span class="RktCmt"> </span><a href="#%28tech._qp%29" class="techoutside" data-pltdoc="x"><span class="techinside">QP</span></a><span class="RktCmt">]</span></td></tr><tr><td><span class="RktCmt">;</span><span class="RktCmt">&nbsp;</span><span class="RktCmt">finds spots where it is still safe to place a queen</span></td></tr><tr><td><span class="RktPn">(</span><span class="RktSym"><a href="https://docs.racket-lang.org/htdp-langs/intermediate-lam.html#%28form._%28%28lib._lang%2Fhtdp-intermediate-lambda..rkt%29._define%29%29" class="RktStxLink" data-pltdoc="x">define</a></span><span class="hspace">&nbsp;</span><span class="RktPn">(</span><span class="RktSym">find-open-spots</span><span class="hspace">&nbsp;</span><span class="RktSym">a-board</span><span class="RktPn">)</span></td></tr><tr><td><span class="hspace">&nbsp;&nbsp;</span><span class="RktVal">'</span><span class="RktVal">(</span><span class="RktVal">)</span><span class="RktPn">)</span></td></tr></tbody></table></blockquote></div><div class="SIntrapara">
 Первая функция используется на <a href="#%28counter._%28figure._fig~3asolutions-for-4%29%29" data-pltdoc="x">рисунке&nbsp;<span class="FigureRef">175</span></a>, чтобы создать начальное
-представление доски для ферзей места. Два других вам понадобятся, чтобы описать 
+представление доски как места размещения ферзей. Две других вам понадобятся, чтобы описать 
 генеративные шаги алгоритма. 
 <a href="#%28counter._%28exercise._ex~3aqueens-solve%29%29" class="ex-end" data-pltdoc="x"></a></div>
 
@@ -4229,7 +4232,7 @@ backtracking(перебора с возвратами). Для наших цел
 <h3>30<tt>&nbsp;</tt><a name="(part._ch~3asummary5)"></a>Резюме</h3>
 
 <p>Эта пятая часть книги знакомит с идеей <span style="font-style: italic">эврики!</span> 
-в разработке программы. В отличие от <a name="(idx._(gentag._691))"></a>структурной
+при разработке программы. В отличие от <a name="(idx._(gentag._691))"></a>структурной
 разработки первых четырех частей, <span style="font-style: italic">эврика!</span> 
 разработки начинается с представления о том, как программа должна решать проблему или 
 обрабатывать данные, которые представляют проблему. Проектировать здесь означает придумать 

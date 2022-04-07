@@ -1,5 +1,5 @@
 #
-# NuINu <don't@send.my>, 2021.
+# NuINu <don't@send.my>, 2021, 2022.
 #
 #. extracted from in_1/i4-5.html
 msgid ""
@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-23 18:56+0300\n"
-"PO-Revision-Date: 2021-11-16 09:25+0300\n"
+"PO-Revision-Date: 2022-03-16 09:51+0300\n"
 "Last-Translator: NuINu <don't@send.my>\n"
 "Language-Team: Russian <don't@send.my>\n"
 "MIME-Version: 1.0\n"
@@ -1019,8 +1019,8 @@ msgstr ""
 "<span class=\"RktSym\">inex-&gt;number</span>(числовое значение), которое "
 "превращает \n"
 "<a href=\"#%28tech._inex%29\" class=\"techoutside\" data-pltdoc=\"x\"><span "
-"class=\"techinside\">Inex</span></a>es(индексы) в числа, используя "
-"приведенную выше формулу.\n"
+"class=\"techinside\">Inex</span></a>es в числа, используя приведенную выше "
+"формулу.\n"
 "</div>"
 
 #: in_1/i4-5.html:166
@@ -2520,14 +2520,13 @@ msgstr ""
 "span></span>  \n"
 "чисел и арифметику чисел. Типичный язык ограничивает свои целые числа "
 "интервалом, который \n"
-"связан с размером блоков оборудования, на котором он работает. Его "
-"представление действительных\n"
-"чисел в общих чертах основано на эскизе из предыдущих разделах, хотя и с "
-"более крупными\n"
-"фрагментами, чем четыре цифры, которые использует <a href=\"#%28tech._inex"
-"%29\" class=\"techoutside\" data-pltdoc=\"x\"><span class=\"techinside"
-"\">Inex</span></a>, и с цифрами из двухзначной системы\n"
-"счисления.</p>"
+"связан с размером ячеек(блоков) оборудования, на котором он работает. Его "
+"представление действительных чисел в общих чертах основано на эскизе из "
+"предыдущих разделах, хотя и с более крупными фрагментами, чем четыре цифры, "
+"которые использует <a href=\"#%28tech._inex%29\" class=\"techoutside\" data-"
+"pltdoc=\"x\"><span class=\"techinside\">Inex</span></a>, и с цифрами из "
+"двухзначной(двоичной) системы счисления.\n"
+"</p>"
 
 #: in_1/i4-5.html:493
 msgid ""
